@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/login.css">
+
+
+    <title>Wellcom to GameX</title>
+
+</head>
+
+<body>
+    <div class="container-fluid  ">
+        <img class=" backgroundimg  img" src="images/b2.jpeg">
+        <div class="backgroundimg" style="background-color: black; opacity: 0.5; z-index: -10;"></div>
+        <!-- Login form -->
+        <div class="container mFrom text-center" id="login">
+            <img class="" src="images/logo-web.png">
+            <form>
+
+                <input type="text" class="form-control mInput" id="username" placeholder="Username">
+
+                <input type="password" class="form-control mInput mt-2" id="login_pass"
+                    placeholder="Password">
+                <div class="form-check d-flex align-items-start mt-3" style="width: 300px; ">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class=" ml-5 text-white" for="defaultCheck1" style="font-weight: normal;">
+                        Keep me Signed in
+                    </label>
+                </div>
+                <button type="button" class="btn btn-outline-light mt-5"
+                    style="width: 300px; border-radius: 20px; background-color: #ff8148;">Login</button>
+
+                <div class="text-left mt-3 ml-3 "><a class="forget" href="#">Forgot Password? Click here!</a></div>
+            </form>
+
+        </div>
+
+        <!-- Register form -->
+        <div class="container mFrom text-center" id="register">
+            <img class="" src="images/logo-web.png">
+            <form>
+
+                <input type="text" class="form-control mInput" id="firstName" placeholder="First Name">
+                <input type="text" class="form-control mInput mt-4" id="lastName" placeholder="Last Name">
+                <input type="text" class="form-control mInput mt-4" id="email" placeholder="Email Address">
+                <input type="password" class="form-control mInput mt-4" id="pass" placeholder="Password">
+                <input type="password" class="form-control mInput mt-4" id="confPass" placeholder="Confirm Password">
+
+
+
+
+                <div class="form-check d-flex align-items-start mt-3" style="width: 300px; ">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class=" ml-5 text-white" for="defaultCheck1" style="font-weight: normal;">
+                        I agree to GameX Agreement
+                    </label>
+                </div>
+                <button type="button" class="btn btn-outline-light mt-5"
+                    style="width: 300px; border-radius: 20px; background-color: #ff8148;">Register</button>
+
+            </form>
+
+        </div>
+
+
+
+
+        <!-- Register and Login Button -->
+        <div class="register ">
+            <span class="glyphicon glyphicon-off text-white mr-2"></span>
+            <a class=" forget" href="#" id="login_btn">Login </a>
+            <div class="text-white d-inline">/</div>
+            <a class="forget" href="#" id="register_btn">Register</a>
+        </div>
+
+        <!-- Return Button -->
+        <div class="back">
+            <a href="#">
+                <span class="glyphicon glyphicon-arrow-left text-white" style="font-size: 25px;"></span></a>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        // Change register or login form show when start here 
+        $("#register").hide();
+
+
+        $(function () {
+            $("#login_btn").click(function () {
+                $("#register").hide();
+            });
+
+            $("#login_btn").click(function () {
+                $("#login").show();
+            });
+
+            $("#register_btn").click(function () {
+                $("#login").hide();
+            });
+            $("#register_btn").click(function () {
+                $("#register").show();
+
+            });
+        });
+    </script>
+</body>
+
+</html>
