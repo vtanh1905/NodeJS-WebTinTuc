@@ -11,7 +11,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
 
+    <style>
+        @media(max-width: 600px) {
+            .img {
+                content: url("/images/b1.jpg");
+            }
+            .back {
 
+                left: 5px;
+            }
+        }
+    </style>
     <title>Wellcom to GameX</title>
 
 </head>
@@ -27,8 +37,7 @@
 
                 <input type="text" class="form-control mInput" id="username" placeholder="Username">
 
-                <input type="password" class="form-control mInput mt-2" id="login_pass"
-                    placeholder="Password">
+                <input type="password" class="form-control mInput mt-2" id="login_pass" placeholder="Password">
                 <div class="form-check d-flex align-items-start mt-3" style="width: 300px; ">
                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                     <label class=" ml-5 text-white" for="defaultCheck1" style="font-weight: normal;">
@@ -119,7 +128,6 @@
             });
             $("#register_btn").click(function () {
                 $("#register").show();
-
             });
         });
     </script>
