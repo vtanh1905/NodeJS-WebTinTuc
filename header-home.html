@@ -10,14 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
-        
         .icon {
             color: white;
             font-size: 25px;
@@ -44,325 +37,138 @@
             font-weight: normal;
             font: 16px/1.7 Open Sans, arial, Helvetica Neue, Helvetica !important;
         }
-      .fontText{
-          text-decoration: none;
-          color: black;
-          font-size: 18px;
-      }
-        
+
         .active-danger {
             color: red !important;
         }
-        .color_text {
-      color: rgb(54, 51, 51);
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
-    .fa {
-      padding: 10px;
-      font-size: 30px;
-      width: 50px;
-      text-align: center;
-      text-decoration: none;
-      margin: 5px 2px;
-    }
-
-    .fa:hover {
-      opacity: 0.7;
-    }
-
-    .fa-facebook {
-      background: #3B5998;
-      color: white;
-    }
-
-    .fa-twitter {
-      background: #55ACEE;
-      color: white;
-    }
-
-    .fa-google {
-      background: #dd4b39;
-      color: white;
-    }
-    .text_tin{
-      text-decoration: none;
-    }
-    .text_tin:hover{
-      color: red;
-      text-decoration: none;
-    }
-        
     </style>
     <title>Hello, world!</title>
 </head>
 
 <body>
-        <div class="container-fluid p-0">
-                <nav class="navbar navbar-dark bg-dark navbar-expand-lg ">
-        
-                    <img src="images/logo-web.png" class="rounded float-left" alt="..." width="3%" height="3%">
-                    <a class="navbar-brand" href="#"></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li class="nav-item active active-danger">
-                                <a class="nav-link" href="#">Trang Chủ<span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item dropdown active">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Game Mobile</a>
-                                <div class="dropdown-menu bg-dark border-top-0">
-                                    <a class="dropdown-item set-dropdown-item" href="#">Android</a>
-                                    <a class="dropdown-item set-dropdown-item" href="#">IOS</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown active">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Game Online</a>
-                                <div class="dropdown-menu bg-dark border-top-0">
-                                    <a class="dropdown-item set-dropdown-item" href="#">Trong Nước</a>
-                                    <a class="dropdown-item set-dropdown-item" href="#">Ngoài Nước</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown active">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Esports</a>
-                                <div class="dropdown-menu bg-dark border-top-0">
-                                    <a class="dropdown-item set-dropdown-item" href="#">Liên Mình Huyền Thoại</a>
-                                    <a class="dropdown-item set-dropdown-item" href="#">Đột Kích</a>
-                                    <a class="dropdown-item set-dropdown-item" href="#">CSGO</a>
-                                    <a class="dropdown-item set-dropdown-item" href="#">Dota</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown active">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                    aria-haspopup="true" aria-expanded="false">PC/Console</a>
-                                <div class="dropdown-menu bg-dark border-top-0">
-                                    <a class="dropdown-item set-dropdown-item" href="#">PC</a>
-                                    <a class="dropdown-item set-dropdown-item" href="#">Console</a>
-                                </div>
-                            </li>
-                            <li class="nav-item active active-danger">
-                                <a class="nav-link" href="#">Công Nghệ<span class="sr-only">(current)</span></a>
-                            </li>
-                        </ul>
-                        <span class="navbar-text d-block p-0">
-                            <a href="page-login.html" class="fas fa-user-circle icon d-block d-md-inline">
-                                <span class="d-inline-block d-md-none text-icon">Đăng Nhập</span>
-                            </a>
-                            <i id="icon-find" class="fas fa-search icon d-block my-2 d-md-inline">
-                                <span class="d-inline-block d-md-none text-icon">Tìm Kiếm</span>
-                            </i>
-                        </span>
-                        <form id="form-search" class="form-inline d-block d-md-none" style="display: none;">
-                            <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0 btn-dark text-light border-light"
-                                type="submit">Search</button>
-                        </form>
-                    </div>
-                </nav>
-            <div class="container" style="height: auto">
-                            <div style="margin-top: 10px;">
-                                <nav aria-label="breadcrumb" >
-                                    <ol class="breadcrumb " style="border-left: 4px solid red;">
-                                      <li class="breadcrumb-item"><a href="#">Trang Chủ</a></li>
-                                      <li class="breadcrumb-item"><a href="#">Esports</a></li>
-                                      <li class="breadcrumb-item active" aria-current="page">Liên minh huyền thoại</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                                
-                                <h1 id="title"  style="font-weight:bold;">Thắng dễ đội tuyển của Levi, IG dành tấm vé tới Việt Nam tham dự MSI 2019</h1>
-                                <div class ="data-nguoiviet">
-                                    <label id="tacgia" style="font-weight:bold;color: rgb(165, 12, 12);">Swordsman - </label>
-                                    <label id="ngayviet">21/04/2019 17:05</label> 
-                                </div>
-                                     
-                            <div style="height: 5px; border-bottom: 1px solid rgb(172, 167, 167);margin-left: 30px;margin-right: 30px; margin-bottom: 20px;"></div>
-                            </div>     
-                            <div class ="row">
-                               
-                                <div class="col-md-9" style="overflow: hidden;">
-                                        <div>
-                                                <h2>IG sẽ là cái tên tiếp theo tới MSI 2019, giải đấu diễn ra tại Việt Nam cùng SKT, Team Liquid và G2 Esport</h2>
-        
-                                                <p>IG sẽ là cái tên tiếp theo tới MSI 2019, giải đấu diễn ra tại Việt Nam cùng SKT, Team Liquid và G2 Esport</p>
-                                                <img src="http://game8.vn/media/201904/images/msi.jpg"
-                                                  alt="Three Monks walking on ancient temple.">                                           
-                                                   
-                                              <br>                                                                      
-                                                <p>Với thành tích vô địch thế giới năm 2018, trở về giải quốc nội, IG vẫn tiếp tục thể hiện phong độ ấn tượng trước đối thủ. Thành công của đội đến từ việc họ vẫn giữ được bộ khung đã àm nên thành công mùa giải trước.
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg  fixed-top">
 
-                                                    Mặc dù đã thi đấu rất tốt nhưng JD Gaming đã không cản được đối phương. Tại trận đấu này, tuyển thủ Levi đến từ Việt Nam đã không ra sân thi đấu trong cả 3 ván đấu.<br>
-                                                    Mặc dù đã thi đấu rất tốt nhưng JD Gaming đã không cản được đối phương. Tại trận đấu này, tuyển thủ Levi đến từ Việt Nam đã không ra sân thi đấu trong cả 3 ván đấu.
-                                                  </p>
-                                                             
-                                                <p>Going to a new place can be quite terrifying. While change and uncertainty makes us scared, traveling
-                                                  teaches us how ridiculous it is to be afraid of something before it happens. The moment you face your
-                                                  fear and see there was nothing to be afraid of, is the moment you discover bliss.</p>
-                                                 
-        
-                                                  <p>Với chiến thắng này, IG đã có danh hiệu LPL đầu tiên trong lịch sử đội. 
-                                                    Họ sẽ là cái tên tiếp theo tới MSI 2019, giải đấu diễn ra tại Việt Nam cùng SKT, Team Liquid và G2 Esport</p>
-                                                    <p>Going to a new place can be quite terrifying. While change and uncertainty makes us scared, traveling
-                                                        teaches us how ridiculous it is to be afraid of something before it happens. The moment you face your
-                                                        fear and see there was nothing to be afraid of, is the moment you discover bliss.</p>
-                                                       
-              
-                                                        <p>Với chiến thắng này, IG đã có danh hiệu LPL đầu tiên trong lịch sử đội. 
-                                                          Họ sẽ là cái tên tiếp theo tới MSI 2019, giải đấu diễn ra tại Việt Nam cùng SKT, Team Liquid và G2 Esport</p>
-                                                          <p>Going to a new place can be quite terrifying. While change and uncertainty makes us scared, traveling
-                                                              teaches us how ridiculous it is to be afraid of something before it happens. The moment you face your
-                                                              fear and see there was nothing to be afraid of, is the moment you discover bliss.</p>
-                                        </div>
-                                </div>
-                                <div class="col-md-3" >
-                                    <div>
-                                        <h3 style="border-top:2px solid rgb(190, 2, 2);border-bottom: 1px solid rgb(182, 178, 178);padding-top: 15px;
-                                        padding-bottom: 5px;padding-left: auto; font-weight: bold;color: rgb(179, 16, 16);">TIN LIÊN QUAN</h3>
-                                        
-                                        <a class="text_tin" href="#">
-                                                <div class="card" style="border: 0px;">
-                                                    <img src="http://genknews.genkcdn.vn/zoom/170_113/2019/4/19/5-smartphone-gia-chinh-hang-chi-tam-4-trieu-dong-phu-hop-de-chien-pubg-mobile-cau-hinh-thap-6-1555674965514903059955.jpg" class="card-img-top" alt="...">
-                                                       
-                                                    
-                                                          <a href="#" class="fontText text_tin"> 5 smartphone giá chính hãng chỉ tầm 4 triệu, phù hợp để chiến PUBG Mobile cấu hình thấp</a>
-                                                       
-                                                        
-                                                        
-                                                </div>
-                                        </a>   
-
-                                        <div style="height: 5px; border-bottom: 1px solid rgb(172, 167, 167);margin-top: 10px;"></div>
-                                       
-                                        <div style="padding: 10px;padding-left: 0px;">                                           
-                                          <a class="fontText text_tin" href="http://gamek.vn/nhung-dieu-bat-tien-khien-nguoi-choi-phan-no-sau-ban-cap-nhat-cua-pubg-tren-xbox-one-va-ps4-20190420105823625.chn">
-                                            Những ngôi sao trên Twitch, Youtube từng phải nhận “trái đắng” sau khi gây sự với Pewdiepie</a>
-                                        </div  style="padding: 10px;padding-left: 0px;">
-                                        <div style="height: 5px; border-bottom: 1px solid rgb(172, 167, 167);margin-top: 10px"></div>
-
-                                        <div  style="padding: 10px;padding-left: 0px;" >                                           
-                                          <a class="fontText text_tin" href="http://gamek.vn/nhung-dieu-bat-tien-khien-nguoi-choi-phan-no-sau-ban-cap-nhat-cua-pubg-tren-xbox-one-va-ps4-20190420105823625.chn">
-                                            Những ngôi sao trên Twitch, Youtube từng phải nhận “trái đắng” sau khi gây sự với Pewdiepie</a>
-                                            </div>
-                                            <div style="height: 5px; border-bottom: 1px solid rgb(172, 167, 167);margin-top: 10px"></div>
-
-                                            <div  style="padding: 10px;padding-left: 0px;">                                           
-                                              <a class="fontText text_tin" href="http://gamek.vn/nhung-dieu-bat-tien-khien-nguoi-choi-phan-no-sau-ban-cap-nhat-cua-pubg-tren-xbox-one-va-ps4-20190420105823625.chn">
-                                                Những ngôi sao trên Twitch, Youtube từng phải nhận “trái đắng” sau khi gây sự với Pewdiepie</a>
-                                                </div>
-                                                <div style="height: 5px; border-bottom: 1px solid rgb(172, 167, 167);margin-top: 10px"></div>
-
-                                                <div  style="padding: 10px;padding-left: 0px;" >                                      
-                                                  <a class="fontText text_tin" href="http://gamek.vn/nhung-dieu-bat-tien-khien-nguoi-choi-phan-no-sau-ban-cap-nhat-cua-pubg-tren-xbox-one-va-ps4-20190420105823625.chn">
-                                                    Những ngôi sao trên Twitch, Youtube từng phải nhận “trái đắng” sau khi gây sự với Pewdiepie</a>
-                                                </div>
-                                                <div style="height: 5px; border-bottom: 3px solid rgb(190, 8, 8);margin-top: 10px;"></div>
-                                                    
-
-                                    </div>
-                                    
-
-                                </div>
-
-                            </div>          
-                            <div class="container">
-                                <h3 style="border-left: 5px solid red;padding: 10px;background: rgb(218, 213, 213);font-weight: bold;"> BÌNH LUẬN BÀI VIẾT</h3>
-                                <div style="padding: 0px">
-                                
-                                    <div >
-                                        <textarea style="width: 100%; height: 80px;" >
-                                        </textarea>
-                                        <button class="btn btn-lg btn-info float-lg-right">Gửi bình luận</button>
-                                    </div>
-
-                                </div>
-                            </div> 
-                            <div class="container" style="margin-top: 15px;margin-bottom: 15px;">                           
-                                <div style="padding: 0px">                      
-                                    <div>
-                                            <div class="media">
-                                                    <div class="media-left">
-                                                      <img src="images/img_avatar1.png" class="media-object" style="width:45px">
-                                                    </div>
-                                                    <div class="media-body">
-                                                      <h4 class="media-heading">Thiên Bảo <small><i>Posted on February 19, 2016</i></small></h4>
-                                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                      
-                                                      <!-- Nested media object -->
-                                                      <div class="media">
-                                                        <div class="media-left">
-                                                          <img src="images/woman.png" class="media-object" style="width:45px">
-                                                        </div>
-                                                        <div class="media-body">
-                                                          <h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                                                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                
-                                                          <!-- Nested media object -->
-                                                                                                           
-                                                        </div>
-                                                      </div>
-                                                      </div>
-                                            </div>
-                                            <hr>
-                                            <div class="media">
-                                                    <div class="media-left">
-                                                      <img src="images/woman.png" class="media-object" style="width:60px">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h4 class="media-heading">Danh Trương <small><i>Posted on February 19, 2016</i></small></h4>
-                                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                    </div>
-                                                  </div>
-                                    </div>
-
-                                </div>
-                            </div> 
-                            <div class="container-fluid" style="height: 300px;">
-                                    <div class="container" style="height:50px;border-bottom: 1px solid gray;">
-                                
-                                    </div>
-                                    <div style="height: 30px"></div>
-                                    <div class="container">
-                                      <div class="row ">
-                                        <div class="col-md-4" style="height:200px;">
-                                          <div style="position: absolute; right:20px;">
-                                            <img class=" img" src="images/logo-web.png">
-                                          </div>
-                                
-                                
-                                        </div>
-                                        <div class="col-md-4 color_text" style="height:200px;">
-                                          <h3>VỀ CHÚNG TÔI</h3>
-                                          <br>
-                                          <p>• Giấy phép thiết lập Mạng xã hội số 569/GP-BTTTT do Bộ Thông Tin và Truyền Thông cấp.
-                                            Trụ sở: 179 Đường Nguyễn Đình Chính, Phường 11, Quận PN, TP.HCM</p>
-                                          <p>Liên hệ: <strong>hieuld@applancer.net - Tel: 028 6264 5022</strong></p>
-                                
-                                        </div>
-                                        <div class="col-md-4" style="height:250px;">
-                                          <h3 class="color_text">THEO DÕI CHÚNG TÔI</h3>
-                                          <a href="#" class="fa fa-facebook"></a>
-                                          <a href="#" class="fa fa-twitter"></a>
-                                          <a href="#" class="fa fa-google"></a>
-                                        </div>
-                                
-                                      </div>
-                                
-                                    </div>
-                                
-                                  </div>                                                   
-                    </div>
-                    
-                        
-                </div>
-
+            <img src="images/logo-web.png" class="rounded float-left" alt="..." width="3%" height="3%">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active active-danger">
+                        <a class="nav-link" href="#">Trang Chủ<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">Game Mobile</a>
+                        <div class="dropdown-menu bg-dark border-top-0">
+                            <a class="dropdown-item set-dropdown-item" href="#">Android</a>
+                            <a class="dropdown-item set-dropdown-item" href="#">IOS</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">Game Online</a>
+                        <div class="dropdown-menu bg-dark border-top-0">
+                            <a class="dropdown-item set-dropdown-item" href="#">Trong Nước</a>
+                            <a class="dropdown-item set-dropdown-item" href="#">Ngoài Nước</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">Esports</a>
+                        <div class="dropdown-menu bg-dark border-top-0">
+                            <a class="dropdown-item set-dropdown-item" href="#">Liên Mình Huyền Thoại</a>
+                            <a class="dropdown-item set-dropdown-item" href="#">Đột Kích</a>
+                            <a class="dropdown-item set-dropdown-item" href="#">CSGO</a>
+                            <a class="dropdown-item set-dropdown-item" href="#">Dota</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">PC/Console</a>
+                        <div class="dropdown-menu bg-dark border-top-0">
+                            <a class="dropdown-item set-dropdown-item" href="#">PC</a>
+                            <a class="dropdown-item set-dropdown-item" href="#">Console</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active active-danger">
+                        <a class="nav-link" href="#">Công Nghệ<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <span class="navbar-text d-block p-0">
+                    <a href="page-login.html" class="fas fa-user-circle icon d-block d-md-inline">
+                        <span class="d-inline-block d-md-none text-icon">Đăng Nhập</span>
+                    </a>
+                    <i id="icon-find" class="fas fa-search icon d-block my-2 d-md-inline">
+                        <span class="d-inline-block d-md-none text-icon">Tìm Kiếm</span>
+                    </i>
+                </span>
+                <form id="form-search" class="form-inline d-block d-md-none" style="display: none;">
+                    <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0 btn-dark text-light border-light"
+                        type="submit">Search</button>
+                </form>
             </div>
-   
-    
+        </nav>
+        <div class="position-relative">
+            <img src="images/bg-02.png" class="background-slide position-absolute img-fluid">
+            <div id="carouselExampleIndicators" class="carousel slide  col-md-8  mx-auto "
+                style="padding-top:5rem; padding-bottom: 3rem;" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="images/test-1.jpg" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block text-left p-0" style="left:5% ;bottom:5px">
+                            <h1>Blade and Soul</h1>
+                            <p>19/05/1998</p>
+                        </div>
+                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game</div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="images/test-2.jpg" alt="Second slide">
+                        <div class="carousel-caption d-none d-md-block text-left p-0" style="left:5% ;bottom:5px">
+                            <h1>Blade and Soul</h1>
+                            <p>19/05/1998</p>
+                        </div>
+                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game</div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="images/test-3.jpg" alt="Third slide">
+                        <div class="carousel-caption d-none d-md-block text-left p-0" style="left:5% ;bottom:5px">
+                            <h1>Blade and Soul</h1>
+                            <p>19/05/1998</p>
+                        </div>
+                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game</div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="images/test-4.jpg" alt="Third slide">
+                        <div class="carousel-caption d-none d-md-block text-left p-0" style="left:5% ;bottom:5px">
+                            <h1>Blade and Soul</h1>
+                            <p>19/05/1998</p>
+                        </div>
+                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game</div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        123123
+    </div>
 
     <!-- Optional JavaScript -->
     <script src="js/jquery-3.3.1.slim.min.js"></script>
@@ -372,6 +178,12 @@
         //Hiệu Ứng Cho Nút Tìm Kiếm
         $("#icon-find").on("click", function () {
             $("#form-search").toggleClass("d-md-none");
+        });
+
+        //Thay Đổi Kích Cỡ Silde
+        $(".background-slide").height($("#carouselExampleIndicators").outerHeight());
+        $(window).on("resize", function () {
+            $(".background-slide").height($("#carouselExampleIndicators").outerHeight());
         });
     </script>
 </body>
