@@ -1,0 +1,37 @@
+.icon {
+    color: white;
+    font-size: 25px;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.icon:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.set-dropdown-item {
+    color: white;
+}
+
+.set-dropdown-item:hover {
+    display: inline-block;
+    background: gray;
+    color: white;
+}
+
+.text-icon {
+
+    font-weight: normal;
+    font: 16px/1.7 Open Sans, arial, Helvetica Neue, Helvetica !important;
+}
+
+.active-danger {
+    color: red !important;
+}
+
+.logo-icon{
+    width:50px; 
+    height:50px;
+    line-height: 50px;
+}

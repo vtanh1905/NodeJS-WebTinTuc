@@ -1,0 +1,58 @@
+.contanerDocument {
+    position: absolute;
+    bottom: 0px;
+    margin-left: 5px;
+    margin-right: 2px;
+  }
+  .contanerDocument2 {
+    position: absolute;
+    bottom: 0px;
+  
+  }
+
+  .zoom {
+    transition: transform .2s;
+  }
+
+  .zoom:hover {
+
+    -ms-transform: scale(1.02);
+    /* IE 9 */
+    -webkit-transform: scale(1.02);
+    /* Safari 3-8 */
+    transform: scale(1.02);
+    z-index: 1;
+    
+  }
+
+  .customtitle {
+   
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+   
+  }
+
+  .customtitle:hover {
+    color: red;
+    text-decoration: none;
+  }
+
+  .carousel-control {
+    width: 4%;
+  }
+
+  .carousel-control.left,
+  .carousel-control.right {
+    margin-left: 15px;
+    background-image: none;
+  }
+
+  
+
+  .color_text {
+    color: rgb(202, 196, 196);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
