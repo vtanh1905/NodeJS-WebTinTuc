@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
     <style>
         @media(max-width: 600px) {
@@ -47,7 +48,10 @@
                 <button type="button" class="btn btn-outline-light mt-5"
                     style="width: 300px; border-radius: 20px; background-color: #ff8148;">Login</button>
 
-                <div class="text-left mt-3 ml-3 "><a class="forget" href="#">Forgot Password? Click here!</a></div>
+                <div class="text-left mt-3 ml-3 "><a class="forget" href="#" id="btn_forgot">Forgot Password? Click here!</a></div>
+
+
+                
             </form>
 
         </div>
@@ -78,6 +82,19 @@
             </form>
 
         </div>
+        <div class="container mFrom text-center" id="forgot_password">
+                <img class="" src="images/logo-web.png">
+
+                <form>
+                        <div class="mb-5"><span class="h3">Forgot Your Password? </span></div>
+                        <div class="mt-4"><span>If you forgotten your password you can reset it here </span></div>
+                        <input type="text" class="form-control mInput mt-4" id="fg-email" placeholder="Email Address">
+
+                        <button type="button" class="btn btn-outline-light mt-5"
+                                style="width: 300px; border-radius: 20px; background-color: #ff8148;">Reset My Password</button>
+                </form>
+
+        </div>
 
 
 
@@ -96,6 +113,31 @@
                 <span class="glyphicon glyphicon-arrow-left text-white" style="font-size: 25px;"></span></a>
         </div>
 
+        <div class=" container mFrom text-center mt-3" id="social_medias">
+                <div class="d-flex flex-row">
+                    <span class="mt-1">_________________</span>
+                    <span class="mx-2 mt-3">OR</span>
+                    <span class="mt-1">_________________</span>
+
+                </div>
+                <div class=" mt-5  "><span>Connect with social media</span></div>
+
+                <div class="mt-3 d-flex" style="justify-content: space-between; ">
+                        <i class="fab fa-facebook-square text-primary mr-5 " style="font-size: 40px;"></i>
+                        <i class="fab fa-google-plus-square text-danger mr-5"  style="font-size: 40px;"></i>
+                        <i class="fab fa-twitter-square text-info "  style="font-size: 40px;"></i>
+
+
+
+
+                </div>
+
+        </div>
+        
+        
+        
+
+
     </div>
 
 
@@ -112,11 +154,14 @@
     <script>
         // Change register or login form show when start here 
         $("#register").hide();
+        $("#forgot_password").hide();
+
 
 
         $(function () {
             $("#login_btn").click(function () {
                 $("#register").hide();
+                $("#forgot_password").hide();
             });
 
             $("#login_btn").click(function () {
@@ -125,9 +170,18 @@
 
             $("#register_btn").click(function () {
                 $("#login").hide();
+                $("#forgot_password").hide();
             });
             $("#register_btn").click(function () {
                 $("#register").show();
+            });
+
+            $("#btn_forgot").click(function(){
+                $("#forgot_password").show();
+            });
+            $("#btn_forgot").click(function(){
+                $("#login").hide();
+                //$("#social_medias").hide();
             });
         });
     </script>
