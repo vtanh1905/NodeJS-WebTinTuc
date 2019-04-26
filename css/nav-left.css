@@ -1,0 +1,75 @@
+.nav-left *{
+  margin: 0px;
+  padding: 0px;
+  color: white;
+  font-weight: bold;
+}
+
+.nav-left{
+  width: 275px;
+  background: #23282D;
+  float: left;
+}
+
+.nav-left .nav-body{
+  list-style: none;
+}
+
+.nav-left .nav-body .nav-body-item{
+  display: block;
+}
+
+.nav-left .nav-body .nav-body-item a{
+  text-decoration: none;
+  display: block;
+  background: #23282D;
+  padding: 10px 30px;
+  text-align: justify;
+}
+
+.nav-left .nav-body .nav-body-item a:hover{
+  background: #343a40;
+  color: #00B9EB;
+}
+
+.nav-left .nav-body .nav-body-item > .nav-body{
+  display: none;
+}
+
+.nav-left .nav-body .nav-body-item > .nav-body a{
+  padding-left: 50px;
+
+}
+
+@media all and (max-width: 768px){
+  .nav-left{
+    float: none;
+    overflow: scroll;
+  }
+
+  .nav-left .nav-body{
+    width: 1000px;
+  }
+
+  .nav-left .nav-body .nav-body-item{
+    display: inline-block;
+  }
+  .nav-left .nav-body .nav-body-item > .nav-body{
+    position: absolute;
+    background: #343a40;
+    z-index: 999;
+    width: fit-content;
+  }
+
+  .nav-left .nav-body .nav-body-item:hover > .nav-body{
+    display: block;
+  }
+
+  .nav-left .nav-body .nav-body-item > .nav-body > .nav-body-item{
+    display: block;
+  }
+
+  .nav-left .nav-body .nav-body-item > .nav-body a{
+    padding-left: 30px;
+  }
+}

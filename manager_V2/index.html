@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="../css/nav-left.css">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="container-fluid p-0">
+
+      <!-- Menu Top -->
+      <nav id="nav-top" class="font-weight-bold w-100 pl-3" style="background: #23282D">
+        <a class="navbar-brand" href="#">
+          <img src="../images/logo-web.png" class="rounded float-left" alt="..." width="50px" height="50px">
+        </a>
+        <div class="float-right" id="navbarTogglerDemo02">
+          <!-- Split dropleft button -->
+          <div class="btn-group">
+            <div class="btn-group dropleft" role="group">
+              <button type="button" class="btn btn-secondary dropdown-toggle border-0 text-center "
+                style="background: #23282D; color:#23282D;" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <img src="../images/avatar-4.jpg" class="rounded d-inline-block" alt="..." height="50px" width="50px">
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Thông Tin Cá Nhân</a>
+                <a class="dropdown-item" href="#">Đổi Mật Khẩu</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Đăng Xuất</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Menu Left -->
+      <nav id="nav-left" class="nav-left">
+        <ul class="nav-body">
+          <li class="nav-body-item" data-show="#myNav1">
+            <a href="#">
+              <i class="fas fa-user"></i>
+              Cá Nhân
+              <i class="fas fa-caret-down"></i>
+            </a>
+            <ul id="myNav1" class="nav-body">
+              <li class="nav-body-item"><a href="#">Mua Tài Khoản</a></li>
+              <li class="nav-body-item"><a href="#">Đổi Thông Tin Cá Nhân</a></li>
+              <li class="nav-body-item"><a href="#">Đổi Mật Khẩu</a></li>
+            </ul>
+          </li>
+          <li class="nav-body-item" data-show="#myNav2">
+            <a href="#">
+              <i class="fas fa-newspaper"></i>
+              Bài Viết
+              <i class="fas fa-caret-down"></i>
+            </a>
+            <ul id="myNav2" class="nav-body">
+              <li class="nav-body-item"><a href="#">Đằng Bài Viết</a></li>
+              <li class="nav-body-item"><a href="#">Danh Sách Bài Viết</a></li>
+              <li class="nav-body-item"><a href="#">Hiểu Chình Bài Viết</a></li>
+            </ul>
+          </li>
+          <li class="nav-body-item" data-show="#myNav3">
+            <a href="#">
+              <i class="fas fa-newspaper"></i>
+              Duyệt Bài Viết
+              <i class="fas fa-caret-down"></i>
+            </a>
+            <ul id="myNav3" class="nav-body">
+              <li class="nav-body-item"><a href="#">Quản Lý Tài Khoản</a></li>
+              <li class="nav-body-item"><a href="#">Quản Lý Danh Mục</a></li>
+              <li class="nav-body-item"><a href="#">Quản Lý Nhãn</a></li>
+            </ul>
+          </li>
+          <li class="nav-body-item"><a href="#">
+              <i class="fas fa-reply"></i>
+              Thoát
+            </a>
+          </li>
+        </ul>
+
+      </nav>
+
+      <!-- Content -->
+      <div id="content" style="background:#F1F1F1; overflow-y: scroll; float: right;">
+
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="../js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script>
+      var widthDevice = $(window).width();
+      
+      if (widthDevice <= 768) {
+        $(".nav-left").width(widthDevice);
+        $("#content").width(widthDevice);
+      } else {
+        $("#content").width($(window).width() - $("#nav-left").width());
+
+
+        $("#nav-left").css("min-height",  $(window).height() - $("#nav-top").height());
+        $("#content").css("height",  $(window).height() - $("#nav-top").height() - 10);
+        $(window).on("resize", function () {          
+         
+          $("#content").width($(window).width() - $("#nav-left").width());
+          $("#nav-left").css("min-height",  $(window).height() - $("#nav-top").height());
+          $("#content").css("height",  $(window).height() - $("#nav-top").height() - 10);
+        });
+      }
+
+      $("li[data-show]").each(function(index, val){
+        $(val).click(function(){
+          var strSelector = $(this).attr("data-show");
+          if(widthDevice <= 768){
+            $(strSelector).show();
+          }else{
+            $(strSelector).toggle();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
