@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="../css/style-manager.css">
+  <title>Hello, world!</title>
+  <style>
+      hr { 
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+  </style>
+
+</head>
+
+<body style="background:#F1F1F1">
+  <div class="container-fluid p-0">
+    <!-- Thanh Menu - Start -->
+    <nav id="nav-top" class="navbar navbar-dark bg-dark navbar-expand-lg">
+      <a class="navbar-brand" href="#">Technews</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 offset-2">
+        </ul>
+        <span class="navbar-text d-block pr-1">
+          <li class="nav-item dropdown active d-inline-block">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">Chào Admin</a>
+            <div class="dropdown-menu bg-dark border-top-0">
+              <a class="dropdown-item set-dropdown-item" href="#">Chỉnh hồ sơ của tôi</a>
+              <a class="dropdown-item set-dropdown-item" href="#">Đăng Xuất</a>
+            </div>
+          </li>
+        </span>
+        <img src="../images/phuong.jpg" class="rounded float-left d-inline-block avatar" alt="..." height="50px"
+          width="50px">
+      </div>
+    </nav>
+    <!-- Thanh Menu - END -->
+
+    <div class="row w-100">
+      <!-- Thanh Menu Chức Năng Bên Trái - Start -->
+      <ul id="nav-left" class="nav flex-column  navbar-dark bg-dark col-2">
+        <li class="nav-item dropdown active">
+          <a class="nav-link h6 text-primary">Cá Nhân</a>
+          <div class=" bg-dark border-top-0">
+            <a class="dropdown-item set-dropdown-item" href="#">Nâng Cấp Tài Khoản</a>
+            <a class="dropdown-item set-dropdown-item" href="#">Điều Chỉnh hồ sơ</a>
+            <a class="dropdown-item set-dropdown-item" href="#">Đổi Mật Khẩu</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown active">
+          <a class="nav-link h6 text-primary">Bài Viết</a>
+          <div class=" bg-dark border-top-0">
+            <a href="page-danh-sach-bai-viet.html" class="dropdown-item set-dropdown-item" href="#">Danh Sách Bài Viết</a>
+            <a href="page-dang-bai-viet.html" class="dropdown-item set-dropdown-item" href="#">Đăng Bài Viết</a>
+            <a class="dropdown-item set-dropdown-item" href="#">Hiệu Chỉnh Bài Viết</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown active">
+          <a class="nav-link h6 text-primary">Biện Tập Bài Viết</a>
+          <div class=" bg-dark border-top-0">
+            <a class="dropdown-item set-dropdown-item" href="#">Danh Sách Bài Viết</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown active">
+          <a class="nav-link h6 text-primary">Quản Lý</a>
+          <div class=" bg-dark border-top-0">
+            <a class="dropdown-item set-dropdown-item" href="#">Quản lý chuyên mục</a>
+            <a class="dropdown-item set-dropdown-item" href="#">Quản lý nhãn</a>
+            <a class="dropdown-item set-dropdown-item" href="#">Quản lý bài viết</a>
+            <a class="dropdown-item set-dropdown-item" href="#">Quản lý người dùng</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown active">
+          <a class="nav-link h6 text-primary" href="#">Đăng Xuất</a>
+        </li>
+      </ul>
+      <!-- Thanh Menu Chức Năng Bên Trái - END -->
+
+      <!-- Content - Start -->
+      <div class="col-10 pr-0 container" style="background:#f5f9fc">
+        <div class="row" style="height:100%;">
+            <!-- Cot avatar -->
+                <div class="col-4  border-dark  " style="background:#ffffff">
+                        <div class="container-fluid d">
+                                <div class="row justify-content-end">
+                                        <li class="nav-item dropdown align-content-end">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                ...
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="#">Log out</a>                                              
+                                            </div>
+                                            </li>       
+                                </div>
+                                <div class="row justify-content-center ">
+                                       <img class=" rounded-circle" src="avatar-2.jpg" style="width: 150px; height: 150px;">
+            
+                                </div>
+                                <div class="row justify-content-center mt-3"><div class="text-dark font-weight-bold" style="font-size: 20px;" id="name_0"></div></div>
+                                <div class="position-absolute bg-none px-2 text-success" style="top:3%; left: 3%; border:1px solid chartreuse; border-radius: 15px;">
+                                    Online
+                                </div>
+                                <div class="row justify-content-start" style="margin-top: 150px;">
+                                    <div class="d-block border-bottom pb-2" style="width: 100%"><i class="fas fa-info-circle"></i>
+                                        Detail</div>
+                                    <div class="d-block mt-3" style="width: 100%">
+                                        <div class="float-left"><b>Bút Danh: </b></div>
+                                        <div class="float-right text-info">Chém gió vcl</div>
+                                    </div>
+                                    <div class="d-block mt-3" style="width: 100%">
+                                            <div class="float-left"><b>Số bài viết: </b></div>
+                                            <div class="float-right text-info">20</div>
+                                    </div>
+                                    <div class="d-block mt-3" style="width: 100%">
+                                            <div class="float-left"><b>Ngày đăng Gần nhất: </b></div>
+                                            <div class="float-right text-info">26/4/2019</div>
+                                    </div>
+                                   
+                                </div>
+                                <div class="row justify-content-center" style="margin-top: 150px;">
+                                        <button type="button" class="btn btn-outline-warning">Premium: UnActive</button>
+
+                                    
+                                
+                                </div>
+
+                        </div>
+                        
+            
+                    </div>
+            <!-- Cot info -->
+                <div class="col-7 ml-5 border-dark  w-100 h-100" style="background:#f5f9fc">
+                    <div class="container-fluid">
+                        <div class="row" style="background:#ffffff; width: 100%;">
+                            <!-- Gioi thieu premium -->
+                            <div class="col-8">
+                                    <div class="card border-0">                                       
+                                            <div class="card-body">
+                                              <h5 class="card-title">Premium Account</h5>
+                                              
+                                                <p class="card-text">Với tài khoảng Premium:</p>
+                                                    
+                                                <p class="card-text "><i class="fas fa-check d-inline mr-2 text-info"></i>Bạn có thể download các bài viết có Tag Premium</p>                                               
+                                             
+                                             
+                                                <p class="card-text"><i class="fas fa-check d-inline mr-2 text-info"></i>Không Bị gián đoạn bới quảng cáo</p>
+                                                <p class="card-text"><i class="fas fa-check d-inline mr-2 text-info"></i>Đội ngũ hộ trợ trực tuyến 24/7</p>
+                                            </div>
+                                          </div>
+                            </div>
+                            <!-- Nut đăng ký -->
+                            <div class="col-3 text-center" >
+                                    <a href="#" class="btn btn-primary " style="margin-top:100px;">Go Premium</a>
+
+                            </div>
+                               
+                        </div>
+            <!-- Thong tin nguoi dung -->
+                        <div class="row mt-5 p-4" style="background:#ffffff; width: 100%;">
+                            <form>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">Họ Tên</label>
+                                        <input type="text" class="form-control" id="name" placeholder="" style="width: 200%;">
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="exampleFormControlInput1">Email</label>
+                                            <input type="text" class="form-control" id="email" placeholder="" style="width: 200%;">
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="exampleFormControlInput1">Ngày sinh</label>
+                                            <input type="text" class="form-control" id="birth" placeholder="" style="width: 200%;">
+                                    </div>
+                            </form>
+                                   
+                        </div>
+                        <div class="row mt-3 p-4" style="background:#ffffff; width: 100%;">
+                                <form>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlInput1">Mật khẩu cũ:</label>
+                                            <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="" style="width: 200%;">
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="exampleFormControlInput1">Mật khẩu mới</label>
+                                                <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="" style="width: 200%;">
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="exampleFormControlInput1">Nhập lại Mật khẩu mới</label>
+                                                <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="" style="width: 200%;">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mb-2">Đổi mật khẩu</button>
+
+                                </form>
+                                       
+                            </div>
+                    </div>
+                
+                </div>
+        </div>
+        
+        
+       
+      </div>
+      <!-- Content - END -->
+    </div>
+  </div>
+
+
+
+
+  <!-- Optional JavaScript -->
+  <script src="../js/jquery-3.3.1.slim.min.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script>
+    //Thay Đổi Height của Nav-Left
+    $("#nav-left").css("min-height", $(window).height() - $("#nav-top").outerHeight());
+    //Thay Đổi Height của Nav-Left
+    $(window).on("resize", function(){
+      $("#nav-left").css("min-height", $(window).height() - $("#nav-top").outerHeight());
+    });
+    $(document).ready(function(){
+        
+        $("#name").val("Trương Lê Việt Danh");
+        $("#name_0").text("Trương Lê Việt Danh");
+        $("#email").val("tlvietdanh@gmail.com");
+        $("#birth").val("13/10/1998");
+        function textChange(){
+            alert("huhu");
+        }
+        $("#name").change(function(){
+            alert("huhu");
+        });
+    });
+    
+
+  </script>
+</body>
+
+</html>
