@@ -228,6 +228,33 @@
             }
         }
     </script>
+      <!-- Content - Start -->
+      <div class="col-10 pr-0 container-fluid" style="background:#f5f9fc">
+        <div class="col-4 my-3 border-dark bg-dark w-100 h-100 d-flex justify-content-center ">
+          <div class="w-50 mt-5 border-light bg-light" style="height: 180px; border-radius: 200px;"></div>
+          <div class="position-fixed text-white" style="top: 2px; right: 2px;">awdawdawd</div>
+
+        </div>
+      </div>
+      <!-- Content - END -->
+    </div>
+  </div>
+
+
+
+
+  <!-- Optional JavaScript -->
+  <script src="../js/jquery-3.3.1.slim.min.js"></script>
+  <script src="../js/popper.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script>
+    //Thay Đổi Height của Nav-Left
+    $("#nav-left").css("min-height", $(window).height() - $("#nav-top").outerHeight());
+    //Thay Đổi Height của Nav-Left
+    $(window).on("resize", function(){
+      $("#nav-left").css("min-height", $(window).height() - $("#nav-top").outerHeight());
+    });
+  </script>
 </body>
 
 
