@@ -11,20 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-
-    <style>
-        @media(max-width: 600px) {
-            .img {
-                content: url("/images/b1.jpg");
-            }
-            .back {
-
-                left: 5px;
-            }
-        }
-    </style>
     <title>Wellcom to GameX</title>
-
 </head>
 
 <body>
@@ -48,7 +35,7 @@
                 <button type="button" class="btn btn-outline-light mt-5"
                     style="width: 300px; border-radius: 20px; background-color: #ff8148;">Login</button>
 
-                <div class="text-left mt-3 ml-3 "><a class="forget" href="#" id="btn_forgot">Forgot Password? Click here!</a></div>
+                <div class="text-left mt-3 ml-3 "><button class="btn btn-link forget" href="#" type="button" id="btn_forgot">Forgot Password? Click here!</button></div>
 
 
                 
@@ -63,6 +50,7 @@
 
                 <input type="text" class="form-control mInput" id="firstName" placeholder="First Name">
                 <input type="text" class="form-control mInput mt-4" id="lastName" placeholder="Last Name">
+                <input type="text" class="form-control mInput mt-4" id="lastName" placeholder="User">
                 <input type="text" class="form-control mInput mt-4" id="email" placeholder="Email Address">
                 <input type="password" class="form-control mInput mt-4" id="pass" placeholder="Password">
                 <input type="password" class="form-control mInput mt-4" id="confPass" placeholder="Confirm Password">
@@ -103,9 +91,9 @@
         <!-- Register and Login Button -->
         <div class="register ">
             <span class="glyphicon glyphicon-off text-white mr-2"></span>
-            <a class=" forget" href="#" id="login_btn">Login </a>
+            <button class="btn-link forget" id="login_btn">Login </button>
             <div class="text-white d-inline">/</div>
-            <a class="forget" href="#" id="register_btn">Register</a>
+            <button class="btn-link forget" id="register_btn">Register</button>
         </div>
 
         <!-- Return Button -->

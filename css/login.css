@@ -56,3 +56,13 @@
     left: 50px;
     color: white;
 }
+
+@media(max-width: 600px) {
+    .img {
+        content: url("/images/b1.jpg");
+    }
+    .back {
+
+        left: 5px;
+    }
+}

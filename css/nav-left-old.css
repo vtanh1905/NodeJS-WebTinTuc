@@ -18,23 +18,26 @@
   display: inline-block;
 }
 
-.nav-left .nav-body .nav-body-item a{
+.nav-left .nav-body .nav-body-item button{
   text-decoration: none;
   display: block;
   background: #23282D;
   padding: 10px 30px;
   text-align: justify;
+  border: none;
+  width: 100%;
 }
 
-.nav-left .nav-body .nav-body-item a:hover{
+.nav-left .nav-body .nav-body-item button:hover{
   background: #343a40;
   color: #00B9EB;
+  
 }
 
 .nav-left .nav-body .nav-body-item > .nav-body{
   display: none;
   position: absolute;
-  background: #343a40;
+  background: #23282D;
   width: fit-content;
   z-index: 10;
 }
@@ -47,9 +50,9 @@
     display: block;
   }
 
-.nav-left .nav-body .nav-body-item > .nav-body a{
+.nav-left .nav-body .nav-body-item > .nav-body button{
   padding-left: 30px;
-
+  display: block;
 }
 
 @media all and (max-width: 768px){

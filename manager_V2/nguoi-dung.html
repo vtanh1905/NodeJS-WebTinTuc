@@ -12,7 +12,7 @@
 
     <title>Hello, world!</title>
   </head>
-  <body>
+  <body  style="background:#F1F1F1">
     <div class="container-fluid p-0">
 
       <!-- Menu Top -->
@@ -27,7 +27,7 @@
               <button type="button" class="btn btn-secondary dropdown-toggle border-0 text-center "
                 style="background: #23282D; color:#23282D;" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
-                <img src="../images/avatar-4.jpg" class="rounded d-inline-block" alt="..." height="50px" width="50px">
+                <img src="../images/avatar-2.jpg" class="rounded-circle d-inline-block" alt="..." height="50px" width="50px">
               </button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">Thông Tin Cá Nhân</a>
@@ -90,64 +90,45 @@
 
       <!-- Content -->
       <div id="content" style="background:#F1F1F1; overflow-y: scroll; float: right;">
-        <div class="row m-0">
+        <div class="row mx-0 pt-3" style="background:#F1F1F1;">
           <!-- Cot avatar -->
-          <div class="col-4  border-dark  " style="background:#ffffff">
-            <div class="container-fluid d">
-              <div class="row justify-content-end">
-                <li class="nav-item dropdown align-content-end">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    ...
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Log out</a>
-                  </div>
-                </li>
+          <div class="col-5 border border-info " style="background:#ffffff">
+            <div class="mt-3 d-inline-block bg-none px-2 text-light border bg-primary" style="border-radius: 15px;">
+              Online
+            </div>
+            <div class="row justify-content-center ">
+              <img class="img-fluid rounded-circle" src="/images/avatar-2.jpg" style="width: 150px; height: 150px;">
+            </div>
+            <div class="row justify-content-center mt-3">
+              <div class="text-dark font-weight-bold" style="font-size: 20px;" id="name_0">Cô Gái Năm Ấy</div>
+            </div>
+            <div class="row justify-content-start p-3 mt-5">
+              <div class="d-block border-bottom pb-2 w-100">
+                <i class="fas fa-info-circle"></i>Detail
               </div>
-              <div class="row justify-content-center ">
-                <img class=" rounded-circle" src="/images/avatar-2.jpg" style="width: 150px; height: 150px;">
-
+              <div class="d-block mt-3" style="width: 100%">
+                <div class="float-left"><b>Bút Danh: </b></div>
+                <div class="float-right text-info">Chém gió vcl</div>
               </div>
-              <div class="row justify-content-center mt-3">
-                <div class="text-dark font-weight-bold" style="font-size: 20px;" id="name_0"></div>
+              <div class="d-block mt-3" style="width: 100%">
+                <div class="float-left"><b>Số bài viết: </b></div>
+                <div class="float-right text-info">20</div>
               </div>
-              <div class="position-absolute bg-none px-2 text-success"
-                style="top:3%; left: 3%; border:1px solid chartreuse; border-radius: 15px;">
-                Online
-              </div>
-              <div class="row justify-content-start" style="margin-top: 150px;">
-                <div class="d-block border-bottom pb-2" style="width: 100%"><i class="fas fa-info-circle"></i>
-                  Detail</div>
-                <div class="d-block mt-3" style="width: 100%">
-                  <div class="float-left"><b>Bút Danh: </b></div>
-                  <div class="float-right text-info">Chém gió vcl</div>
-                </div>
-                <div class="d-block mt-3" style="width: 100%">
-                  <div class="float-left"><b>Số bài viết: </b></div>
-                  <div class="float-right text-info">20</div>
-                </div>
-                <div class="d-block mt-3" style="width: 100%">
-                  <div class="float-left"><b>Ngày đăng Gần nhất: </b></div>
-                  <div class="float-right text-info">26/4/2019</div>
-                </div>
-
-              </div>
-              <div class="row justify-content-center" style="margin-top: 150px;">
-                <button type="button" class="btn btn-outline-warning">Premium: UnActive</button>
-
-
-
+              <div class="d-block mt-3" style="width: 100%">
+                <div class="float-left"><b>Ngày đăng Gần nhất: </b></div>
+                <div class="float-right text-info">26/4/2019</div>
               </div>
 
             </div>
-
-
+            <div class="row justify-content-center mt-5">
+              <button type="button" class="btn btn-secondary text-white">Premium: UnActive</button>
+            </div>
           </div>
           <!-- Cot info -->
-          <div class="col-7 ml-5 border-dark  w-100 h-100" style="background:#f5f9fc">
-            <div class="container-fluid">
-              <div class="row" style="background:#ffffff; width: 100%;">
+          <div class="col-7">
+            <!-- Mua Tài Khoản -->
+            <div class="border border-info" style="background:#ffffff">
+              <div class="row">
                 <!-- Gioi thieu premium -->
                 <div class="col-8">
                   <div class="card border-0">
@@ -160,7 +141,7 @@
                         bài viết có Tag Premium</p>
 
 
-                      <p class="card-text"><i class="fas fa-check d-inline mr-2 text-info"></i>Không Bị gián đoạn bới
+                      <p class="card-text"><i class="fas fa-check d-inline mr-2 text-info"></i>Không bị gián đoạn bới
                         quảng cáo</p>
                       <p class="card-text"><i class="fas fa-check d-inline mr-2 text-info"></i>Đội ngũ hộ trợ trực tuyến
                         24/7</p>
@@ -168,49 +149,47 @@
                   </div>
                 </div>
                 <!-- Nut đăng ký -->
-                <div class="col-3 text-center">
-                  <a href="#" class="btn btn-primary " style="margin-top:100px;">Go Premium</a>
-
+                <div class="col-4 d-flex align-items-center">
+                  <a href="#" class="btn btn-lg btn-primary   ">Go Premium</a>
                 </div>
+              </div>
+            </div>
+            <!-- Thong tin nguoi dung -->
+            <div class="mt-3 p-4 border border-info" style="background:#ffffff">
+              <form>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Họ Tên</label>
+                  <input type="text" class="form-control" id="name" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Email</label>
+                  <input type="text" class="form-control" id="email" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Ngày sinh</label>
+                  <input type="text" class="form-control" id="birth" placeholder="">
+                </div>
+                <a href="#" class="btn btn-primary" id="btn_saveInfo">Lưu thông tin</a>
+              </form>
+            </div>
+            <!-- Doi mat khau -->
+            <div class="mt-3 p-4 border border-info" style="background:#ffffff">
+              <form>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Mật khẩu cũ:</label>
+                  <input type="password" class="form-control" id="oldPass" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Mật khẩu mới</label>
+                  <input type="password" class="form-control" id="newPass" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Nhập lại Mật khẩu mới</label>
+                  <input type="password" class="form-control" id="confNewPass" placeholder="">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2" id="btn_changePass">Đổi mật khẩu</button>
 
-              </div>
-              <!-- Thong tin nguoi dung -->
-              <div class="row mt-5 p-4" style="background:#ffffff; width: 100%;">
-                <form>
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Họ Tên</label>
-                    <input type="text" class="form-control" id="name" placeholder="" style="width: 200%;">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Email</label>
-                    <input type="text" class="form-control" id="email" placeholder="" style="width: 200%;">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Ngày sinh</label>
-                    <input type="text" class="form-control" id="birth" placeholder="" style="width: 200%;">
-                  </div>
-                  <a href="#" class="btn btn-primary" id="btn_saveInfo">Lưu thông tin</a>
-                </form>
-              </div>
-              <!-- Doi mat khau -->
-              <div class="row mt-3 p-4" style="background:#ffffff; width: 100%;">
-                <form>
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Mật khẩu cũ:</label>
-                    <input type="password" class="form-control" id="oldPass" placeholder="" style="width: 200%;">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Mật khẩu mới</label>
-                    <input type="password" class="form-control" id="newPass" placeholder="" style="width: 200%;">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleFormControlInput1">Nhập lại Mật khẩu mới</label>
-                    <input type="password" class="form-control" id="confNewPass" placeholder="" style="width: 200%;">
-                  </div>
-                  <button type="submit" class="btn btn-primary mb-2" id="btn_changePass">Đổi mật khẩu</button>
-
-                </form>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -223,30 +202,24 @@
     <script src="../js/bootstrap.min.js"></script>
     <script>
       //ten nguoi dung
-      $("#btn_saveInfo").hide();
-      $("#name").val("Trương Lê Việt Danh");
+      $("#btn_saveInfo").addClass("disabled");
+      $("#name").val("Ami");
       // ten nguoi dung duoi avata
-      $("#name_0").text("Trương Lê Việt Danh");
+      $("#name_0").text("Cô Gái Năm Ấy");
       // email nguoi dung
-      $("#email").val("tlvietdanh@gmail.com");
+      $("#email").val("girlcodon@gmail.com");
       // ngay thang nam sinh
-      $("#birth").val("13/10/1998");
+      $("#birth").val("5/10/1998");
 
 
-
-
-      // khi thong tin thay doi
-      function textChange() {
-        alert("huhu");
-      }
       $("#name").change(function () {
-        $("#btn_saveInfo").show();
+        $("#btn_saveInfo").removeClass("disabled");
       });
       $("#email").change(function () {
-        $("#btn_saveInfo").show();
+        $("#btn_saveInfo").removeClass("disabled");
       });
       $("#birth").change(function () {
-        $("#btn_saveInfo").show();
+        $("#btn_saveInfo").removeClass("disabled");
       });
       $("#btn_saveInfo").click(function () {
         // save info va cap nhat lai page   
@@ -288,7 +261,7 @@
         $("#content").css("height", $(window).height() - $("#nav-top").height() - 10);
         $(window).on("resize", function () {
 
-          $("#content").width($(window).width() - $("#nav-left").width());
+          $("#content").width($(window).width() - $("#nav-left").width()  - 20);
           $("#nav-left").css("min-height", $(window).height() - $("#nav-top").height());
           $("#content").css("height", $(window).height() - $("#nav-top").height() - 10);
         });

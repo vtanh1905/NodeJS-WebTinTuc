@@ -107,7 +107,7 @@
                       placeholder="">
                   </div>
                   <!-- Lý Do Từ Chối -->
-                  <div class="card bg-light mb-3">
+                  <div class="card bg-light mb-3  sr-only">
                       <div class="card-header h5 text-light bg-danger">Lý Do Từ Chối</div>
                       <div class="card-body p-3 text-dark">
                         Tiều Đề Không Hợp Lý
@@ -304,7 +304,7 @@
         $("#content").css("height",  $(window).height() - $("#nav-top").height() - 10);
         $(window).on("resize", function () {          
          
-          $("#content").width($(window).width() - $("#nav-left").width());
+          $("#content").width($(window).width() - $("#nav-left").width() - 20);
           $("#nav-left").css("min-height",  $(window).height() - $("#nav-top").height());
           $("#content").css("height",  $(window).height() - $("#nav-top").height() - 10);
         });

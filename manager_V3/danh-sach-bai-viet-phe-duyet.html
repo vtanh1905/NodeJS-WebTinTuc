@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="../css/nav-left.css">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="container-fluid p-0">
+      <!-- Nav Left -->
+      <nav id="nav-left" class="nav-left">
+        <ul class="nav-body">
+          <li class="nav-body-item" data-show="#myNav1">
+            <a href="#">
+              <i class="fas fa-user"></i>
+              Cá Nhân
+              <i class="fas fa-caret-down"></i>
+            </a>
+            <ul id="myNav1" class="nav-body">
+              <li class="nav-body-item"><a href="#">Mua Tài Khoản</a></li>
+              <li class="nav-body-item"><a href="#">Đổi Thông Tin Cá Nhân</a></li>
+              <li class="nav-body-item"><a href="#">Đổi Mật Khẩu</a></li>
+            </ul>
+          </li>
+          <li class="nav-body-item" data-show="#myNav2">
+            <a href="#">
+              <i class="fas fa-newspaper"></i>
+              Bài Viết
+              <i class="fas fa-caret-down"></i>
+            </a>
+            <ul id="myNav2" class="nav-body">
+              <li class="nav-body-item"><a href="#">Đằng Bài Viết</a></li>
+              <li class="nav-body-item"><a href="#">Danh Sách Bài Viết</a></li>
+              <li class="nav-body-item"><a href="#">Hiểu Chình Bài Viết</a></li>
+            </ul>
+          </li>
+          <li class="nav-body-item" data-show="#myNav3">
+            <a href="#">
+              <i class="fas fa-newspaper"></i>
+              Duyệt Bài Viết
+              <i class="fas fa-caret-down"></i>
+            </a>
+            <ul id="myNav3" class="nav-body">
+              <li class="nav-body-item"><a href="#">Quản Lý Tài Khoản</a></li>
+              <li class="nav-body-item"><a href="#">Quản Lý Danh Mục</a></li>
+              <li class="nav-body-item"><a href="#">Quản Lý Nhãn</a></li>
+            </ul>
+          </li>
+          <li class="nav-body-item"><a href="#">
+              <i class="fas fa-reply"></i>
+              Thoát
+            </a>
+          </li>
+        </ul>
+
+      </nav>
+
+      <!-- Content -->
+       <div id="content" class="p-3" style="background:#F1F1F1; overflow-y: scroll;">
+         <h3>Duyệt Bài Viết</h3>
+         <hr>
+         <!-- 4 Button -->
+         <div class="d-flex">
+           <button type="button" class="btn btn-primary mr-3">
+             Tất Cả <span class="badge badge-light">10</span>
+           </button>
+           <button type="button" class="btn btn-success mr-3">
+             Đã Duyệt <span class="badge badge-light">8</span>
+           </button>
+           <button type="button" class="btn btn-warning text-light mr-3">
+             Chờ Duyệt <span class="badge badge-light">2</span>
+           </button>
+           <button type="button" class="btn btn-danger mr-3">
+             Bị Từ Chối <span class="badge badge-light">2</span>
+           </button>
+         </div>
+
+         <!-- Dành Sách Bài Viết -->
+         <table class="table table-bordered table-responsive table-hover mt-3 bg-white">
+             <thead>
+                 <tr>
+                     <th class="text-center" style="width: 2%" scope="col">TT</th>
+                     <th class="text-center" style="width: 8%" scope="col">Ảnh</th>
+                     <th class="text-center" style="width: 40%" scope="col">Tiêu Đề</th>
+                     <th class="text-center" style="width: 10%" scope="col">Danh Mục</th>
+                     <th class="text-center" style="width: 10%" scope="col">Ngày Đăng</th>
+                     <th class="text-center" style="width: 10%" scope="col">Bình Luận</th>
+                     <th class="text-center" style="width: 10%" scope="col">Tác Giả</th>
+                     <th class="text-center" style="width: 10%" scope="col">Chức năng</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr>
+                     <th class="text-center align-middle" scope="row">
+                         <i class="fas fa-check-circle text-success"></i>
+                     </th>
+                     <td class="text-center align-middle">
+                         <img src="../images/test-1.jpg" class="rounded mx-auto d-block" alt="..." width="100%">
+                     </td>
+                     <td class="align-middle">
+                         <a href="../chi-tiet-bai-viet.html" target="_blank" rel="noopener noreferrer">Blade and Soul
+                             Mobile sẽ
+                             do Garena sở hữu và phát hành tại Việt Nam năm 2019?</a>
+
+                     </td>
+                     <td class="text-center align-middle">PC</td>
+                     <td class="text-center align-middle">19/05/1998</td>
+                     <td class="text-center align-middle">10</td>
+                     <td class="text-center align-middle">Vũ Tuấn Anh</td>
+                     <td class="text-center align-middle">
+                         <div class="btn-group" role="group" aria-label="Basic example">
+                             <button type="button" class="btn btn-info">Xem</button>
+                         </div>
+                     </td>
+                 </tr>
+                 <tr>
+                     <th class="text-center align-middle" scope="row">
+                         <i class="fas fa-minus-circle text-info"></i>
+                     </th>
+                     <td class="text-center align-middle">
+                         <img src="../images/test-1.jpg" class="rounded mx-auto d-block" alt="..." width="100%">
+                     </td>
+                     <td class="align-middle">
+                         <a href="../chi-tiet-bai-viet.html" target="_blank" rel="noopener noreferrer">Blade and Soul
+                             Mobile sẽ
+                             do Garena sở hữu và phát hành tại Việt Nam năm 2019?</a>
+                     </td>
+                     <td class="text-center align-middle">PC</td>
+                     <td class="text-center align-middle">19/05/1998</td>
+                     <td class="text-center align-middle">0</td>
+                     <td class="text-center align-middle">Vũ Tuấn Anh</td>
+                     <td class="text-center align-middle">
+                         <div class="btn-group" role="group" aria-label="Basic example">
+                             <button type="button" class="btn btn-info">Xem</button>
+                         </div>
+                     </td>
+                 </tr>
+                 <tr>
+                     <th class="text-center align-middle" scope="row">
+                         <i class="fas fa-clock text-warning"></i>
+                     </th>
+                     <td class="text-center align-middle">
+                         <img src="../images/test-1.jpg" class="rounded mx-auto d-block" alt="..." width="100%">
+                     </td>
+                     <td class="align-middle">
+                         <a href="../chi-tiet-bai-viet.html" target="_blank" rel="noopener noreferrer">Blade and Soul
+                             Mobile sẽ
+                             do Garena sở hữu và phát hành tại Việt Nam năm 2019?</a>
+
+                     </td>
+                     <td class="text-center align-middle">PC</td>
+                     <td class="text-center align-middle">19/05/1998</td>
+                     <td class="text-center align-middle">0</td>
+                     <td class="text-center align-middle">Vũ Tuấn Anh</td>
+                     <td class="text-center align-middle">
+                         <div class="btn-group" role="group" aria-label="Basic example">
+                             <button type="button" class="btn btn-info">Xem</button>
+                         </div>
+                     </td>
+                 </tr>
+                 <tr>
+                     <th class="text-center align-middle" scope="row">
+                         <i class="fas fa-times-circle text-danger"></i>
+                     </th>
+                     <td class="text-center align-middle">
+                         <img src="../images/test-1.jpg" class="rounded mx-auto d-block" alt="..." width="100%">
+                     </td>
+                     <td class="align-middle">
+                         <a href="../chi-tiet-bai-viet.html" target="_blank" rel="noopener noreferrer">Blade and Soul
+                             Mobile sẽ
+                             do Garena sở hữu và phát hành tại Việt Nam năm 2019?</a>
+
+                     </td>
+                     <td class="text-center align-middle">PC</td>
+                     <td class="text-center align-middle">19/05/1998</td>
+                     <td class="text-center align-middle">0</td>
+                     <td class="text-center align-middle">Vũ Tuấn Anh</td>
+                     <td class="text-center align-middle">
+                         <div class="btn-group" role="group" aria-label="Basic example">
+                             <button type="button" class="btn btn-info">Xem</button>
+                         </div>
+                     </td>
+                 </tr>
+                 <tr>
+                     <th class="text-center align-middle" scope="row">
+                         <i class="fas fa-times-circle text-danger"></i>
+                     </th>
+                     <td class="text-center align-middle">
+                         <img src="../images/test-1.jpg" class="rounded mx-auto d-block" alt="..." width="100%">
+                     </td>
+                     <td class="align-middle">
+                         <a href="../chi-tiet-bai-viet.html" target="_blank" rel="noopener noreferrer">Blade and Soul
+                             Mobile sẽ
+                             do Garena sở hữu và phát hành tại Việt Nam năm 2019?</a>
+
+                     </td>
+                     <td class="text-center align-middle">PC</td>
+                     <td class="text-center align-middle">19/05/1998</td>
+                     <td class="text-center align-middle">0</td>
+                     <td class="text-center align-middle">Vũ Tuấn Anh</td>
+                     <td class="text-center align-middle">
+                         <div class="btn-group" role="group" aria-label="Basic example">
+                             <button type="button" class="btn btn-info">Xem</button>
+                         </div>
+                     </td>
+                 </tr>
+             </tbody>
+         </table>
+
+          <!-- Btn Xem Them -->
+          <div class="text-center">
+            <button type="button" class="btn btn-danger my-3">Xem Thêm </button>
+          </div>
+       </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="../js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script>
+      $("#content").css("height", $(window).height() - $("#nav-left").height());
+      $(window).on("resize", function () {
+
+        $("#content").css("height", $(window).height() - $("#nav-left").height());
+      });
+    </script>
+  </body>
+</html>

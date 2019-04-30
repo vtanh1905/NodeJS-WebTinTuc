@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="../css/nav-left.css">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="container-fluid p-0">
+        <!-- Nav - Left -->
+        <nav id="nav-left" class="nav-left">
+            <ul class="nav-body">
+                <li class="nav-body-item">
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                        Cá Nhân
+                    </a>
+                </li>
+                <li class="nav-body-item" data-show="#myNav1">
+                    <a href="#">
+                        <i class="fas fa-newspaper"></i>
+                        Bài Viết
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <ul id="myNav1" class="nav-body">
+                        <li class="nav-body-item"><a href="#">
+                                <i class="fas fa-clipboard-list"></i>
+                                Danh Sách Bài Viết
+                            </a></li>
+                        <li class="nav-body-item"><a href="#">
+                                <i class="fas fa-pen"></i>
+                                Thêm Bài Viết
+                            </a></li>
+                    </ul>
+                </li>
+                <li class="nav-body-item" data-show="#myNav2">
+                    <a href="#">
+                        <i class="fas fa-newspaper"></i>
+                        Duyệt Bài Viết
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <ul id="myNav2" class="nav-body">
+                        <li class="nav-body-item"><a href="#">Quản Lý Tài Khoản</a></li>
+                        <li class="nav-body-item"><a href="#">Quản Lý Danh Mục</a></li>
+                        <li class="nav-body-item"><a href="#">Quản Lý Nhãn</a></li>
+                    </ul>
+                </li>
+                <li class="nav-body-item"><a href="#">
+                        <i class="fas fa-reply"></i>
+                        Thoát
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <!-- Content -->
+        <div id="content" class="p-3" style="background:#F1F1F1; overflow-y: scroll;">
+            <h3>Danh Sách Người Dùng</h3>
+            <hr>
+            
+            <!-- Them Nguoi Dung -->
+            <div class="">
+                <a class="btn btn-primary mr-3" href="them-nguoi-moi.html" role="button">
+                    <i class="fas fa-user-plus"></i>
+                    Thêm Người Dùng
+                </a>
+            </div>
+
+            <!-- Loc + Tim Kiem -->
+            <div class="d-flex justify-content-between mt-3">
+                <form class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="inputPassword2" class="mr-3">Vai Trò</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option value="tat-ca" selected>Tất Cả</option>
+                            <option value="doc-gia">Độc Giả</option>
+                            <option value="phong-vien">Phóng Viên</option>
+                            <option value="bien-phong-vien">Biên Tập Viên</option>
+                            <option value="quan-tri-vien">Quản Trị Viên</option>
+                        </select>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="inputPassword2" class="sr-only">Tài Khoản</label>
+                        <input type="password" class="form-control" id="inputPassword2" placeholder="Tài Khoản">
+                    </div>
+                    <button type="submit" class="btn btn-secondary  mb-2">Tìm Kiếm</button>
+                </form>
+            </div>
+
+             
+
+            <!-- Dành Sách Bài Viết -->
+            <table class="table table-bordered table-responsive-sm table-hover bg-white">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width: 20%" scope="col">Tài Khoản</th>
+                        <th class="text-center" style="width: 20%" scope="col">Tên</th>
+                        <th class="text-center" style="width: 20%" scope="col">Email</th>
+                        <th class="text-center" style="width: 10%" scope="col">Vai Trò</th>
+                        <th class="text-center" style="width: 5%" scope="col">Bài Viết</th>
+                        <th class="text-center" style="width: 7%" scope="col">Chức Năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            admin
+                        </th>
+                        <td class="text-center align-middle">
+                            Tuấn Anh
+                        </td>
+                        <td class="text-center align-middle">
+                            vtanh1905@gmail.com
+                        </td>
+                        <td class="text-center align-middle">Quản Trị Viên</td>
+                        <td class="text-center align-middle">10</td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a class="btn btn-info" href="sua-thong-tin-nguoi-dung.html" role="button">Sữa</a>
+                                <button type="button" class="btn btn-danger">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            vtanh195
+                        </th>
+                        <td class="text-center align-middle">
+                            Tuấn Anh
+                        </td>
+                        <td class="text-center align-middle">
+                            vtanh195@gmail.com
+                        </td>
+                        <td class="text-center align-middle">Biên Tập Viên</td>
+                        <td class="text-center align-middle">3</td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a class="btn btn-info" href="sua-thong-tin-nguoi-dung.html" role="button">Sữa</a>
+                                <button type="button" class="btn btn-danger">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            vtanhxxx
+                        </th>
+                        <td class="text-center align-middle">
+                            Tuấn Anh
+                        </td>
+                        <td class="text-center align-middle">
+                            vtanhxxx@gmail.com
+                        </td>
+                        <td class="text-center align-middle">Phóng Viên</td>
+                        <td class="text-center align-middle">3</td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a class="btn btn-info" href="sua-thong-tin-nguoi-dung.html" role="button">Sữa</a>
+                                <button type="button" class="btn btn-danger">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            laptrinhthatvui
+                        </th>
+                        <td class="text-center align-middle">
+                            Nguyễn Văn A
+                        </td>
+                        <td class="text-center align-middle">
+                            consolegame@gmail.com
+                        </td>
+                        <td class="text-center align-middle">Độc Giả</td>
+                        <td class="text-center align-middle">0</td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a class="btn btn-info" href="sua-thong-tin-nguoi-dung.html" role="button">Sữa</a>
+                                <button type="button" class="btn btn-danger">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Btn Xem Them -->
+            <div class="text-center">
+                <button type="button" class="btn btn-danger my-3">Xem Thêm </button>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <script src="../js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../js/popper.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            $("#content").css("height", $(window).height() - $("#nav-left").height());
+            $(window).on("resize", function () {
+
+                $("#content").css("height", $(window).height() - $("#nav-left").height());
+            });
+        </script>
+</body>
+
+</html>
