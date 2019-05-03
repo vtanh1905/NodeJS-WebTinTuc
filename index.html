@@ -26,8 +26,9 @@
                 <nav id="nav-top"
                     class="navbar navbar-dark font-weight-bold navbar-expand-lg w-100 position-absolute bg-dark"
                     style="top:0; left:0; z-index: 11;  opacity: 0.9;">
-                    <img src="images/logo-web.png" class="rounded float-left" alt="..." width="45" height="45">
-                    <a class="navbar-brand" href="#"></a>
+                    <a class="navbar-brand" href="#">
+                        <img src="images/logo-web.png" class="rounded float-left" alt="..." width="45" height="45">
+                    </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -36,21 +37,23 @@
                     <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
                             <li class="nav-item active active-danger ">
-                                <a class="nav-link" href="#">Trang Chủ<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="index.html">Trang Chủ<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item dropdown active">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="danh-muc.html" role="button"
                                     aria-haspopup="true" aria-expanded="false">Game Mobile</a>
                                 <div class="dropdown-menu bg-dark border-top-0">
-                                    <a class="dropdown-item set-dropdown-item" href="#">Android</a>
-                                    <a class="dropdown-item set-dropdown-item" href="#">IOS</a>
+                                    <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Tất Cả</a>
+                                    <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Android</a>
+                                    <a class="dropdown-item set-dropdown-item" href="danh-muc.html">IOS</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown active">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="true" aria-expanded="false">Game Online</a>
                                 <div class="dropdown-menu bg-dark border-top-0">
-                                    <a class="dropdown-item set-dropdown-item" href="#">Trong Nước</a>
+                                    <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Tất Cả</a>
+                                    <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Trong Nước</a>
                                     <a class="dropdown-item set-dropdown-item" href="#">Ngoài Nước</a>
                                 </div>
                             </li>
@@ -58,6 +61,7 @@
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="true" aria-expanded="false">Esports</a>
                                 <div class="dropdown-menu bg-dark border-top-0">
+                                    <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Tất Cả</a>
                                     <a class="dropdown-item set-dropdown-item" href="#">Liên Mình Huyền Thoại</a>
                                     <a class="dropdown-item set-dropdown-item" href="#">Đột Kích</a>
                                     <a class="dropdown-item set-dropdown-item" href="#">CSGO</a>
@@ -68,6 +72,7 @@
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="true" aria-expanded="false">PC/Console</a>
                                 <div class="dropdown-menu bg-dark border-top-0">
+                                    <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Tất Cả</a>
                                     <a class="dropdown-item set-dropdown-item" href="#">PC</a>
                                     <a class="dropdown-item set-dropdown-item" href="#">Console</a>
                                 </div>
@@ -614,11 +619,14 @@
                 <div class="col-sm-9 col-md-9">
                     <!-- List Bai Viêt -->
                     <ul class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action">
+                        <li href="#" class="list-group-item list-group-item-action">
                             <div class="card border-0">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img src="images/anh-tin-noi-bat-1.jpg" class="card-img img-fluid" alt="...">
+                                        <a href="#" class="">
+                                            <img src="images/anh-tin-noi-bat-1.jpg" class="card-img img-fluid "
+                                                alt="...">
+                                        </a>
                                         <div class="position-absolute bg-danger px-2 text-white"
                                             style="top:0%; left: 3%">Game</div>
                                         <span href="#" class="btn badge badge-info text-white">
@@ -627,9 +635,10 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title font-weight-bold text-justify">Thiên An - Kiều nữ
-                                                stream Liên Quân
-                                                Mobile: “Em cứ đi một mình là gặp phải biến thái”</h5>
+                                            <a href="#"
+                                                class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">Thiên
+                                                An - Kiều nữ stream Liên Quân
+                                                Mobile: “Em cứ đi một mình là gặp phải biến thái”</a>
                                             <p class="card-text text-justify">Cộng đồng Streamer đang càng ngày càng
                                                 phát triển với số lượng tăng chóng mặt từng ngày từng giờ. Trong số đó
                                                 luôn có những gương mặt nổi bật mà chỉ cần nhìn qua một lần là </p>
@@ -638,21 +647,23 @@
                                                     22/04/2019 17:14</small>
                                             </p>
                                             <p class="card-text">
-                                                <button href="#" class="btn badge badge-danger text-white">Gái
-                                                    Xinh</button>
-                                                <button href="#"
-                                                    class="btn badge badge-danger text-white">Streamer</button>
+                                                <a href="#" class="btn badge badge-danger text-white">Gái
+                                                    Xinh</a>
+                                                <a href="#" class="btn badge badge-danger text-white">Streamer</a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
+                        </li>
+                        <li href="#" class="list-group-item list-group-item-action">
                             <div class="card border-0">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img src="images/anh-tin-noi-bat-2.jpg" class="card-img img-fluid" alt="...">
+                                        <a href="#" class="">
+                                            <img src="images/anh-tin-noi-bat-2.jpg" class="card-img img-fluid "
+                                                alt="...">
+                                        </a>
                                         <div class="position-absolute bg-danger px-2 text-white"
                                             style="top:0%; left: 3%">Game</div>
                                         <span href="#" class="btn badge badge-info text-white">
@@ -661,39 +672,45 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title font-weight-bold text-justify">Top Game Esports trên
-                                                Mobile phải chơi nếu muốn thành bậc thầy game thủ</h5>
+                                            <a href="#"
+                                                class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">Top
+                                                Game Esports trên
+                                                Mobile phải chơi nếu muốn thành bậc thầy game thủ</a>
                                             <p class="card-text text-justify">Esports - Thể Thao Điện Tử, đang là phân
                                                 khúc game lên như diều gặp... bão. Quả thật vậy, khác hoàn toàn với một
-                                                MMO cày cuốc hay bắn súng Online,...​</p>
+                                                MMO cày cuốc hay bắn súng Online,...</p>
                                             <p class="card-text">
                                                 <small class="font-weight-bold"><span class="text-danger">VGA</span> -
                                                     22/04/2019 17:14</small>
                                             </p>
                                             <p class="card-text">
-                                                <button href="#" class="btn badge badge-danger text-white">Gái
-                                                    Xinh</button>
-                                                <button href="#"
-                                                    class="btn badge badge-danger text-white">Streamer</button>
+                                                <a href="#" class="btn badge badge-danger text-white">Gái
+                                                    Xinh</a>
+                                                <a href="#" class="btn badge badge-danger text-white">Streamer</a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
+                        </li>
+                        <li href="#" class="list-group-item list-group-item-action">
                             <div class="card border-0">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img src="images/anh-tin-noi-bat-3.jpg" class="card-img img-fluid" alt="...">
+                                        <a href="#" class="">
+                                            <img src="images/anh-tin-noi-bat-3.jpg" class="card-img img-fluid "
+                                                alt="...">
+                                        </a>
                                         <div class="position-absolute bg-danger px-2 text-white"
                                             style="top:0%; left: 3%">Game</div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title font-weight-bold text-justify">Liệt Hỏa VNG: Hài
+                                            <a href="#"
+                                                class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">Liệt
+                                                Hỏa VNG: Hài
                                                 Nhi tính năng độc nhất vô nhị chỉ có tại Big Update Liệt Hỏa Công Thành
-                                                Chiến</h5>
+                                                Chiến</a>
                                             <p class="card-text text-justify">Bên cạnh vô số thời trang mới lạ tuyệt
                                                 đẹp, tính năng 12 con giáp và chiến trường đẫm máu Công Thành Chiến,
                                                 tính năng Hài Nhi độc nhất vô nhị đang được vô số game...</p>
@@ -702,28 +719,32 @@
                                                     22/04/2019 17:14</small>
                                             </p>
                                             <p class="card-text">
-                                                <button href="#" class="btn badge badge-danger text-white">Gái
-                                                    Xinh</button>
-                                                <button href="#"
-                                                    class="btn badge badge-danger text-white">Streamer</button>
+                                                <a href="#" class="btn badge badge-danger text-white">Gái
+                                                    Xinh</a>
+                                                <a href="#" class="btn badge badge-danger text-white">Streamer</a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
+                        </li>
+                        <li href="#" class="list-group-item list-group-item-action">
                             <div class="card border-0">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img src="images/anh-tin-noi-bat-4.jpg" class="card-img img-fluid" alt="...">
+                                        <a href="#" class="">
+                                            <img src="images/anh-tin-noi-bat-4.jpg" class="card-img img-fluid "
+                                                alt="...">
+                                        </a>
                                         <div class="position-absolute bg-danger px-2 text-white"
                                             style="top:0%; left: 3%">Game</div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title font-weight-bold text-justify">PS4 xác nhận sẽ thắt
-                                                chặt kiểm soát yếu tố 18+, khiến các nhà phát triển bất mãn</h5>
+                                            <a href="#"
+                                                class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">PS4
+                                                xác nhận sẽ thắt
+                                                chặt kiểm soát yếu tố 18+, khiến các nhà phát triển bất mãn</a>
                                             <p class="card-text text-justify">Trước đây từng có nhiều công ty tiết lộ
                                                 rằng Sony sẽ tiến hành kiểm soát chặt chẽ những nội dung 18+ nhạy cảm
                                                 trog các tựa game trên PS4 và mới đây tin tức này không chỉ còn...</p>
@@ -732,28 +753,32 @@
                                                     22/04/2019 17:14</small>
                                             </p>
                                             <p class="card-text">
-                                                <button href="#" class="btn badge badge-danger text-white">Gái
-                                                    Xinh</button>
-                                                <button href="#"
-                                                    class="btn badge badge-danger text-white">Streamer</button>
+                                                <a href="#" class="btn badge badge-danger text-white">Gái
+                                                    Xinh</a>
+                                                <a href="#" class="btn badge badge-danger text-white">Streamer</a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
+                        </li>
+                        <li href="#" class="list-group-item list-group-item-action">
                             <div class="card border-0">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img src="images/anh-tin-noi-bat-5.jpg" class="card-img img-fluid" alt="...">
+                                        <a href="#" class="">
+                                            <img src="images/anh-tin-noi-bat-5.jpg" class="card-img img-fluid "
+                                                alt="...">
+                                        </a>
                                         <div class="position-absolute bg-danger px-2 text-white"
                                             style="top:0%; left: 3%">Game</div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title font-weight-bold text-justify">Game thủ 9 tuổi đụng
-                                                mặt cha mình trong giải đấu 7 Viên Ngọc Rồng</h5>
+                                            <a href="#"
+                                                class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">Game
+                                                thủ 9 tuổi đụng
+                                                mặt cha mình trong giải đấu 7 Viên Ngọc Rồng</a>
                                             <p class="card-text text-justify">Đối với một game thủ đã có gia đình hẳn
                                                 một trong nhiều niềm vui chính là việc đưa con cái đến với niềm đam mê
                                                 chơi game. Gia đình của Tsuyoshi cũng không phải là ngoại lệ khi ...</p>
@@ -762,16 +787,17 @@
                                                     22/04/2019 17:14</small>
                                             </p>
                                             <p class="card-text">
-                                                <button href="#" class="btn badge badge-danger text-white">Gái
-                                                    Xinh</button>
-                                                <button href="#"
-                                                    class="btn badge badge-danger text-white">Streamer</button>
+                                                <a href="#" class="btn badge badge-danger text-white">Gái
+                                                    Xinh</a>
+                                                <a href="#" class="btn badge badge-danger text-white">Streamer</a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </li>
+
+
                     </ul>
 
                     <!-- Btn Xem Them -->
