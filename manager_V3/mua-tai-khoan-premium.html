@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="../css/nav-left.css">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="container-fluid p-0">
+        <!-- Nav - Left -->
+        <nav id="nav-left" class="nav-left">
+            <ul class="nav-body">
+                <a href="../index.html" class="mx-3">
+                    <img src="../images/logo-web.png" height="40px" width="40px">
+                </a>
+                <li class="nav-body-item">
+                    <a href="nguoi-dung.html">
+                        <i class="fas fa-user"></i>
+                        Cá Nhân
+                    </a>
+                </li>
+                <li class="nav-body-item" data-show="#myNav1">
+                    <a>
+                        <i class="fas fa-newspaper"></i>
+                        Bài Viết
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <ul id="myNav1" class="nav-body">
+                        <li class="nav-body-item"><a href="danh-sach-bai-viet.html">
+                                <i class="fas fa-clipboard-list"></i>
+                                Danh Sách Bài Viết
+                            </a></li>
+                        <li class="nav-body-item"><a href="dang-bai-viet-moi.html">
+                                <i class="fas fa-pen"></i>
+                                Thêm Bài Viết
+                            </a></li>
+                    </ul>
+                </li>
+                <li class="nav-body-item">
+                    <a href="danh-sach-bai-viet-phe-duyet.html">
+                        <i class="fas fa-clipboard-check"></i>
+                        Phê Duyệt
+                    </a>
+                </li>
+                <li class="nav-body-item" data-show="#myNav2">
+                    <a>
+                        <i class="fas fa-desktop"></i>
+                        Quản Lý
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <ul id="myNav2" class="nav-body">
+                        <li class="nav-body-item"><a href="danh-sach-nguoi-dung.html"><i class="fas fa-users"></i> Quản
+                                Lý Tài Khoản</a></li>
+                        <li class="nav-body-item"><a href="quan-ly-chuyen-muc.html"><i class="fas fa-ad"></i> Quản Lý
+                                Danh Mục</a></li>
+                        <li class="nav-body-item"><a href="quan-ly-the-tag.html"><i class="fas fa-tag"></i> Quản Lý
+                                Nhãn</a></li>
+                    </ul>
+                </li>
+                <li class="nav-body-item"><a href="#">
+                        <i class="fas fa-reply"></i>
+                        Đăng Xuất
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <!-- Content -->
+        <div id="content" class="pl-md-3 pt-3 pb-md-3" style="background:#F1F1F1; overflow-y: scroll;">
+            <h3 class="pl-3 pl-md-0">Mua Tài Khoản</h3>
+            <hr>
+            <div class="p-3">
+                <div class="text-center font-weight-bold">
+                    <p>Mệnh giá thẻ tài khoản</p>
+                    <p>10k = 7 ngày</p>
+                    <p>20k = 30 ngày</p>
+                    <p>50k = 3 tháng</p>
+                    <p>100k = 9 tháng</p>
+                    <p>200k = 2 năm</p>
+                    <p>500k = 5 năm</p>
+                </div>
+                <form>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Loại Thẻ</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Viettel</option>
+                                <option>Mobiphone</option>
+                                <option>Vietnammobile</option>
+                                <option>Vinaphone</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Mệnh giá</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>10K</option>
+                                <option>20K</option>
+                                <option>50K</option>
+                                <option>100K</option>
+                                <option>500K</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Seri</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="staticEmail" placeholder="Seri" value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Mã thẻ</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputPassword" placeholder="Mã thẻ">
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Gửi</button>
+                    </div>
+                </form>
+                <div class="text-center font-weight-bold ">
+                    Chúng tôi sẽ xác nhận sớm nhất có thể. Tối thiệu trong 24h <br>
+                    Cảm ơn bạn đã ủng hộ chúng tôi
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <script src="../js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../js/popper.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            $("#content").css("height", $(window).height() - $("#nav-left").height());
+            $(window).on("resize", function () {
+
+                $("#content").css("height", $(window).height() - $("#nav-left").height());
+            });
+        </script>
+</body>
+
+</html>
