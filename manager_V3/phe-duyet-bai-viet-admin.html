@@ -77,7 +77,7 @@
 
     <!-- Content -->
     <div id="content" style="background:#F1F1F1; overflow-y: scroll;">
-      <h2 class="pt-3 pl-3">Đăng Bài Viết</h2>
+      <h2 class="pt-3 pl-3">Chỉnh sửa bài viết</h2>
       <hr>
       <form>
         <div class="row m-0">
@@ -149,10 +149,22 @@
           </div>
 
           <div class="col-xl-2 col-12 mt-3">
-            <button type="button" class="btn btn-success font-weight-bold btn btn-block mb-3" data-toggle="modal" 
-              data-target="#modal-duyet">Duyệt</button>
-            <button type="button" class="btn btn-danger font-weight-bold btn btn-block mb-3" data-toggle="modal"
-              data-target="#modal-tu-choi">Từ chối</button>
+                <button type="button" class="btn btn-success font-weight-bold btn btn-block mb-3" data-toggle="modal" id="btn_change"
+                data-target="#modal-duyet">Thay đổi</button>
+                <div class="card bg-light mb-3 ">
+                  <div class="card-header bg-info text-white">Trạng Thái</div>
+                  <div class="card-body p-3 " style="background:#FFFFFF">
+                    <div class="form-group mb-2">
+                      <select class="form-control" id="AttrSelector">
+                        <option value="duyet">Đã Xuất Bản</option>
+                        <option value="cho">Chờ Xuất Bản</option>
+                        <option value="chua-duyet">Chưa Kiểm Duyệt</option>
+                        <option value="huy">Từ Chối</option>
+                      </select>
+                    </div>
+                  </div>
+               </div>
+            
             <!-- Danh sach danh mục -->
             <div class="card bg-light mb-3 ">
               <div class="card-header bg-info text-white">Danh mục</div>
@@ -357,9 +369,13 @@
     $(function () {
       $("#ngaydang").val(curday("-"));
       $("#giodang").val(curtime(":"));
-      
-
-
+     
+     
+      $("#AttrSelector").change(function(){
+        if ($(this).val() == "huy") {
+          $('#btn_change').attr('data-target','#modal-tu-choi');        
+        }
+      });
     });
 
 
