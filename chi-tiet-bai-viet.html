@@ -18,9 +18,10 @@
     <div class="container-fluid p-0">
         <header>
             <!-- Menu Top -->
-            <nav class="navbar navbar-dark navbar-expand-lg" style="background: #222222">
-                <img src="images/logo-web.png" class="rounded float-left" alt="..." width="45" height="45">
-                <a class="navbar-brand" href="#"></a>
+            <nav class="navbar navbar-dark navbar-expand-lg  font-weight-bold" style="background: #222222">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo-web.png" class="rounded float-left" alt="..." width="45" height="45">
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                     aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -28,56 +29,62 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item active active-danger">
-                            <a class="nav-link" href="#">Trang Chủ<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="index.html">Trang Chủ<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="true" aria-expanded="false">Game Mobile</a>
                             <div class="dropdown-menu bg-dark border-top-0">
-                                <a class="dropdown-item set-dropdown-item" href="#">Android</a>
-                                <a class="dropdown-item set-dropdown-item" href="#">IOS</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Tất Cả</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Android</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">IOS</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="true" aria-expanded="false">Game Online</a>
                             <div class="dropdown-menu bg-dark border-top-0">
-                                <a class="dropdown-item set-dropdown-item" href="#">Trong Nước</a>
-                                <a class="dropdown-item set-dropdown-item" href="#">Ngoài Nước</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Tất Cả</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Trong Nước</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Ngoài Nước</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="true" aria-expanded="false">Esports</a>
                             <div class="dropdown-menu bg-dark border-top-0">
-                                <a class="dropdown-item set-dropdown-item" href="#">Liên Mình Huyền Thoại</a>
-                                <a class="dropdown-item set-dropdown-item" href="#">Đột Kích</a>
-                                <a class="dropdown-item set-dropdown-item" href="#">CSGO</a>
-                                <a class="dropdown-item set-dropdown-item" href="#">Dota</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Tất Cả</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Liên Mình Huyền
+                                    Thoại</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Đột Kích</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">CSGO</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Dota</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="true" aria-expanded="false">PC/Console</a>
                             <div class="dropdown-menu bg-dark border-top-0">
-                                <a class="dropdown-item set-dropdown-item" href="#">PC</a>
-                                <a class="dropdown-item set-dropdown-item" href="#">Console</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Tất Cả</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">PC</a>
+                                <a class="dropdown-item set-dropdown-item" href="danh-muc.html">Console</a>
                             </div>
                         </li>
                         <li class="nav-item active active-danger">
-                            <a class="nav-link" href="#">Công Nghệ<span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="danh-muc.html">Công Nghệ<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active active-danger">
-                                <a class="nav-link" href="#">Phim Ảnh<span class="sr-only">(current)</span></a>
-                            </li>
+                            <a class="nav-link" href="danh-muc.html">Phim Ảnh<span class="sr-only">(current)</span></a>
+                        </li>
                     </ul>
                     <span class="navbar-text d-block p-0">
-                        <a href="page-login.html" class="fas fa-user-circle icon d-block d-lg-inline">
+                        <a href="login.html" class="fas fa-user-circle icon my-2 p-0 btn text-left d-lg-inline d-block">
                             <span class="d-inline-block d-lg-none text-icon">Đăng Nhập</span>
                         </a>
-                        <a id="icon-find" class="fas fa-search icon d-block my-2 d-lg-inline">
+                        <button data-toggle="modal" data-target="#exampleModalCenter" id="icon-find"
+                            class="fas fa-search icon btn  my-2 d-lg-inline d-block p-0 text-left">
                             <span class="d-inline-block d-lg-none text-icon">Tìm Kiếm</span>
-                        </a>
+                            </a>
                     </span>
                 </div>
             </nav>
@@ -87,9 +94,10 @@
             <!-- Breadcumb -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb px-3 py-1" style="border-left: 4px solid red;">
-                <li class="breadcrumb-item small"><a href="#">Trang Chủ</a></li>
-                <li class="breadcrumb-item small"><a href="#">Game Online</a></li>
-                <li class="breadcrumb-item small" aria-current="page"><a href="#">Trong Nước</a></li>
+                <li class="breadcrumb-item small"><a href="index.html"><i class="fas fa-home"></i> Trang Chủ</a></li>
+                <li class="breadcrumb-item small"><a href="danh-muc.html">Game Online</a></li>
+                <li class="breadcrumb-item small"><a href="danh-muc.html">Trong Nước</a></li>
+                <li class="breadcrumb-item small active" aria-current="page">Rồng trắng mắt xanh - Quân bài vô địch thiên hạ sắp được tung hoành tại Đột Kích</li>
                 </ol>
             </nav>
 
@@ -240,14 +248,14 @@
                             Tin Liên Quan
                         </div>
                         <ul class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <a href="chi-tiet-bai-viet.html" class="list-group-item list-group-item-action">
                                 <figure class="figure">
                                     <img src="images/anh-tin-noi-bat-1.jpg" class="figure-img img-fluid" alt="...">
                                     <figcaption class="figure-caption font-weight-bold text-justify">Thiên An - Kiều nữ
                                         stream Liên Quân Mobile: “Em cứ đi một mình là gặp phải biến thái”</figcaption>
                                 </figure>
                             </a>
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <a href="chi-tiet-bai-viet.html" class="list-group-item list-group-item-action">
                                 <figure class="figure">
                                     <img src="images/anh-tin-noi-bat-2.jpg" class="figure-img img-fluid" alt="...">
                                     <figcaption class="figure-caption font-weight-bold  text-justify">Top Game Esports
@@ -255,7 +263,7 @@
                                         thành bậc thầy game thủ</figcaption>
                                 </figure>
                             </a>
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <a href="chi-tiet-bai-viet.html" class="list-group-item list-group-item-action">
                                 <figure class="figure">
                                     <img src="images/anh-tin-noi-bat-3.jpg" class="figure-img img-fluid" alt="...">
                                     <figcaption class="figure-caption font-weight-bold  text-justify">Liệt Hỏa VNG: Hài
@@ -263,7 +271,7 @@
                                     </figcaption>
                                 </figure>
                             </a>
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <a href="chi-tiet-bai-viet.html" class="list-group-item list-group-item-action">
                                 <figure class="figure">
                                     <img src="images/anh-tin-noi-bat-4.jpg" class="figure-img img-fluid" alt="...">
                                     <figcaption class="figure-caption font-weight-bold  text-justify">PS4 xác nhận sẽ
@@ -271,7 +279,7 @@
                                         chặt kiểm soát yếu tố 18+, khiến các nhà phát triển bất mãn</figcaption>
                                 </figure>
                             </a>
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <a href="chi-tiet-bai-viet.html" class="list-group-item list-group-item-action">
                                 <figure class="figure">
                                     <img src="images/anh-tin-noi-bat-5.jpg" class="figure-img img-fluid" alt="...">
                                     <figcaption class="figure-caption font-weight-bold  text-justify">Game thủ 9 tuổi
