@@ -54,10 +54,11 @@
                 <input type="text" class="form-control mInput mt-4" id="email_rg" placeholder="Email Address">
                 <input type="password" class="form-control mInput mt-4" id="pass_rg" placeholder="Password">
                 <input type="password" class="form-control mInput mt-4" id="confPass_rg" placeholder="Confirm Password">
-                <input type="date" class="form-control mInput mt-4" id="dob" placeholder="Date Of Birth" value="2019-10-10">
-
-
-
+                <input type="text" class="form-control mInput mt-4" id="dob" placeholder="Date Of Birth">
+                <div  class="text-left ml-3"> 
+                    <small>Ex: 19/05/1998</small>
+                </div>
+                
 
                 <div class="form-check d-flex align-items-start mt-3" style="width: 300px; ">
                     <input class="form-check-input" type="checkbox" value="" id="cb_agree">
@@ -129,115 +130,7 @@
     <script src="js/jquery-3.3.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
-    <script>
-        // Change register or login form show when start here 
-        $("#register").hide();
-        $("#forgot_password").hide();
-
-
-
-        $(function () {
-            $("#login_btn").click(function () {
-                $("#register").hide();
-                $("#forgot_password").hide();
-            });
-
-            $("#login_btn").click(function () {
-                $("#login").show();
-            });
-
-            $("#register_btn").click(function () {
-                $("#login").hide();
-                $("#forgot_password").hide();
-            });
-            $("#register_btn").click(function () {
-                $("#register").show();
-            });
-
-            $("#btn_forgot").click(function(){
-                $("#forgot_password").show();
-            });
-            $("#btn_forgot").click(function(){
-                $("#login").hide();
-                //$("#social_medias").hide();
-            });
-
-
-            //check email
-            function validateEmail(email) {
-                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return re.test(email);
-            }   
-
-            $("#btn_fg").click(function(){
-                var email = $("#fg_email").val();
-                if (!validateEmail(email)) {
-                    //thong bao email loi
-                    alert("Vui lòng nhập đúng email");
-                }
-            });
-
-            //xu phan login
-            $("#btn_login").click(function(){
-
-                var username = $("#username").val();
-                var password = $("#login_pass").val();
-                var cb_keepMe= $("#cb_KeepMe");
-                //neu la admin
-                if(username === "admin" && password === "123456"){
-                    window.open("manager_V3/nguoi-dung.html","_top");
-                    return;
-                }
-
-                if(username.length === 0 || password.length === 0){
-                    alert("Vui lòng nhập dữ liệu");
-                    return;
-                }
-                // xu ly
-
-            });
-
-            //xu ly register
-            $("#btn_register").click(function(){
-                var firstName   = $("#firstName").val();
-                var lastName    = $("#lastName").val();
-                var username    = $("#username_rg").val();
-                var password    = $("#pass_rg").val();
-                var email       = $("#email_rg").val();
-                var confPass    = $("#confPass_rg").val();
-                var iscb_agree  = $("#cb_agree").prop("checked");
-                var dob         = $("#dob").val(); 
-
-                if(firstName.length === 0 || lastName.length === 0 || username.length === 0
-                || password.length === 0 || email.length === 0 || confPass.length === 0 || dob.length === 0){
-                    alert("Vui lòng nhập đầy đủ dữ liệu");
-                    return;
-                }
-                
-                
-                if (!validateEmail(email)) {
-                    //thong bao email loi
-                    alert("Vui lòng nhập đúng email!");
-                    return;
-                }
-                if(password != confPass){
-                    alert("Xac nhận mật khẩu sai!");
-                }
-                if(!iscb_agree){
-                    alert("Vui long chấp nhận các điều khoảng"); 
-                }
-                
-                // xu ly dang ky
-            });
-
-            // test 
-            
-
-        });
-    </script>
-
-
+    <script src="js/login.js"></script>
 </body>
 
 </html>
