@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="../css/nav-left.css">
+    <link rel="icon" href="../images/logo-web.png">
+    <title>Quản Lý - GameX</title>
+</head>
+
+<body>
+    <div class="container-fluid p-0">
+        <!-- Nav - Left -->
+        <nav id="nav-left" class="nav-left">
+            <ul class="nav-body">
+                <a href="../index.html" class="mx-3">
+                    <img src="../images/logo-web.png" height="40px" width="40px">
+                </a>
+                <li class="nav-body-item">
+                    <a href="nguoi-dung.html">
+                        <i class="fas fa-user"></i>
+                        Cá Nhân
+                    </a>
+                </li>
+                <li class="nav-body-item" data-show="#myNav1">
+                    <a>
+                        <i class="fas fa-newspaper"></i>
+                        Bài Viết
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <ul id="myNav1" class="nav-body">
+                        <li class="nav-body-item"><a href="danh-sach-bai-viet.html">
+                                <i class="fas fa-clipboard-list"></i>
+                                Danh Sách Bài Viết
+                            </a></li>
+                        <li class="nav-body-item"><a href="dang-bai-viet-moi.html">
+                                <i class="fas fa-pen"></i>
+                                Thêm Bài Viết
+                            </a></li>
+                    </ul>
+                </li>
+                <li class="nav-body-item">
+                    <a href="danh-sach-bai-viet-phe-duyet.html">
+                        <i class="fas fa-clipboard-check"></i>
+                        Phê Duyệt
+                    </a>
+                </li>
+                <li class="nav-body-item" data-show="#myNav2">
+                    <a>
+                        <i class="fas fa-desktop"></i>
+                        Quản Lý
+                        <i class="fas fa-caret-down"></i>
+                    </a>
+                    <ul id="myNav2" class="nav-body">
+                        <li class="nav-body-item"><a href="danh-sach-nguoi-dung.html"><i class="fas fa-users"></i> Quản
+                                Lý Tài Khoản</a></li>
+                                <li class="nav-body-item"><a href="quan-ly-bai-viet.html"><i class="fas fa-users"></i> Quản Lý Bài Viết</a></li>
+                        <li class="nav-body-item"><a href="quan-ly-chuyen-muc.html"><i class="fas fa-ad"></i> Quản Lý
+                                Danh Mục</a></li>
+                        <li class="nav-body-item"><a href="quan-ly-the-tag.html"><i class="fas fa-tag"></i> Quản Lý
+                                Nhãn</a></li>
+                    </ul>
+                </li>
+                <li class="nav-body-item"><a href="#">
+                        <i class="fas fa-reply"></i>
+                        Đăng Xuất
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <!-- Content -->
+        <div id="content" class="pl-md-3 pt-3 pb-md-3" style="background:#F1F1F1; overflow-y: scroll;">
+            <h3 class="pl-3 pl-md-0">Quản Lý Thẻ</h3>
+            <hr>
+            <div class="row m-0">
+                <!-- Them Thẻ -->
+                <div class="col-md-3 col-12">
+                    <h6>Thêm Thẻ</h6>
+                    <form>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Tên Thẻ</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Mô tả</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary btn-block">Thêm Thẻ</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- List Thẻ -->
+                <div class="col-md-9 col-12">
+                    <h6>Thẻ</h6>
+                    <!-- Dành Sách Bài Viết -->
+                    <table
+                        class="table table-bordered table-striped table-sm  table-responsive-sm table-hover mt-3 bg-white">
+                        <thead>
+                            <tr class="bg-info text-light">
+                                <th class="text-center" style="width: 30%" scope="col">Tên</th>
+                                <th class="text-center" style="width: 50%" scope="col">Mô Tả</th>
+                                <th class="text-center" style="width: 10%" scope="col">Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="text-center align-middle" scope="row">
+                                    Streamer
+                                </th>
+                                <td class="text-center align-middle">
+
+                                </td>
+                                <td class="text-center align-middle">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-info" data-toggle="modal"
+                                            data-target="#exampleModalCenter">Sửa</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#exampleModalCenter1">Xóa</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center align-middle" scope="row">
+                                    End Game
+                                </th>
+                                <td class="text-center align-middle">
+
+                                </td>
+                                <td class="text-center align-middle">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-info" data-toggle="modal"
+                                            data-target="#exampleModalCenter">Sửa</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#exampleModalCenter1">Xóa</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center align-middle" scope="row">
+                                    Gái Xinh
+                                </th>
+                                <td class="text-center align-middle">
+
+                                </td>
+                                <td class="text-center align-middle">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-info" data-toggle="modal"
+                                            data-target="#exampleModalCenter">Sửa</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#exampleModalCenter1">Xóa</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-center align-middle" scope="row">
+                                    Giải Đấu
+                                </th>
+                                <td class="text-center align-middle">
+
+                                </td>
+                                <td class="text-center align-middle">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-info" data-toggle="modal"
+                                            data-target="#exampleModalCenter">Sửa</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#exampleModalCenter1">Xóa</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Sửa  -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Chỉnh sửa Thẻ</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Tên Thẻ</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder=""
+                                    value="Game Online">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Mô tả</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary btn-block">Xác Nhận</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Xóa -->
+        <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Xác Nhận</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn có chắc chắn muốn xóa nó chứa ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary w-50">Có</button>
+                        <button type="button" class="btn btn-danger w-50" data-dismiss="modal">Không</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="../js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/manager.js"></script>
+</body>
+
+</html>

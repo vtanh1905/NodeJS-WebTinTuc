@@ -66,12 +66,15 @@ $("#btn_login").click(function(){
     var cb_keepMe= $("#cb_KeepMe");
     //neu la admin
     if(username === "admin" && password === "123456"){
-        window.open("manager_V3/nguoi-dung.html","_top");
+        window.open("manager/nguoi-dung.html","_top");
         return;
     }
 
     if(username.length === 0 || password.length === 0){
         alert("Vui lòng nhập dữ liệu");
+        return;
+    }else{
+        alert("Tên tài khoản hoặc password không hợp lệ");
         return;
     }
     // xu ly

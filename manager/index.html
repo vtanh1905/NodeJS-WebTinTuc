@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,253 +8,72 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <link rel="stylesheet" href="../css/style-manager.css">
-    <title>Hello, world!</title>
-
-</head>
-
-<body style="background:#F1F1F1">
+    <link rel="stylesheet" href="../css/nav-left.css">
+    <link rel="icon" href="../images/logo-web.png">
+    <title>Quản Lý - GameX</title>
+  </head>
+  <body>
     <div class="container-fluid p-0">
-        <!-- Thanh Menu - Start -->
-        <nav id="nav-top" class="navbar navbar-dark bg-dark navbar-expand-lg">
-            <a class="navbar-brand" href="#">Technews</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0 offset-2">
-                </ul>
-                <span class="navbar-text d-block pr-1">
-                    <li class="nav-item dropdown active d-inline-block">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                            aria-haspopup="true" aria-expanded="false">Chào Admin</a>
-                        <div class="dropdown-menu bg-dark border-top-0">
-                            <a class="dropdown-item set-dropdown-item" href="#">Chỉnh hồ sơ của tôi</a>
-                            <a class="dropdown-item set-dropdown-item" href="#">Đăng Xuất</a>
-                        </div>
-                    </li>
-                </span>
-                <img src="../images/test-1.jpg" class="rounded float-left d-inline-block avatar" alt="..." height="50px"
-                    width="50px">
-            </div>
-        </nav>
-        <!-- Thanh Menu - END -->
-
-        <div class="row w-100">
-            <!-- Thanh Menu Chức Năng Bên Trái - Start -->
-            <ul id="nav-left" class="nav flex-column  navbar-dark bg-dark col-xl-2 col-lg-3">
-                <li class="nav-item dropdown active">
-                    <a class="nav-link h6 text-primary">Cá Nhân</a>
-                    <div class=" bg-dark border-top-0">
-                        <a class="dropdown-item set-dropdown-item" href="#">Nâng Cấp Tài Khoản</a>
-                        <a class="dropdown-item set-dropdown-item" href="#">Điều Chỉnh hồ sơ</a>
-                        <a class="dropdown-item set-dropdown-item" href="#">Đổi Mật Khẩu</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown active">
-                    <a class="nav-link h6 text-primary">Bài Viết</a>
-                    <div class=" bg-dark border-top-0">
-                        <a href="page-danh-sach-bai-viet.html" class="dropdown-item set-dropdown-item" href="#">
-                            <!-- <i class="fas fa-list text-light"></i> -->
-                            <span class="">DanhSách Bài Viết</span>
-                        </a>
-                        <a href="page-dang-bai-viet.html" class="dropdown-item set-dropdown-item" href="#">Đăng Bài
-                            Viết</a>
-                        <a class="dropdown-item set-dropdown-item" href="#">Hiệu Chỉnh Bài Viết</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown active">
-                    <a class="nav-link h6 text-primary">Biện Tập Bài Viết</a>
-                    <div class=" bg-dark border-top-0">
-                        <a class="dropdown-item set-dropdown-item" href="#">Danh Sách Bài Viết</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown active">
-                    <a class="nav-link h6 text-primary">Quản Lý</a>
-                    <div class=" bg-dark border-top-0">
-                        <a class="dropdown-item set-dropdown-item" href="#">Quản lý chuyên mục</a>
-                        <a class="dropdown-item set-dropdown-item" href="#">Quản lý nhãn</a>
-                        <a class="dropdown-item set-dropdown-item" href="#">Quản lý bài viết</a>
-                        <a class="dropdown-item set-dropdown-item" href="#">Quản lý người dùng</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown active">
-                    <a class="nav-link h6 text-primary" href="#">Đăng Xuất</a>
-                </li>
+      <nav id="nav-left" class="nav-left">
+        <ul class="nav-body">
+            <a href="../index.html" class="mx-3">
+              <img src="../images/logo-web.png" height="40px" width="40px">
+            </a>
+          <li class="nav-body-item">
+            <a href="nguoi-dung.html">
+              <i class="fas fa-user"></i>
+              Cá Nhân
+            </a>
+          </li>
+          <li class="nav-body-item" data-show="#myNav1">
+            <a>
+              <i class="fas fa-newspaper"></i>
+              Bài Viết
+              <i class="fas fa-caret-down"></i>
+            </a>
+            <ul id="myNav1" class="nav-body">
+              <li class="nav-body-item"><a href="danh-sach-bai-viet.html">
+                <i class="fas fa-clipboard-list"></i>
+                Danh Sách Bài Viết
+              </a></li>
+              <li class="nav-body-item"><a href="dang-bai-viet-moi.html">
+                  <i class="fas fa-pen"></i>
+                Thêm Bài Viết
+              </a></li>
             </ul>
-            <!-- Thanh Menu Chức Năng Bên Trái - END -->
+          </li>
+          <li class="nav-body-item">
+            <a href="danh-sach-bai-viet-phe-duyet.html">
+              <i class="fas fa-clipboard-check"></i>
+              Phê Duyệt 
+            </a>
+          </li>
+          <li class="nav-body-item" data-show="#myNav2">
+            <a>
+              <i class="fas fa-desktop"></i>
+              Quản Lý
+              <i class="fas fa-caret-down"></i>
+            </a>
+            <ul id="myNav2" class="nav-body">
+              <li class="nav-body-item"><a href="danh-sach-nguoi-dung.html"><i class="fas fa-users"></i> Quản Lý Tài Khoản</a></li>
+              <li class="nav-body-item"><a href="quan-ly-bai-viet.html"><i class="fas fa-users"></i> Quản Lý Bài Viết</a></li>
+              <li class="nav-body-item"><a href="quan-ly-chuyen-muc.html"><i class="fas fa-ad"></i> Quản Lý Danh Mục</a></li>
+              <li class="nav-body-item"><a href="quan-ly-the-tag.html"><i class="fas fa-tag"></i> Quản Lý Nhãn</a></li>
+            </ul>
+          </li>
+          <li class="nav-body-item"><a href="#">
+              <i class="fas fa-reply"></i>
+              Đăng Xuất
+            </a>
+          </li>
+        </ul>
 
-            <!-- Content - Start -->
-            <div class="col-xl-10 col-lg-9 pr-0 pt-3" style="background:#F1F1F1">
-                <h3>Cá Nhân</h3>
-                <hr>
-                <div class="row p-3">
-                    <!-- Form Thông Tin -->
-                    <div class="card bg-light mb-3 col-9 p-0">
-                        <div class="card-header font-weight-bold">Thông tin cá Nhân</div>
-                        <div class="card-body">
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-2" style="height: 30%;">
-                                        <span onclick="performClick('theFile');">
-                                            <img id="avatar" src="../images/test-1.jpg"
-                                                class="rounded mx-auto d-block avatar" alt="..." width="100%"
-                                                height="100%">
-                                            </a>
-                                    </div>
-                                    <div class="col-10">
-                                        <div class="form-group row">
-                                            <label for="colFormLabelSm"
-                                                class="col-2 col-form-label col-form-label-sm">Họ Tên</label>
-                                            <div class="col-10">
-                                                <input type="email" class="form-control form-control-sm"
-                                                    id="colFormLabelSm" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="colFormLabelSm"
-                                                class="col-2 col-form-label col-form-label-sm">Bút Danh</label>
-                                            <div class="col-10">
-                                                <input type="email" class="form-control form-control-sm "
-                                                    id="colFormLabelSm" placeholder="" disabled>
-                                                <small id="passwordHelpBlock" class="form-text text-muted">
-                                                    Dành Cho Phóng Viên
-                                                </small>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="colFormLabelSm"
-                                                class="col-2 col-form-label col-form-label-sm">Email</label>
-                                            <div class="col-10">
-                                                <input type="email" class="form-control form-control-sm"
-                                                    id="colFormLabelSm" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="colFormLabelSm"
-                                                class="col-2 col-form-label col-form-label-sm">Ngày Sinh</label>
-                                            <div class="col-10">
-                                                <input type="email" class="form-control form-control-sm"
-                                                    id="colFormLabelSm" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="colFormLabelSm"
-                                                class="col-2 col-form-label col-form-label-sm">Chức Vụ</label>
-                                            <div class="col-10">
-                                                <input type="email" class="form-control form-control-sm"
-                                                    id="colFormLabelSm" placeholder="" disabled value="Độc Giả">
-                                            </div>
-                                        </div>
-                                        <div class="text-center mt-3">
-                                            <button type="button" class="btn btn-info">Sữa</button>
-                                            <button type="reset" class="btn btn-secondary">Hủy</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                    <div class="col-3 pl-5">
-                        <div class="row">
-                            <!-- Mua Tài Khoản -->
-                            <div class="card bg-light mb-3 col-12 p-0">
-                                <div class="card-header font-weight-bold">Mua Tài Khoản</div>
-                                <div class="card-body">
-                                    Bạn có muốn nâng cấp tài khoản <span class="badge badge-primary">Premium</span>
-                                    không ?
-                                    <div class="text-center mt-3">
-                                        <button type="button" class="btn btn-success">Nâng Cấp</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Form Đổi Mật Khẩu -->
-                            <div class="card bg-light mb-3 col-12 p-0">
-                                <div class="card-header font-weight-bold">Đổi Mật Khẩu</div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1" class="sr-only">Mật Khẩu Hiện Tại</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" placeholder="Mật Khẩu Hiện Tại">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1" class="sr-only">Mật Khẩu Mới</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                                placeholder="Mật Khẩu Mới">
-                                        </div>
-                                        <div class="form-group">
-                                                <label for="exampleInputPassword1" class="sr-only">Lập Lai Mật Khẩu</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                                    placeholder="Lập Lai Mật Khẩu">
-                                            </div>
-                                        <div class="text-center">
-                                                <button type="submit" class="btn btn-info">Xác Nhận</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- Content - END -->
-        </div>
+      </nav>
     </div>
-    <input type="file" id="theFile" class="d-none">
+
     <!-- Optional JavaScript -->
     <script src="../js/jquery-3.3.1.slim.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script>
-        //Thay Đổi Height của Nav-Left
-        $("#nav-left").css("min-height", $(window).height() - $("#nav-top").outerHeight());
-        //Thay Đổi Height của Nav-Left
-        $(window).on("resize", function () {
-            $("#nav-left").css("min-height", $(window).height() - $("#nav-top").outerHeight());
-        });
-    </script>
-    <script>
-        function performClick(elemId) {
-            var elem = document.getElementById(elemId);
-            if (elem && document.createEvent) {
-                var evt = document.createEvent("MouseEvents");
-                evt.initEvent("click", true, false);
-                elem.dispatchEvent(evt);
-            }
-        }
-    </script>
-      <!-- Content - Start -->
-      <div class="col-10 pr-0 container-fluid" style="background:#f5f9fc">
-        <div class="col-4 my-3 border-dark bg-dark w-100 h-100 d-flex justify-content-center ">
-          <div class="w-50 mt-5 border-light bg-light" style="height: 180px; border-radius: 200px;"></div>
-          <div class="position-fixed text-white" style="top: 2px; right: 2px;">awdawdawd</div>
-
-        </div>
-      </div>
-      <!-- Content - END -->
-    </div>
-  </div>
-
-
-
-
-  <!-- Optional JavaScript -->
-  <script src="../js/jquery-3.3.1.slim.min.js"></script>
-  <script src="../js/popper.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script>
-    //Thay Đổi Height của Nav-Left
-    $("#nav-left").css("min-height", $(window).height() - $("#nav-top").outerHeight());
-    //Thay Đổi Height của Nav-Left
-    $(window).on("resize", function(){
-      $("#nav-left").css("min-height", $(window).height() - $("#nav-top").outerHeight());
-    });
-  </script>
-</body>
-
-
+  </body>
 </html>
