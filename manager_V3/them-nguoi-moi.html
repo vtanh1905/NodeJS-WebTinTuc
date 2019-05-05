@@ -89,33 +89,33 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
+                        <label for="" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPassword" placeholder="Email">
+                            <input type="text" class="form-control" id="" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Họ</label>
+                        <label for="" class="col-sm-2 col-form-label">Họ</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPassword" placeholder="Họ">
+                            <input type="text" class="form-control" id="" placeholder="Họ">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Tên</label>
+                        <label for="" class="col-sm-2 col-form-label">Tên</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPassword" placeholder="Tên">
+                            <input type="text" class="form-control" id="" placeholder="Tên">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Mật Khẩu</label>
+                        <label for="" class="col-sm-2 col-form-label">Mật Khẩu</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword" placeholder="Mật Khẩu">
+                            <input type="password" class="form-control" id="" placeholder="Mật Khẩu">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Ngày Sinh</label>
+                        <label for="" class="col-sm-2 col-form-label">Ngày Sinh</label>
                         <div class="col-sm-3">
-                            <input type="date" class="form-control" id="inputPassword" value="1990-01-01">
+                            <input type="date" class="form-control" id="" value="1990-01-01">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Vai Trò</label>
+                        <label for="" class="col-sm-2 col-form-label">Vai Trò</label>
                         <div class="col-sm-3">
                             <select class="form-control" id="sltVaiTro">
                                 <option value="doc-gia">Độc Giả</option>
@@ -140,13 +140,13 @@
                         </div>
                     </div>
                     <div id="boxNgayHetHan" class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Ngày Hết Hạn</label>
+                        <label for="" class="col-sm-2 col-form-label">Ngày Hết Hạn</label>
                         <div class="col-sm-3">
-                            <input type="date" class="form-control" id="inputPassword" value="1990-04-30">
+                            <input type="date" class="form-control" id="" value="1990-04-30">
                         </div>
                     </div>
                     <div id="boxChuyenMuc" class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Chuyên Mục</label>
+                        <label for="" class="col-sm-2 col-form-label">Chuyên Mục</label>
                         <div class="col-sm-3">
                             <select class="form-control" id="exampleFormControlSelect1">
                                 <option>None</option>
@@ -173,36 +173,9 @@
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/manager.js"></script>
         <script>
-            function performClick(elemId) {
-                var elem = document.getElementById(elemId);
-                if (elem && document.createEvent) {
-                    var evt = document.createEvent("MouseEvents");
-                    evt.initEvent("click", true, false);
-                    elem.dispatchEvent(evt);
-                }
-            }
-
-
-            $("#content").css("height", $(window).height() - $("#nav-left").height());
-            $(window).on("resize", function () {
-
-                $("#content").css("height", $(window).height() - $("#nav-left").height());
-            });
-
-            $("#boxChuyenMuc").hide();
-            $("#sltVaiTro").change(function () {
-                if ($(this).val() == "doc-gia") {
-                    $("#boxNgayHetHan").show();
-                    $("#boxChuyenMuc").hide();
-                } else if ($(this).val() == "bien-phong-vien") {
-                    $("#boxNgayHetHan").hide();
-                    $("#boxChuyenMuc").show();
-                } else {
-                    $("#boxNgayHetHan").hide();
-                    $("#boxChuyenMuc").hide();
-                }
-            });
+            eventSelectVaiTro();
         </script>
 </body>
 

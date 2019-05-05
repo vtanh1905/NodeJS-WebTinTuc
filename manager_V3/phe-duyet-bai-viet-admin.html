@@ -267,12 +267,36 @@
           </button>
         </div>
         <div class="modal-body">
-          <input type="time" class="form-control mInput mt-4" id="giodang">
-
-          <input type="date" class="form-control mInput mt-4" id="ngaydang">
-          <div class="text-right mt-3">
-              <button type="button" class="btn btn-primary">Xác nhận</button>
+          <form id="formDangBai" action="#" method="post">
+            <div class="form-group">
+              <div class="form-check">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="rdLapTuc" name="typeOfDangBai" value="now" checked>
+                  <label class="form-check-label" for="rdLapTuc">Lập Tức</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="rdCho" name="typeOfDangBai" value="other">
+                  <label class="form-check-label" for="rdCho">Chờ</label>
+                </div>
+              </div>
             </div>
+            <div class="form-group">
+              <label for="txtNgayDang">Ngày Đăng</label>
+              <input type="text" id="txtNgayDang" class="form-control">
+              <small id="emailHelp" class="form-text text-muted">Ví Dụ : 19/05/1998 - 19/5/1998</small>
+            </div>
+            <div class="form-group">
+              <label for="txtGioDang">Thời Gian</label>
+              <input type="text" id="txtGioDang" class="form-control">
+              <small id="emailHelp" class="form-text text-muted">Ví Dụ : 23:09 - 23:9</small>
+            </div>
+            <div class="form-group text-right mt-3">
+              <button type="submit" class="btn btn-primary">Xác nhận</button>
+            </div>
+          </form>
+  
+  
+  
         </div>
       </div>
     </div>
@@ -306,81 +330,13 @@
   <script src="../js/popper.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/ckeditor.js"></script>
+  <script src="../js/manager.js"></script>
   <script>
-    ClassicEditor
-      .create(document.querySelector('#editor'), {
-        // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-      })
-      .then(editor => {
-        window.editor = editor;
-      })
-      .catch(err => {
-        console.error(err.stack);
-      });
+    settingEditor(false);
 
-    function performClick(elemId) {
-      var elem = document.getElementById(elemId);
-      if (elem && document.createEvent) {
-        var evt = document.createEvent("MouseEvents");
-        evt.initEvent("click", true, false);
-        elem.dispatchEvent(evt);
-      }
-    }
+    eventAddTag("#btn-add-tag", "#txtTag", "#tag-group");
 
-    // Event Remove Tag
-    function removeElement(e) {
-      var e = event || window.event;
-      $(e.target).remove();
-    }
-
-    $("#content").css("height", $(window).height() - $("#nav-left").height());
-    $(window).on("resize", function () {
-
-      $("#content").css("height", $(window).height() - $("#nav-left").height());
-    });
-
-
-    $("#btn-add-tag").click(function () {
-      var textTag = $("#txtTag").val();
-      if (textTag.length == 0) {
-        return;
-      }
-      $("#tag-group").append(
-        '<button type="button" class="btn btn-primary btn-sm mt-1" onclick="removeElement()">' + textTag +
-        '</button> ');
-      $("#txtTag").val("");
-    });
-    
-    // get current day
-    var curday = function(sp){
-      today = new Date();
-      var dd = today.getDate();
-      var mm = today.getMonth()+1; //As January is 0.
-      var yyyy = today.getFullYear();
-
-      if(dd<10) dd='0'+dd;
-      if(mm<10) mm='0'+mm;
-      return (yyyy+sp+dd+sp+mm);
-    };
-    var curtime = function(sp){
-      var today = new Date();
-      var time = today.getHours() + sp + today.getMinutes() + sp + today.getSeconds();
-      return time;
-    };
-    $(function () {
-      $("#ngaydang").val(curday("-"));
-      $("#giodang").val(curtime(":"));
-     
-     
-      $("#AttrSelector").change(function(){
-        if ($(this).val() == "huy") {
-          $('#btn_change').attr('data-target','#modal-tu-choi');        
-        }
-      });
-    });
-
-
-
+    moduleDuyetBaiViet();
   </script>
 </body>
 

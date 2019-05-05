@@ -317,111 +317,14 @@
   <script src="../js/popper.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/ckeditor.js"></script>
+  <script src="../js/manager.js"></script>
   <script>
-    ClassicEditor
-      .create(document.querySelector('#editor'), {
-        // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-      })
-      .then(editor => {
-        window.editor = editor;
-      })
-      .catch(err => {
-        console.error(err.stack);
-      });
+    settingEditor(false);
 
-    function performClick(elemId) {
-      var elem = document.getElementById(elemId);
-      if (elem && document.createEvent) {
-        var evt = document.createEvent("MouseEvents");
-        evt.initEvent("click", true, false);
-        elem.dispatchEvent(evt);
-      }
-    }
+    eventAddTag("#btn-add-tag", "#txtTag", "#tag-group");
 
-    // Event Remove Tag
-    function removeElement(e) {
-      var e = event || window.event;
-      $(e.target).remove();
-    }
-
-    $("#content").css("height", $(window).height() - $("#nav-left").height());
-    $(window).on("resize", function () {
-
-      $("#content").css("height", $(window).height() - $("#nav-left").height());
-    });
-
-
-    $("#btn-add-tag").click(function () {
-      var textTag = $("#txtTag").val();
-      if (textTag.length == 0) {
-        return;
-      }
-      $("#tag-group").append(
-        '<button type="button" class="btn btn-primary btn-sm mt-1" onclick="removeElement()">' + textTag +
-        '</button> ');
-      $("#txtTag").val("");
-    });
-
-    //check Time
-    function CheckTime24(time) {
-      var re =/^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$/;
-      return re.test(time);
-    }
-
-    //check Date
-    function CheckDate(date) {
-        var re = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
-        return re.test(date);
-    }  
-
-    // get current day
-    var curday = function(sp){
-      today = new Date();
-      var dd = today.getDate();
-      var mm = today.getMonth()+1; //As January is 0.
-      var yyyy = today.getFullYear();
-
-      if(dd<10) dd='0'+dd;
-      if(mm<10) mm='0'+mm;
-      return (dd+sp+mm+sp+yyyy);
-    };
-
-    var curtime = function(sp){
-      var today = new Date();
-      var time = today.getHours() + sp + today.getMinutes();
-      return time;
-    };
-    //Xet Date vs Time Xuat Bản
-    $("#txtNgayDang").attr('readonly', true);
-    $("#txtGioDang").attr('readonly', true);
-
-    $("#rdLapTuc").click(function() {
-      $("#txtNgayDang").attr('readonly', true);
-      $("#txtGioDang").attr('readonly', true);
-    });
-
-    $("#rdCho").click(function() {
-      $("#txtNgayDang").attr('readonly', false);
-      $("#txtGioDang").attr('readonly', false);
-      $("#txtNgayDang").val(curday("/"));
-      $("#txtGioDang").val(curtime(":"));
-    });
-
-    $("#formDangBai").submit(function(){
-      var valNgayDang = $("#txtNgayDang").val();
-      var valGioDang = $("#txtGioDang").val();
-      if (!CheckTime24(valGioDang)) {
-        //thong bao email loi
-        alert("Vui lòng nhập đúng định dạng thời gian!");
-        return false;
-      }
-
-      if (!CheckDate(valNgayDang)) {
-        //thong bao email loi
-        alert("Vui lòng nhập đúng định dạng ngày sinh!");
-        return false;
-      }
-    });
+    moduleDuyetBaiViet();
+    
   </script>
 </body>
 

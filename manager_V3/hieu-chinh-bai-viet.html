@@ -246,50 +246,11 @@
   <script src="../js/popper.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/ckeditor.js"></script>
+  <script src="../js/manager.js"></script>
   <script>
-    ClassicEditor
-      .create(document.querySelector('#editor'), {
-        // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-      })
-      .then(editor => {
-        window.editor = editor;
-      })
-      .catch(err => {
-        console.error(err.stack);
-      });
+    settingEditor(false);
 
-    function performClick(elemId) {
-      var elem = document.getElementById(elemId);
-      if (elem && document.createEvent) {
-        var evt = document.createEvent("MouseEvents");
-        evt.initEvent("click", true, false);
-        elem.dispatchEvent(evt);
-      }
-    }
-
-    // Event Remove Tag
-    function removeElement(e) {
-      var e = event || window.event;
-      $(e.target).remove();
-    }
-
-    $("#content").css("height", $(window).height() - $("#nav-left").height());
-    $(window).on("resize", function () {
-
-      $("#content").css("height", $(window).height() - $("#nav-left").height());
-    });
-
-
-    $("#btn-add-tag").click(function () {
-      var textTag = $("#txtTag").val();
-      if (textTag.length == 0) {
-        return;
-      }
-      $("#tag-group").append(
-        '<button type="button" class="btn btn-primary btn-sm mt-1" onclick="removeElement()">' + textTag +
-        '</button> ');
-      $("#txtTag").val("");
-    });
+    eventAddTag("#btn-add-tag", "#txtTag", "#tag-group");
   </script>
 </body>
 

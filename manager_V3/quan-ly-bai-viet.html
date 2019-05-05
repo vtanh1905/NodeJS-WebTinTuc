@@ -60,7 +60,8 @@
           <ul id="myNav2" class="nav-body">
             <li class="nav-body-item"><a href="danh-sach-nguoi-dung.html"><i class="fas fa-users"></i> Quản Lý Tài
                 Khoản</a></li>
-                <li class="nav-body-item"><a href="quan-ly-bai-viet.html"><i class="fas fa-users"></i> Quản Lý Bài Viết</a></li>
+            <li class="nav-body-item"><a href="quan-ly-bai-viet.html"><i class="fas fa-users"></i> Quản Lý Bài Viết</a>
+            </li>
             <li class="nav-body-item"><a href="quan-ly-chuyen-muc.html"><i class="fas fa-ad"></i> Quản Lý Danh Mục</a>
             </li>
             <li class="nav-body-item"><a href="quan-ly-the-tag.html"><i class="fas fa-tag"></i> Quản Lý Nhãn</a></li>
@@ -79,7 +80,7 @@
     <div id="content" class="p-3" style="background:#F1F1F1; overflow-y: scroll;">
       <h3>Quản lý bài viết</h3>
       <hr>
-     
+
       <!-- Loc + Tim Kiem + So Trang -->
       <div class="d-flex justify-content-between mt-3">
         <div class="form-inline">
@@ -146,10 +147,11 @@
             <td class="text-center align-middle">10</td>
             <td class="text-center align-middle">Vũ Tuấn Anh</td>
             <td class="text-center align-middle">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-info" name="btn_sua">Sửa</button>
-                        <button type="button" class="btn btn-danger"name="btn_xoa">Xóa</button>
-                </div>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="phe-duyet-bai-viet-admin.html" class="btn btn-info">Sửa</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal"
+                  data-target="#exampleModalCenter1">Xóa</button>
+              </div>
             </td>
           </tr>
           <tr>
@@ -169,10 +171,11 @@
             <td class="text-center align-middle">0</td>
             <td class="text-center align-middle">Vũ Tuấn Anh</td>
             <td class="text-center align-middle">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-info" name="btn_sua">Sửa</button>
-                    <button type="button" class="btn btn-danger"name="btn_xoa">Xóa</button>
-                </div>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                  <a href="phe-duyet-bai-viet-admin.html" class="btn btn-info">Sửa</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal"
+                  data-target="#exampleModalCenter1">Xóa</button>
+              </div>
             </td>
           </tr>
           <tr>
@@ -193,10 +196,11 @@
             <td class="text-center align-middle">0</td>
             <td class="text-center align-middle">Vũ Tuấn Anh</td>
             <td class="text-center align-middle">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-info" name="btn_sua">Sửa</button>
-                        <button type="button" class="btn btn-danger" name="btn_xoa">Xóa</button>
-                </div>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="phe-duyet-bai-viet-admin.html" class="btn btn-info">Sửa</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal"
+                  data-target="#exampleModalCenter1">Xóa</button>
+              </div>
             </td>
           </tr>
           <tr>
@@ -217,10 +221,11 @@
             <td class="text-center align-middle">0</td>
             <td class="text-center align-middle">Vũ Tuấn Anh</td>
             <td class="text-center align-middle">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-info" name="btn_sua">Sửa</button>
-                        <button type="button" class="btn btn-danger"name="btn_xoa">Xóa</button>
-                </div>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="phe-duyet-bai-viet-admin.html" class="btn btn-info">Sửa</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal"
+                  data-target="#exampleModalCenter1">Xóa</button>
+              </div>
             </td>
           </tr>
           <tr>
@@ -241,10 +246,11 @@
             <td class="text-center align-middle">0</td>
             <td class="text-center align-middle">Vũ Tuấn Anh</td>
             <td class="text-center align-middle">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-info" name="btn_sua">Sửa</button>
-                        <button type="button" class="btn btn-danger" name="btn_xoa">Xóa</button>
-                </div>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="phe-duyet-bai-viet-admin.html" class="btn btn-info">Sửa</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal"
+                  data-target="#exampleModalCenter1">Xóa</button>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -267,23 +273,33 @@
     </div>
   </div>
 
+  <!-- Modal Xóa -->
+  <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Xác Nhận</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn có chắc chắn muốn xóa nó chứa ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary w-50">Có</button>
+          <button type="button" class="btn btn-danger w-50" data-dismiss="modal">Không</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Optional JavaScript -->
   <script src="../js/jquery-3.3.1.slim.min.js"></script>
   <script src="../js/popper.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
-  <script>
-    $("#content").css("height", $(window).height() - $("#nav-left").height());
-    $(window).on("resize", function () {
-
-      $("#content").css("height", $(window).height() - $("#nav-left").height());
-    });
-    $("button[name*='btn_sua']").click(function(){
-        alert("ahihi");
-    });
-    $("button[name*='btn_xoa']").click(function(){
-        alert("huhu");
-    });
-  </script>
+  <script src="../js/manager.js"></script>
 </body>
 
 </html>
