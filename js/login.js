@@ -36,7 +36,19 @@ function validateEmail(email) {
 function CheckDate(date) {
     var re = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
     return re.test(date);
-}   
+} 
+
+//check UserName
+function CheckUserName(str) {
+    var re = /^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
+    return re.test(str);
+} 
+
+//check UserName
+function CheckPassword(str) {
+    var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/;
+    return re.test(str);
+} 
 
 $("#btn_fg").click(function(){
     var email = $("#fg_email").val();
@@ -85,14 +97,22 @@ $("#btn_register").click(function(){
     
     
     if (!validateEmail(email)) {
-        //thong bao email loi
         alert("Vui lòng nhập đúng email!");
         return;
     }
 
     if (!CheckDate(dob)) {
-        //thong bao email loi
         alert("Vui lòng nhập đúng định dạng ngày sinh!");
+        return;
+    }
+
+    if (!CheckUserName(username)) {
+        alert("Username phải từ 6 tới 20 ký tự và không có ký tự đặc biệt");
+        return;
+    }
+
+    if (!CheckPassword(password)) {
+        alert("Username phải từ 6 tới 20 ký tự và có ít nhất 1 chữ in hoa, chữ thường và số");
         return;
     }
 
@@ -106,5 +126,6 @@ $("#btn_register").click(function(){
     }
     
     // xu ly dang ky
-    alert("Đăng Ký Thành Công"); 
+    alert("Đăng Ký Thành Công");
+    location.reload(true);
 });
