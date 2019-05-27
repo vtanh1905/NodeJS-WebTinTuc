@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="../css/nav-left.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
     <link rel="icon" href="../images/logo-web.png">
     <title>Quản Lý - GameX</title>
 </head>
@@ -60,7 +62,8 @@
                     <ul id="myNav2" class="nav-body">
                         <li class="nav-body-item"><a href="danh-sach-nguoi-dung.html"><i class="fas fa-users"></i> Quản
                                 Lý Tài Khoản</a></li>
-                                <li class="nav-body-item"><a href="quan-ly-bai-viet.html"><i class="fas fa-users"></i> Quản Lý Bài Viết</a></li>
+                        <li class="nav-body-item"><a href="quan-ly-bai-viet.html"><i class="fas fa-users"></i> Quản Lý
+                                Bài Viết</a></li>
                         <li class="nav-body-item"><a href="quan-ly-chuyen-muc.html"><i class="fas fa-ad"></i> Quản Lý
                                 Danh Mục</a></li>
                         <li class="nav-body-item"><a href="quan-ly-the-tag.html"><i class="fas fa-tag"></i> Quản Lý
@@ -100,7 +103,7 @@
                             <input type="text" class="form-control" id="" placeholder="Họ và tên">
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label">Mật Khẩu</label>
                         <div class="col-sm-10">
@@ -110,7 +113,7 @@
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label">Ngày Sinh</label>
                         <div class="col-sm-3">
-                            <input type="date" class="form-control" id="" value="1990-01-01">
+                            <input type="text" id="txtDOB" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -137,7 +140,7 @@
                     <div id="boxNgayHetHan" class="form-group row">
                         <label for="" class="col-sm-2 col-form-label">Ngày Hết Hạn</label>
                         <div class="col-sm-3">
-                            <input type="date" class="form-control" id="" value="1990-04-30">
+                            <input type="text"  class="form-control" id="txtNgayHetHang">
                         </div>
                     </div>
                     <div id="boxChuyenMuc" class="form-group row">
@@ -169,9 +172,24 @@
         <script src="../js/popper.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/manager.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
         <script>
             eventSelectVaiTro();
+
+            $('#txtDOB').datetimepicker({
+                timepicker: false,
+                format: 'd/m/Y'
+            });
+
+            $('#txtNgayHetHang').datetimepicker({
+                format: 'd/m/Y H:i',
+                minDate:0
+            });
+            
+            
         </script>
+
 </body>
 
 </html>
