@@ -11,8 +11,6 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
   <link type="text/css" href="../css/sample-ckeditor.css" rel="stylesheet" media="screen" />
   <link rel="stylesheet" href="../css/nav-left.css">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
   <link rel="icon" href="../images/logo-web.png">
   <title>Quản Lý - GameX</title>
 </head>
@@ -67,6 +65,8 @@
             <li class="nav-body-item"><a href="quan-ly-chuyen-muc.html"><i class="fas fa-ad"></i> Quản Lý Danh Mục</a>
             </li>
             <li class="nav-body-item"><a href="quan-ly-the-tag.html"><i class="fas fa-tag"></i> Quản Lý Nhãn</a></li>
+            <li class="nav-body-item"><a href="quan-ly-the-card.html"><i class="fas fa-id-card  " aria-hidden="true"></i> Quản Lý
+              card</a></li>
           </ul>
         </li>
         <li class="nav-body-item"><a href="#">
@@ -283,16 +283,22 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="txtTGXuatBan">Thời Gian</label>
-              <input type="text" id="txtTGXuatBan" class="form-control">
+              <label for="txtNgayDang">Ngày Đăng</label>
+              <input type="text" id="txtNgayDang" class="form-control">
+              <small id="emailHelp" class="form-text text-muted">Ví Dụ : 19/05/1998 - 19/5/1998</small>
+            </div>
+            <div class="form-group">
+              <label for="txtGioDang">Thời Gian</label>
+              <input type="text" id="txtGioDang" class="form-control">
+              <small id="emailHelp" class="form-text text-muted">Ví Dụ : 23:09 - 23:9</small>
             </div>
             <div class="form-group text-right mt-3">
               <button type="submit" class="btn btn-primary">Xác nhận</button>
             </div>
           </form>
-
-
-
+  
+  
+  
         </div>
       </div>
     </div>
@@ -327,20 +333,12 @@
   <script src="../js/bootstrap.min.js"></script>
   <script src="../js/ckeditor.js"></script>
   <script src="../js/manager.js"></script>
-  <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
   <script>
     settingEditor(false);
 
     eventAddTag("#btn-add-tag", "#txtTag", "#tag-group");
 
     moduleDuyetBaiViet();
-
-    $('#txtTGXuatBan').datetimepicker({
-      timepicker: true,
-      format: 'd/m/Y H:i',
-      minDate: 0
-    });
   </script>
 </body>
 

@@ -80,16 +80,8 @@
 
         <!-- Content -->
         <div id="content" class="p-3" style="background:#F1F1F1; overflow-y: scroll;">
-            <h3>Danh Sách Người Dùng</h3>
+            <h3>Danh Sách Tài Khoản Gia Hạn</h3>
             <hr>
-
-            <!-- Them Nguoi Dung -->
-            <div class="">
-                <a class="btn btn-primary mr-3" href="them-nguoi-moi.html" role="button">
-                    <i class="fas fa-user-plus"></i>
-                    Thêm Người Dùng
-                </a>
-            </div>
 
             <!-- Loc + Tim Kiem + So Trang -->
             <div class="d-flex justify-content-between mt-3">
@@ -110,9 +102,9 @@
                         <label for="inputPassword2" class="sr-only">Tìm Kiếm</label>
                         <input type="text" class="form-control" id="inputPassword2" placeholder="Tìm Kiếm">
                         <div class="row">
-                                <a name="" id="" class="btn btn-primary pl-3 pr-3" href="#" role="button">Go</a>
-                                <a name="" id="" class="btn btn-danger" href="#" role="button">Clear</a>
-                            </div>
+                            <a name="" id="" class="btn btn-primary pl-3 pr-3" href="#" role="button">Go</a>
+                            <a name="" id="" class="btn btn-danger" href="#" role="button">Clear</a>
+                        </div>
                     </div>
                 </div>
                 <div class="form-inline d-md-block d-none">
@@ -134,12 +126,12 @@
             <table class="table table-bordered table-responsive-sm table-hover bg-white">
                 <thead>
                     <tr>
-                        <th class="text-center" style="width: 20%" scope="col">Tài Khoản</th>
-                        <th class="text-center" style="width: 20%" scope="col">Tên</th>
-                        <th class="text-center" style="width: 20%" scope="col">Email</th>
-                        <th class="text-center" style="width: 15%" scope="col">Vai Trò</th>
-                        <th class="text-center" style="width: 5%" scope="col">Bài Viết</th>
-                        <th class="text-center" style="width: 7%" scope="col">Chức Năng</th>
+                        <th class="text-center" style="width: 15%" scope="col">Tài Khoản</th>
+                        <th class="text-center" style="width: 15%" scope="col">Nhà cung cấp</th>
+                        <th class="text-center" style="width: 10%" scope="col">Giá trị</th>
+                        <th class="text-center" style="width: 15%" scope="col">Mã Seri</th>
+                        <th class="text-center" style="width: 15%" scope="col">Mã Pin</th>
+                        <th class="text-center" style="width: 10%" scope="col">Chức Năng</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -148,78 +140,20 @@
                             admin
                         </th>
                         <td class="text-center align-middle">
-                            Tuấn Anh
+                            Mobifone
                         </td>
                         <td class="text-center align-middle">
-                            vtanh1905@gmail.com
+                            20.000 VNĐ
                         </td>
-                        <td class="text-center align-middle">Quản Trị Viên</td>
-                        <td class="text-center align-middle">10</td>
+                        <td class="text-center align-middle">1938273618218</td>
+                        <td class="text-center align-middle">3839274618201</td>
                         <td class="text-center align-middle">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <a class="btn btn-info" href="sua-thong-tin-nguoi-dung.html" role="button">Sửa</a>
+                                <a class="btn btn-info" href="sua-thong-tin-nguoi-dung.html" role="button" data-toggle="modal" data-target="#exampleModalCenter2">Gia hạn</a>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter1">Xóa</button>
                             </div>
                         </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center align-middle" scope="row">
-                            vtanh195
-                        </th>
-                        <td class="text-center align-middle">
-                            Tuấn Anh
-                        </td>
-                        <td class="text-center align-middle">
-                            vtanh195@gmail.com
-                        </td>
-                        <td class="text-center align-middle">Biên Tập Viên(<span
-                                class="text-danger font-weight-bold">Phim Ảnh</span>)</td>
-                        <td class="text-center align-middle">3</td>
-                        <td class="text-center align-middle">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a class="btn btn-info" href="sua-thong-tin-nguoi-dung.html" role="button">Sửa</a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter1">Xóa</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center align-middle" scope="row">
-                            vtanhxxx
-                        </th>
-                        <td class="text-center align-middle">
-                            Tuấn Anh
-                        </td>
-                        <td class="text-center align-middle">
-                            vtanhxxx@gmail.com
-                        </td>
-                        <td class="text-center align-middle">Phóng Viên</td>
-                        <td class="text-center align-middle">3</td>
-                        <td class="text-center align-middle">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a class="btn btn-info" href="sua-thong-tin-nguoi-dung.html" role="button">Sửa</a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter1">Xóa</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center align-middle" scope="row">
-                            laptrinhthatvui
-                        </th>
-                        <td class="text-center align-middle">
-                            Nguyễn Văn A
-                        </td>
-                        <td class="text-center align-middle">
-                            consolegame@gmail.com
-                        </td>
-                        <td class="text-center align-middle">Độc Giả</td>
-                        <td class="text-center align-middle">0</td>
-                        <td class="text-center align-middle">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <a class="btn btn-info" href="sua-thong-tin-nguoi-dung.html" role="button">Sửa</a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter1">Xóa</button>
-                            </div>
-                        </td>
-                    </tr>
+                    </tr> 
                 </tbody>
             </table>
 
@@ -237,6 +171,27 @@
                     </li>
                 </ul>
             </nav>
+        </div>
+        <!--Model gia han tai khoan-->
+        <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Xác Nhận</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Gia hạn tài khoản ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary w-50">Có</button>
+                        <button type="button" class="btn btn-danger w-50" data-dismiss="modal">Không</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Modal Xóa -->
@@ -267,5 +222,6 @@
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/manager.js"></script>
 </body>
+
 
 </html>
