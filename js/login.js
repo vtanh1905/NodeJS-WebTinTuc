@@ -83,8 +83,7 @@ $("#btn_login").click(function(){
 
 //xu ly register
 $("#btn_register").click(function(){
-    var firstName   = $("#firstName").val();
-    var lastName    = $("#lastName").val();
+    var fullName   = $("#fullName").val();
     var username    = $("#username_rg").val();
     var password    = $("#pass_rg").val();
     var email       = $("#email_rg").val();
@@ -92,7 +91,7 @@ $("#btn_register").click(function(){
     var iscb_agree  = $("#cb_agree").prop("checked");
     var dob         = $("#dob").val(); 
 
-    if(firstName.length === 0 || lastName.length === 0 || username.length === 0
+    if(fullName.length === 0 || username.length === 0
     || password.length === 0 || email.length === 0 || confPass.length === 0 || dob.length === 0){
         alert("Vui lòng nhập đầy đủ dữ liệu");
         return;
