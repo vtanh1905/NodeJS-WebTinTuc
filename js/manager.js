@@ -100,14 +100,19 @@ function CheckDate(date) {
 //Event Module Duyet Bai Viet
 function moduleDuyetBaiViet() {
   //Xet Date vs Time Xuat Bản
-  $("#txtTGXuatBan").attr('readonly', true);
+  $("#txtNgayDang").attr('readonly', true);
+  $("#txtGioDang").attr('readonly', true);
 
   $("#rdLapTuc").click(function () {
-    $("#txtTGXuatBan").attr('readonly', true);
+    $("#txtNgayDang").attr('readonly', true);
+    $("#txtGioDang").attr('readonly', true);
   });
 
   $("#rdCho").click(function () {
-    $("#txtTGXuatBan").attr('readonly', false);
+    $("#txtNgayDang").attr('readonly', false);
+    $("#txtGioDang").attr('readonly', false);
+    $("#txtNgayDang").val(getCurrentDay("/"));
+    $("#txtGioDang").val(getCurrentTime(":"));
   });
 
   $("#formDangBai").submit(function () {
