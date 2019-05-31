@@ -1,0 +1,95 @@
+<nav id="nav-top"
+    class="navbar navbar-dark font-weight-bold navbar-expand-lg w-100 {{#if fixed-top}}position-absolute bg-dark{{/if}}"
+    style={{#if fixed-top}} "top:0; left:0; z-index: 11;  opacity: 0.9;" {{else}} "background: #222222" {{/if}}>
+
+    <a class="navbar-brand" href="/">
+        <img src="images/logo-web.png" class="rounded float-left" alt="..." width="45" height="45">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+            <li class="nav-item active active-danger ">
+                <a class="nav-link" href="/">Trang Chủ<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/category" role="button"
+                    aria-haspopup="true" aria-expanded="false">Game Mobile</a>
+                <div class="dropdown-menu bg-dark border-top-0">
+                    <a class="dropdown-item set-dropdown-item" href="/category">Tất Cả</a>
+                    <a class="dropdown-item set-dropdown-item" href="/category">Android</a>
+                    <a class="dropdown-item set-dropdown-item" href="/category">IOS</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">Game Online</a>
+                <div class="dropdown-menu bg-dark border-top-0">
+                    <a class="dropdown-item set-dropdown-item" href="/category">Tất Cả</a>
+                    <a class="dropdown-item set-dropdown-item" href="/category">Trong Nước</a>
+                    <a class="dropdown-item set-dropdown-item" href="/category">Ngoài Nước</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">Esports</a>
+                <div class="dropdown-menu bg-dark border-top-0">
+                    <a class="dropdown-item set-dropdown-item" href="/category">Tất Cả</a>
+                    <a class="dropdown-item set-dropdown-item" href="/category">Liên Mình Huyền Thoại</a>
+                    <a class="dropdown-item set-dropdown-item" href="/category">Đột Kích</a>
+                    <a class="dropdown-item set-dropdown-item" href="/category">CSGO</a>
+                    <a class="dropdown-item set-dropdown-item" href="/category">Dota</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                    aria-expanded="false">PC/Console</a>
+                <div class="dropdown-menu bg-dark border-top-0">
+                    <a class="dropdown-item set-dropdown-item" href="/category">Tất Cả</a>
+                    <a class="dropdown-item set-dropdown-item" href="/category">PC</a>
+                    <a class="dropdown-item set-dropdown-item" href="/category">Console</a>
+                </div>
+            </li>
+            <li class="nav-item active active-danger">
+                <a class="nav-link" href="/category">Công Nghệ<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active active-danger">
+                <a class="nav-link" href="/category">Phim Ảnh<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <span class="navbar-text d-block p-0">
+            <a href="/login" class="fas fa-user-circle icon my-2 btn text-left d-lg-inline p-0 d-block">
+                <span class="d-inline-block d-lg-none text-icon">Đăng Nhập</span>
+            </a>
+            <button data-toggle="modal" data-target="#exampleModalCenter" id="icon-find"
+                class="fas fa-search icon btn  my-2 d-lg-inline d-block p-0  text-left">
+                <span class="d-inline-block d-lg-none text-icon">Tìm Kiếm</span>
+                </a>
+        </span>
+    </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Tìm Kiếm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post">
+                    <input type="text" id="inputPassword5" class="form-control" placeholder="Nội Dung">
+                    <div class="text-right mt-3">
+                        <a href="search" class="btn btn-primary">Tìm Kiếm</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

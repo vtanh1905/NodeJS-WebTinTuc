@@ -1,0 +1,202 @@
+{{#section 'css'}}
+<title>Trang chủ</title>
+<link rel="stylesheet" href="/css/nav-left.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js"></script>
+<script src="/js/manager.js"></script>
+<script>
+    settingEditor(false);
+
+    eventAddTag("#btn-add-tag", "#txtTag", "#tag-group");
+</script>
+{{/section}}
+<!-- Nav Top -->
+{{> nav-dashboard}}
+
+<!-- Content -->
+<div id="content" style="background:#F1F1F1; overflow-y: scroll;">
+    <h2 class="pt-3 pl-3">Hiểu Chỉnh Bài Viết</h2>
+    <hr>
+    <form>
+        <div class="row m-0">
+            <div class="col-xl-3 col-12">
+                <span onclick="performClick('theFile');" style="cursor: pointer;">
+                    <img id="avatar"
+                        src="https://www.garena.vn/img/game-carousel-bns@2x.88f97343.jpg?fbclid=IwAR3fPuSGoqO9mHxTpFxIvZR683Ttosr54Ocr-xa33g9eo8teBJn2LzNmfuI"
+                        class="rounded mx-auto d-block avatar" alt="..." width="100%" height="100%">
+                </span>
+            </div>
+            <div class="col-xl-9 col-12">
+                <div class="form-group pt-3">
+                    <label for="exampleInputEmail1" class="h4">Tiêu đề</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="" value="Game Hay Không Tưởng">
+                </div>
+                <!-- Lý Do Từ Chối -->
+                <div class="card bg-light mb-3">
+                    <div class="card-header h5 text-light bg-danger">Lý Do Từ Chối</div>
+                    <div class="card-body p-3 text-dark">
+                        Tiều Đề Không Hợp Lý
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-0">
+
+            <div class="my-3 col-xl-10 col-12">
+                <!-- Viết Bài Viết -->
+                <div class="form-group">
+                    <div id="editor">
+                        <h2>The three greatest things you learn from traveling</h2>
+
+                        <p>Like all the great things on earth traveling teaches us by example. Here are some of the most
+                            precious
+                            lessons I’ve learned over the years of traveling.</p>
+
+                        <h3>Appreciation of diversity</h3>
+
+                        <p>Getting used to an entirely different culture can be challenging. While it’s also nice to
+                            learn
+                            about
+                            cultures online or from books, nothing comes close to experiencing <a
+                                href="https://en.wikipedia.org/wiki/Cultural_diversity">cultural diversity</a> in
+                            person. You
+                            learn
+                            to
+                            appreciate each and every single one of the differences while you become more culturally
+                            fluid.
+                        </p>
+
+                        <figure class="image image-style-side"><img
+                                src="https://www.garena.vn/img/game-carousel-bns@2x.88f97343.jpg?fbclid=IwAR3fPuSGoqO9mHxTpFxIvZR683Ttosr54Ocr-xa33g9eo8teBJn2LzNmfuI"
+                                alt="Three Monks walking on ancient temple.">
+                            <figcaption>Leaving your comfort zone might lead you to such beautiful sceneries like this
+                                one.
+                            </figcaption>
+                        </figure>
+
+                        <h3>Confidence</h3>
+
+                        <p>Going to a new place can be quite terrifying. While change and uncertainty makes us scared,
+                            traveling
+                            teaches us how ridiculous it is to be afraid of something before it happens. The moment you
+                            face
+                            your
+                            fear and see there was nothing to be afraid of, is the moment you discover bliss.</p>
+                    </div>
+                </div>
+
+                <!-- Tóm Tắt -->
+                <div class="form-group pt-3">
+                    <label for="exampleFormControlTextarea1" class="h4">Tóm Tắt</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1"
+                        rows="3">Like all the great things on earth traveling teaches us by example. Here are some of the most precious lessons I’ve learned over the years of traveling.</textarea>
+                </div>
+            </div>
+
+            <div class="col-xl-2 col-12 mt-3">
+                <button type="button" class="btn-primary font-weight-bold btn btn-block mb-3">Đăng bài viết</button>
+                <!-- Danh sach danh mục -->
+                <div class="card bg-light mb-3 ">
+                    <div class="card-header bg-info text-white">Danh mục</div>
+                    <div class="card-body p-3 " style="background:#FFFFFF">
+                        <form action="#">
+                            <div class="form-group">
+                                <label class="h6" for="inputAddress">Game Mobile</label>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio1" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio1">Android</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio2" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio2">IOS</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="h6" for="inputAddress">Game Online</label>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio3" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio3">Trong Nước</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio4" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio4">Ngoài Nước</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="h6" for="inputAddress">Esports</label>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio5" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio5">LMHT</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio6" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio6">Đột Kích</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio7" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio7">CS:GO</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio8" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio8">Dota</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="h6" for="inputAddress">PC/Console</label>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio9" name="customRadio"
+                                        class="custom-control-input" checked>
+                                    <label class="custom-control-label" for="customRadio9">PC</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="customRadio10" name="customRadio"
+                                        class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadio10">Console</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Them Tag -->
+                <div class="card bg-light mb-3">
+                    <div class="card-header bg-info text-white">Thêm Tag</div>
+                    <div class="card-body p-3" style="background:#FFFFFF">
+                        <form action="#">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="txtTag" placeholder="Tên Tag">
+                            </div>
+                            <div id="btn-add-tag" class="form-group text-center">
+                                <button type="button" class="btn btn-secondary btn-sm">Thêm</button>
+                            </div>
+                            <div id="tag-group" class="form-group">
+                                <button type="button" class="btn btn-primary btn-sm mt-1"
+                                    onclick="removeElement()">ABC</button>
+                                <button type="button" class="btn btn-primary btn-sm mt-1"
+                                    onclick="removeElement()">Shirt</button>
+                                <button type="button" class="btn btn-primary btn-sm mt-1"
+                                    onclick="removeElement()">Coat</button>
+                                <button type="button" class="btn btn-primary btn-sm mt-1"
+                                    onclick="removeElement()">Rain</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!-- input File -->
+<input type="file" id="theFile" class="d-none">

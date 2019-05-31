@@ -1,0 +1,224 @@
+{{#section 'css'}}
+<title>Trang chủ</title>
+<link rel="stylesheet" href="/css/nav-left.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="/js/manager.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+    $("#form").validate({
+        rules: {
+            Name: {
+                required: true
+            }
+        },
+        messages: {
+            Name: {
+                required: "Không được bỏ trống"
+            }
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-danger',
+        highlight: (e) => {
+            $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: (e) => {
+            $(e).addClass('is-valid').removeClass('is-invalid');
+        }
+    });
+</script>
+{{/section}}
+
+<!-- Nav Top -->
+{{> nav-dashboard}}
+
+<!-- Content -->
+<div id="content" class="pl-md-3 pt-3 pb-md-3" style="background:#F1F1F1; overflow-y: scroll;">
+    <h3 class="pl-3 pl-md-0">Quản Lý Thẻ</h3>
+    <hr>
+    <div class="row m-0">
+        <!-- Them Thẻ -->
+        <div class="col-md-3 col-12">
+            <h6>Thêm Thẻ</h6>
+            <form id="form" method="POST">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Tên Thẻ</label>
+                    <input type="text" class="form-control" name="Name" id="Name" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Mô tả</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-block">Thêm Thẻ</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- List Thẻ -->
+        <div class="col-md-9 col-12 mt-3">
+            <div>
+                <h6 class="d-block d-md-inline-block">Thẻ</h6>
+                <div class="form-inline float-right mr-3">
+                    <form method="GET">
+                        <div class="form-group mb-2">
+                            <label for="inputPassword2" class="sr-only">Tìm Kiếm</label>
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Tìm Kiếm" name="search">
+                            <div class="row btn-group">
+                                <button  class="btn btn-primary pl-3 pr-3" type="submit">Go</button>
+                                <a class="btn btn-danger" href="/dashboard/tag" role="button">Clear</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Dành Sách Bài Viết -->
+            <table class="table table-bordered table-striped table-sm  table-responsive-sm table-hover mt-3 bg-white">
+                <thead>
+                    <tr class="bg-info text-light">
+                        <th class="text-center" style="width: 30%" scope="col">Tên</th>
+                        <th class="text-center" style="width: 50%" scope="col">Mô Tả</th>
+                        <th class="text-center" style="width: 10%" scope="col">Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Streamer
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            End Game
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Gái Xinh
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Giải Đấu
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation example" class="mt-3">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Sửa  -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Chỉnh sửa Thẻ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Tên Thẻ</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder=""
+                            value="Game Online">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Mô tả</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary btn-block">Xác Nhận</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Xóa -->
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Xác Nhận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa nó chứa ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary w-50">Có</button>
+                <button type="button" class="btn btn-danger w-50" data-dismiss="modal">Không</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
