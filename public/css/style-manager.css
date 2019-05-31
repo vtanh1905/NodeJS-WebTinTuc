@@ -1,0 +1,28 @@
+.text-icon {
+    color: white;
+    display: inline-block;
+  }
+
+  .text-icon:hover {
+    cursor: pointer;
+    color: #007BFF;
+  }
+
+  .set-dropdown-item {
+    color: white;
+  }
+
+  .set-dropdown-item:hover {
+    background: gray;
+    color: white;
+  }
+
+  .set-dropdown-item.active{
+    color: black;
+    background: white;
+  }
+
+  .avatar {
+    cursor: pointer;
+  }
+  
