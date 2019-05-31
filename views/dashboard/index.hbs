@@ -1,0 +1,168 @@
+{{#section 'css'}}
+<title>Trang chủ</title>
+<link rel="stylesheet" href="/css/nav-left.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="../js/manager.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+    $('#txtDOB').datetimepicker({
+        timepicker: false,
+        format: 'd/m/Y'
+    });
+
+    $("#form-change-pass").validate({
+        rules: {
+            oldPass: {
+                required: true
+            },
+            newPass: {
+                required: true
+            },
+            confNewPass: {
+                required: true,
+                equalTo: "#newPass"
+            }
+        },
+        messages: {
+            oldPass: {
+                required: "Không được bỏ trống"
+            },
+            newPass: {
+                required: "Không được bỏ trống"
+            },
+            confNewPass: {
+                required: "Không được bỏ trống"
+            }
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-danger',
+        highlight: (e) => {
+            $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: (e) => {
+            $(e).addClass('is-valid').removeClass('is-invalid');
+        }
+    });    
+</script>
+
+
+{{/section}}
+
+<!-- Nav Top -->
+{{> nav-dashboard}}
+
+<!-- Content -->
+<div id="content" class="pl-3 pt-3 pb-3 pr-md-0 pr-3" style="background:#F1F1F1; overflow-y: scroll;">
+    <div class="row mx-0" style="background:#F1F1F1;">
+        <!-- Cot avatar -->
+        <div class="col-md-5 col-12 border border-info " style="background:#ffffff">
+            <div class="mt-3 d-inline-block bg-none px-2 text-light border bg-primary" style="border-radius: 15px;">
+                Online
+            </div>
+            <div class="row justify-content-center ">
+                <img class="img-fluid rounded-circle" src="../images/avatar-2.jpg">
+            </div>
+            <div class="row justify-content-center mt-3">
+                <div class="text-dark font-weight-bold" style="font-size: 20px;" id="name_0">Cô Gái Năm Ấy</div>
+            </div>
+            <div class="row justify-content-start p-3 mt-5">
+                <div class="d-block border-bottom pb-2 w-100">
+                    <i class="fas fa-info-circle"></i>Detail
+                </div>
+                <div class="d-block mt-3 w-100">
+                    <div class="float-left"><b>Bút Danh: </b></div>
+                    <div class="float-right text-info">Chém gió vcl</div>
+                </div>
+                <div class="d-block mt-3 w-100">
+                    <div class="float-left"><b>Số bài viết: </b></div>
+                    <div class="float-right text-info">20</div>
+                </div>
+                <div class="d-block mt-3 w-100">
+                    <div class="float-left"><b>Ngày đăng Gần nhất: </b></div>
+                    <div class="float-right text-info">26/4/2019</div>
+                </div>
+
+            </div>
+            <div class="row justify-content-center mt-5 mb-md-0 mb-3">
+                <button type="button" class="btn btn-secondary text-white">Premium: UnActive</button>
+            </div>
+        </div>
+        <!-- Cot info -->
+        <div class="col-md-7 col-12 mt-md-0 mt-3">
+            <!-- Mua Tài Khoản -->
+            <div class="border border-info" style="background:#ffffff">
+                <div class="row">
+                    <!-- Gioi thieu premium -->
+                    <div class="col-md-8 col-12">
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <h5 class="card-title">Premium Account</h5>
+
+                                <p class="card-text">Với tài khoảng Premium:</p>
+
+                                <p class="card-text "><i class="fas fa-check d-inline mr-2 text-info"></i>Bạn có thể
+                                    download các
+                                    bài viết có Tag Premium</p>
+
+
+                                <p class="card-text"><i class="fas fa-check d-inline mr-2 text-info"></i>Không bị gián
+                                    đoạn bới
+                                    quảng cáo</p>
+                                <p class="card-text"><i class="fas fa-check d-inline mr-2 text-info"></i>Đội ngũ hộ trợ
+                                    trực tuyến
+                                    24/7</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Nut đăng ký -->
+                    <div class="col-md-4 col-12 d-flex align-items-center justify-content-center mb-md-0 mb-3">
+                        <a href="/dashboard/buy-premium" class="btn btn-lg btn-primary ">Go Premium</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Thong tin nguoi dung -->
+            <div class="mt-3 p-4 border border-info" style="background:#ffffff">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Họ Tên</label>
+                        <input type="text" class="form-control" id="name" placeholder="" value="Nguyễn Thị A">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Email</label>
+                        <input type="text" class="form-control" id="email" placeholder="" value="cogainamay@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Ngày sinh</label>
+                        <input type="text" class="form-control" id="txtDOB" value="11/11/1998">
+                    </div>
+                    <a href="#" class="btn btn-primary" id="btn_saveInfo">Lưu thông tin</a>
+                </form>
+            </div>
+            <!-- Doi mat khau -->
+            <div class="mt-3 p-4 border border-info" style="background:#ffffff">
+                <form id="form-change-pass" method="POST">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Mật khẩu cũ:</label>
+                        <input type="password" class="form-control" id="oldPass" name="oldPass" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Mật khẩu mới</label>
+                        <input type="password" class="form-control" id="newPass" name="newPass" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nhập lại Mật khẩu mới</label>
+                        <input type="password" class="form-control" id="confNewPass" name="confNewPass" placeholder="">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2" id="btn_changePass">Đổi mật khẩu</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

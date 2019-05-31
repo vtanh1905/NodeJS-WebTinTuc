@@ -1,0 +1,246 @@
+{{#section 'css'}}
+<title>Trang chủ</title>
+<link rel="stylesheet" href="/css/nav-left.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="../js/manager.js"></script>
+{{/section}}
+
+
+<!-- Nav Top -->
+{{> nav-dashboard}}
+
+<!-- Content -->
+<div id="content" class="p-3" style="background:#F1F1F1; overflow-y: scroll;">
+  <h3>Quản lý bài viết</h3>
+  <hr>
+
+  <!-- Loc + Tim Kiem + So Trang -->
+  <div class="d-flex justify-content-between mt-3">
+    <div class="form-inline">
+      <div class="form-group mb-2">
+        <label for="inputPassword2" class="mr-3">Trạng Thái</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option value="tat-ca" selected>Tất Cả</option>
+          <option value="doc-gia">Đã Xuất Bản</option>
+          <option value="phong-vien">Chờ Xuất Bản</option>
+          <option value="bien-phong-vien">Chưa Kiểm Duyệt</option>
+          <option value="quan-tri-vien">Bị Từ Chối</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-inline">
+      <form method="GET">
+        <div class="form-group mb-2">
+          <label for="inputPassword2" class="sr-only">Tìm Kiếm</label>
+          <input type="text" class="form-control" id="inputPassword2" placeholder="Tìm Kiếm" name="search">
+          <div class="row btn-group">
+            <button class="btn btn-primary pl-3 pr-3" type="submit">Go</button>
+            <a class="btn btn-danger" href="/dashboard/post" role="button">Clear</a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="form-inline d-md-block d-none">
+      <div class="form-group mb-2">
+        <label for="inputPassword2" class="mr-3 d-md-block d-none">SL Tài Khoản</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option value="tat-ca" selected>10</option>
+          <option value="doc-gia">25</option>
+          <option value="phong-vien">50</option>
+          <option value="bien-phong-vien">100</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dành Sách Bài Viết -->
+  <table class="table table-bordered table-responsive table-hover bg-white">
+    <thead>
+      <tr>
+        <th class="text-center" style="width: 2%" scope="col">TT</th>
+        <th class="text-center" style="width: 8%" scope="col">Ảnh</th>
+        <th class="text-center" style="width: 40%" scope="col">Tiêu Đề</th>
+        <th class="text-center" style="width: 10%" scope="col">Danh Mục</th>
+        <th class="text-center" style="width: 10%" scope="col">Ngày Đăng</th>
+        <th class="text-center" style="width: 10%" scope="col">Bình Luận</th>
+        <th class="text-center" style="width: 10%" scope="col">Tác Giả</th>
+        <th class="text-center" style="width: 10%" scope="col">Chức năng</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th class="text-center align-middle" scope="row">
+          <i class="fas fa-check-circle text-success"></i>
+        </th>
+        <td class="text-center align-middle">
+          <img
+            src="https://www.garena.vn/img/game-carousel-bns@2x.88f97343.jpg?fbclid=IwAR3fPuSGoqO9mHxTpFxIvZR683Ttosr54Ocr-xa33g9eo8teBJn2LzNmfuI"
+            class="rounded mx-auto d-block" alt="..." width="100%">
+        </td>
+        <td class="align-middle">
+          <a href="../chi-tiet-bai-viet.html" target="_blank" rel="noopener noreferrer">Blade and Soul
+            Mobile sẽ
+            do Garena sở hữu và phát hành tại Việt Nam năm 2019?</a>
+
+        </td>
+        <td class="text-center align-middle">PC</td>
+        <td class="text-center align-middle">19/05/1998</td>
+        <td class="text-center align-middle">10</td>
+        <td class="text-center align-middle">Vũ Tuấn Anh</td>
+        <td class="text-center align-middle">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="/dashboard/post/approve" class="btn btn-info">Sửa</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal"
+              data-target="#exampleModalCenter1">Xóa</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th class="text-center align-middle" scope="row">
+          <i class="fas fa-minus-circle text-info"></i>
+        </th>
+        <td class="text-center align-middle">
+          <img
+            src="https://www.garena.vn/img/game-carousel-bns@2x.88f97343.jpg?fbclid=IwAR3fPuSGoqO9mHxTpFxIvZR683Ttosr54Ocr-xa33g9eo8teBJn2LzNmfuI"
+            class="rounded mx-auto d-block" alt="..." width="100%">
+        </td>
+        <td class="align-middle">
+          <a href="../chi-tiet-bai-viet.html" target="_blank" rel="noopener noreferrer">Blade and Soul
+            Mobile sẽ
+            do Garena sở hữu và phát hành tại Việt Nam năm 2019?</a>
+        </td>
+        <td class="text-center align-middle">PC</td>
+        <td class="text-center align-middle">19/05/1998</td>
+        <td class="text-center align-middle">0</td>
+        <td class="text-center align-middle">Vũ Tuấn Anh</td>
+        <td class="text-center align-middle">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="phe-duyet-bai-viet-admin.html" class="btn btn-info">Sửa</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal"
+              data-target="#exampleModalCenter1">Xóa</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th class="text-center align-middle" scope="row">
+          <i class="fas fa-clock text-warning"></i>
+        </th>
+        <td class="text-center align-middle">
+          <img
+            src="https://www.garena.vn/img/game-carousel-bns@2x.88f97343.jpg?fbclid=IwAR3fPuSGoqO9mHxTpFxIvZR683Ttosr54Ocr-xa33g9eo8teBJn2LzNmfuI"
+            class="rounded mx-auto d-block" alt="..." width="100%">
+        </td>
+        <td class="align-middle">
+          <a href="../chi-tiet-bai-viet.html" target="_blank" rel="noopener noreferrer">Blade and Soul
+            Mobile sẽ
+            do Garena sở hữu và phát hành tại Việt Nam năm 2019?</a>
+
+        </td>
+        <td class="text-center align-middle">PC</td>
+        <td class="text-center align-middle">19/05/1998</td>
+        <td class="text-center align-middle">0</td>
+        <td class="text-center align-middle">Vũ Tuấn Anh</td>
+        <td class="text-center align-middle">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="phe-duyet-bai-viet-admin.html" class="btn btn-info">Sửa</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal"
+              data-target="#exampleModalCenter1">Xóa</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th class="text-center align-middle" scope="row">
+          <i class="fas fa-times-circle text-danger"></i>
+        </th>
+        <td class="text-center align-middle">
+          <img
+            src="https://www.garena.vn/img/game-carousel-bns@2x.88f97343.jpg?fbclid=IwAR3fPuSGoqO9mHxTpFxIvZR683Ttosr54Ocr-xa33g9eo8teBJn2LzNmfuI"
+            class="rounded mx-auto d-block" alt="..." width="100%">
+        </td>
+        <td class="align-middle">
+          <a href="../chi-tiet-bai-viet.html" target="_blank" rel="noopener noreferrer">Blade and Soul
+            Mobile sẽ
+            do Garena sở hữu và phát hành tại Việt Nam năm 2019?</a>
+
+        </td>
+        <td class="text-center align-middle">PC</td>
+        <td class="text-center align-middle">19/05/1998</td>
+        <td class="text-center align-middle">0</td>
+        <td class="text-center align-middle">Vũ Tuấn Anh</td>
+        <td class="text-center align-middle">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="phe-duyet-bai-viet-admin.html" class="btn btn-info">Sửa</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal"
+              data-target="#exampleModalCenter1">Xóa</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th class="text-center align-middle" scope="row">
+          <i class="fas fa-times-circle text-danger"></i>
+        </th>
+        <td class="text-center align-middle">
+          <img
+            src="https://www.garena.vn/img/game-carousel-bns@2x.88f97343.jpg?fbclid=IwAR3fPuSGoqO9mHxTpFxIvZR683Ttosr54Ocr-xa33g9eo8teBJn2LzNmfuI"
+            class="rounded mx-auto d-block" alt="..." width="100%">
+        </td>
+        <td class="align-middle">
+          <a href="../chi-tiet-bai-viet.html" target="_blank" rel="noopener noreferrer">Blade and Soul
+            Mobile sẽ
+            do Garena sở hữu và phát hành tại Việt Nam năm 2019?</a>
+
+        </td>
+        <td class="text-center align-middle">PC</td>
+        <td class="text-center align-middle">19/05/1998</td>
+        <td class="text-center align-middle">0</td>
+        <td class="text-center align-middle">Vũ Tuấn Anh</td>
+        <td class="text-center align-middle">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="phe-duyet-bai-viet-admin.html" class="btn btn-info">Sửa</a>
+            <button type="button" class="btn btn-danger" data-toggle="modal"
+              data-target="#exampleModalCenter1">Xóa</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination -->
+  <nav aria-label="Page navigation example" class="mt-3">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+      <li class="page-item disabled">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<!-- Modal Xóa -->
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Xác Nhận</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn xóa nó chứa ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary w-50">Có</button>
+        <button type="button" class="btn btn-danger w-50" data-dismiss="modal">Không</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,458 @@
+{{#section 'css'}}
+<title>Trang chủ</title>
+<link rel="stylesheet" href="/css/nav-left.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="/js/manager.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+    $("#form").validate({
+        rules: {
+            Name: {
+                required: true
+            }
+        },
+        messages: {
+            Name: {
+                required: "Không được bỏ trống"
+            }
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-danger',
+        highlight: (e) => {
+            $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: (e) => {
+            $(e).addClass('is-valid').removeClass('is-invalid');
+        }
+    });
+</script>
+{{/section}}
+
+<!-- Nav Top -->
+{{> nav-dashboard}}
+
+<!-- Content -->
+<div id="content" class="pl-md-3 pt-3 pb-md-3" style="background:#F1F1F1; overflow-y: scroll;">
+    <h3 class="pl-3 pl-md-0">Quản Lý Chuyên Mục</h3>
+    <hr>
+    <div class="row m-0">
+        <!-- Them Chuyên Mục -->
+        <div class="col-md-3 col-12">
+            <h6>Thêm Chuyên Mục</h6>
+            <form id="form" method="POST">
+                <div class="form-group">
+                    <label for="Name">Tên Chuyên Mục</label>
+                    <input type="text" class="form-control" name="Name" id="Name" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Danh Mục Cha</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>None</option>
+                        <option>Game Mobile</option>
+                        <option>Game Online</option>
+                        <option>Esports</option>
+                        <option>PC/Console</option>
+                        <option>Công Nghệ</option>
+                        <option>Phim Ảnh </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Mô tả</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-block">Thêm Chuyên Mục</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- List Chuyên Mục -->
+        <div class="col-md-9 col-12">
+            <h6>Chuyên Mục</h6>
+            <!-- Dành Sách Bài Viết -->
+            <table class="table table-bordered table-striped table-sm  table-responsive-sm table-hover mt-3 bg-white">
+                <thead>
+                    <tr class="bg-info text-light">
+                        <th class="text-center" style="width: 25%" scope="col">Tên</th>
+                        <th class="text-center" style="width: 40%" scope="col">Mô Tả</th>
+                        <th class="text-center" style="width: 25%" scope="col">Danh Mục Cha</th>
+                        <th class="text-center" style="width: 25%" scope="col">Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Game Mobile
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            None
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Android
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            Game Mobile
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            IOS
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            Game Mobile
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Game Online
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            None
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Trong Nước
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            Game Online
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Ngoài Nước
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            Game Online
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Esports
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            None
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Liên Minh Huyền Thoại
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            Esports
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Đột Kích
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            Esports
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            CSGO
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            Esports
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Dota
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            Esports
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            PC/Consolse
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            None
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            PC
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            PC/Consolse
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Consolse
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            PC/Consolse
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Công Nghệ
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            None
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle" scope="row">
+                            Phim Ảnh
+                        </th>
+                        <td class="text-center align-middle">
+
+                        </td>
+                        <td class="text-center align-middle">
+                            None
+                        </td>
+                        <td class="text-center align-middle">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModalCenter">Sửa</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#exampleModalCenter1">Xóa</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Sửa  -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Chỉnh sửa chuyên mục</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Tên Chuyên Mục</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder=""
+                            value="Game Online">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Danh Mục Cha</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>None</option>
+                            <option>Game Mobile</option>
+                            <option>Game Online</option>
+                            <option>Esports</option>
+                            <option>PC/Console</option>
+                            <option>Công Nghệ</option>
+                            <option>Phim Ảnh </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Mô tả</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary btn-block">Xác Nhận</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Xóa -->
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Xác Nhận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa nó chứa ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary w-50">Có</button>
+                <button type="button" class="btn btn-danger w-50" data-dismiss="modal">Không</button>
+            </div>
+        </div>
+    </div>
+</div>

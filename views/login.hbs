@@ -1,0 +1,177 @@
+{{#section 'css'}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/login.css">
+<title>Login - GameX</title>
+{{/section}}
+
+{{#section 'js'}}
+{{!-- Can thang file Javascript Login --}}
+<script src="js/login.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script>
+    $('#DOB').datetimepicker({
+        timepicker: false,
+        format: 'd/m/Y'
+    });
+
+    $("#form_login").validate({
+        rules: {
+            login_username: {
+                required: true
+            },
+            login_password: {
+                required: true
+            }
+        },
+        messages: {
+            login_username: {
+                required: "Không được bỏ trống"
+            },
+            login_password: {
+                required: "Không được bỏ trống"
+            }
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-white',        
+    });
+
+    $("#form_register").validate({
+        rules: {
+            FullName: {
+                required: true
+            },
+            Username: {
+                required: true
+            },
+            Password: {
+                required: true,
+                minlength: 6,
+                maxlength: 20
+            },
+            Confirm: {
+                required: true,
+                equalTo: "#password"
+            },
+            Email: {
+                email: true,
+                required: true
+            },
+            DOB: {
+                required: true
+            },
+            cb_agree: {
+                required: true,
+            }
+        },
+        messages: {
+            username: {
+                required: "Không được bỏ trống"
+            }
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-danger',
+        highlight: (e) => {
+            $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: (e) => {
+            $(e).addClass('is-valid').removeClass('is-invalid');
+        }
+    });
+</script>
+{{/section}}
+
+<img class=" backgroundimg  img" src="https://images4.alphacoders.com/932/thumb-1920-932271.jpg">
+<div class="backgroundimg" style="background-color: black; opacity: 0.5; z-index: -10;"></div>
+<!-- Login form -->
+<div class="container mFrom text-center" id="login">
+    <img class="" src="images/logo-web.png">
+    <form method="POST" id="form_login">
+        <input type="text" class="form-control mInput" id="login_username" name="login_username" placeholder="Username">
+
+        <input type="password" class="form-control mInput mt-2" id="login_password" name="login_password"
+            placeholder="Password">
+        <div class="form-check d-flex align-items-start mt-3" style="width: 300px; ">
+            <input class="form-check-input" type="checkbox" value="" id="cb_KeepMe">
+            <label class=" ml-5 text-white" for="cb_KeepMe" style="font-weight: normal;">
+                Keep me Signed in
+            </label>
+        </div>
+        <button type="submit" class="btn btn-outline-light mt-5" id="btn_login"
+            style="width: 300px; border-radius: 20px; background-color: #ff8148;">Login</button>
+    </form>
+    <div class="text-left mt-3 ml-3 "><button class="btn btn-link forget" href="#" type="button" id="btn_forgot">Forgot
+            Password? Click here!</button></div>
+
+</div>
+
+<!-- Register form -->
+<div class="container mFrom text-center" id="register">
+    <img class="" src="images/logo-web.png">
+    <form id="form_register">
+
+        <input type="text" class="form-control mInput" id="FullName" name="FullName" placeholder="Full Name">
+        <input type="text" class="form-control mInput mt-4" id="Username" name="Username" placeholder="UserName">
+        <input type="password" class="form-control mInput mt-4" id="Password" name="Password" placeholder="Password">
+        <input type="password" class="form-control mInput mt-4" id="Confirm" name="Confirm"
+            placeholder="Confirm Password">
+        <input type="text" class="form-control mInput mt-4" id="Email" name="Email" placeholder="Email Address">
+        <input type="text" class="form-control mInput mt-4" id="DOB" name="DOB" placeholder="Date Of Birth">
+
+        <div class="form-check d-flex align-items-start mt-3" style="width: 300px; ">
+            <input class="form-check-input" type="checkbox" value="" id="cb_agree">
+            <label class=" ml-5 text-white" for="cb_agree" style="font-weight: normal;">
+                I agree to GameX Agreement
+            </label>
+        </div>
+        <button type="submit" class="btn btn-outline-light mt-5" id="btn_register"
+            style="width: 300px; border-radius: 20px; background-color: #ff8148;">Register</button>
+
+    </form>
+
+</div>
+<!-- forgot password -->
+<div class="container mFrom text-center" id="forgot_password">
+    <img class="" src="images/logo-web.png">
+    <div class="mb-5"><span class="h3">Forgot Your Password? </span></div>
+    <div class="mt-4"><span>If you forgotten your password you can reset it here </span></div>
+    <form>
+        <input type="text" class="form-control mInput mt-4" id="fg_email" placeholder="Email Address">
+        <button type="button" class="btn btn-outline-light mt-5" id="btn_fg"
+            style="width: 300px; border-radius: 20px; background-color: #ff8148;">Reset My Password</button>
+    </form>
+</div>
+
+<!-- Register and Login Button -->
+<div class="register ">
+    <span class="glyphicon glyphicon-off text-white mr-2"></span>
+    <button class="btn-link forget" id="login_btn">Login </button>
+    <div class="text-white d-inline">/</div>
+    <button class="btn-link forget" id="register_btn">Register</button>
+</div>
+
+<!-- Return Button -->
+<div class="back">
+    <a href="/">
+        <span class="glyphicon glyphicon-arrow-left text-white" style="font-size: 25px;"></span></a>
+</div>
+<!-- Social media button -->
+<div class=" container mFrom text-center mt-3" id="social_medias">
+    <div class="d-flex flex-row">
+        <span class="mt-1">_________________</span>
+        <span class="mx-2 mt-3">OR</span>
+        <span class="mt-1">_________________</span>
+
+    </div>
+    <div class=" mt-5  "><span>Connect with social media</span></div>
+
+    <div class="mt-3 d-flex" style="justify-content: space-between; ">
+        <a href="#"><i class="fab fa-facebook-square text-primary mr-5 " style="font-size: 40px;"></i></a>
+        <a href="#"><i class="fab fa-google-plus-square text-danger mr-5" style="font-size: 40px;"></i></a>
+        <a href="#"><i class="fab fa-twitter-square text-info " style="font-size: 40px;"></i></a>
+    </div>
+</div>
