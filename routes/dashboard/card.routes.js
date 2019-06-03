@@ -1,33 +1,64 @@
 var express = require('express');
-var carddb = require('../../models/card.model')
+var carddb = require('../../models/card.model');
 var accountdb = require('../../models/account.model');
 var router = express.Router();
+var Handlebars = require('express-handlebars');
+
 
 // Quản Lý Card
 router.get('/card', (req, res, next) => {
-   // res.end('asdasdas');
+   
+    var page = req.query.page || 1;
+    var limit = req.query.limit || 10;
+    var offset = (page -1)*limit;
+    var search = req.query.search || "";
+    var produce = req.query.productBy || "";
+    var Selected ={select: produce};
+   
+  
     var Dem = 0;
-    //danh sach card
-    carddb.all().then(rows => {
+    Promise.all([
+        carddb.alloffset(limit,offset,search,produce),
+        carddb.countAll(search,produce),
+    ]).then(([rows,count_rows])=>{
+       console.log('rows = '+rows.length);
+       var CheckXX = [true,false,false];
+        total = count_rows[0].total;
+        var nPages = Math.floor(total/limit);
+        var pages =[];
+        if(total% limit >0) nPages++;
+        for(var i=1;i<=nPages;i++){
+            var obj = {value: i,active: i === +page};
+            pages.push(obj);
+        }
+        var pageNext;
+        var pagePre;
+        if(page<nPages){
+            pageNext=  parseInt(page)+1;
+        }else{
+            pageNext=page;
+        }
+        if(page>1){
+            pagePre=  parseInt(page)-1;
+        }else{
+            pagePre=page;
+        }
         if (rows.length > 0) {
-            var animals = [];
-            rows.forEach((value, number, rows) => {
-                carddb.single('account','AccID',value.AccID).then(accounts => {
-                    value.name = accounts[0].Username;
-                    Dem++;
-                    animals.push(accounts[0].Username);
-                    if (Dem == rows.length) {
-                        res.render('dashboard/manage/card', {Err:false, cards: rows });
-                        console.log(rows);
+            
+            res.render('dashboard/manage/card', {Err:false, cards: rows,pages,pageNext,pagePre,search,produce,
+                helpers: {
+                    ifEquals : function(arg1, arg2, options) {
+                        return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
                     }
-                   
-                }).catch(next);
-
+                }
             });
         }else{
-            res.render('dashboard/manage/card', {Err:true, cards: rows });
+            res.render('dashboard/manage/card', {Err:true});
         }
-    }).catch(next);
+    
+    }).catch(err =>{
+    });
+
 });
 router.post('/card/Xoa/', (req, res, next) => {
     var id = req.body.CardID;
@@ -37,6 +68,9 @@ router.post('/card/Xoa/', (req, res, next) => {
         }
     }).catch(next);
 });
+
+
+
 router.post('/card/GiaHan/', (req, res, next) => {
     var id = req.body.CardID;
    carddb.single('card','CardID',id).then(

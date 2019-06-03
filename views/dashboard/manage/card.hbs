@@ -17,42 +17,62 @@
     <hr>
 
     <!-- Loc + Tim Kiem + So Trang -->
-    <div class="d-flex justify-content-between mt-3">
-        <div class="form-inline">
-            <div class="form-group mb-2">
-                <label for="inputPassword2" class="mr-3 d-md-block d-none">Nhà cung cấp</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option value="tat-ca" selected>Tất Cả</option>
-                    <option value="doc-gia">Độc Giả</option>
-                    <option value="phong-vien">Phóng Viên</option>
-                    <option value="bien-phong-vien">Biên Tập Viên</option>
-                    <option value="quan-tri-vien">Quản Trị Viên</option>
-                </select>
+    <div class="mt-3">
+        <form action="" method="get" class="d-flex justify-content-between">
+            <div class="form-inline">
+                <div class="form-group mb-2">
+                    <label name ="xxxxx" for="inputPassword2" class="mr-3 d-md-block d-none">Nhà cung cấp</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="productBy" onchange="this.form.submit()">
+                        <option value="tat-ca"  {{#ifEquals produce "tat-ca"}}
+                                selected
+                            {{/ifEquals}} >Tất cả</option>
+                        <option value="Viettel"  {{#ifEquals produce "Viettel"}}
+                                selected
+                            {{/ifEquals}} >Viettel</option>
+                        <option value="Mobifone" {{#ifEquals produce "Mobifone"}}
+                                selected
+                            {{/ifEquals}}
+                             >Mobifone</option>
+                        <option value="Vietnammobile" {{#ifEquals produce "Vietnammobile"}}
+                                selected
+                            {{/ifEquals}}>Vietnammobile</option>
+                        <option value="Vinaphone" {{#ifEquals produce "Vinaphone"}}
+                                selected
+                            {{/ifEquals}}>Vinaphone</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="form-inline">
-            <form method="GET">
+            <div class="form-inline">
                 <div class="form-group mb-2">
                     <label for="inputPassword2" class="sr-only">Tìm Kiếm</label>
-                    <input type="text" class="form-control" id="inputPassword2" placeholder="Tìm Kiếm" name="search">
+                    <input value="{{search}}" type="text" class="form-control" id="inputPassword2" placeholder="Tìm Kiếm" name="search">
                     <div class="row btn-group">
                         <button class="btn btn-primary pl-3 pr-3" type="submit">Go</button>
                         <a class="btn btn-danger" href="/dashboard/card" role="button">Clear</a>
                     </div>
                 </div>
-            </form>
-        </div>
-        <div class="form-inline d-md-block d-none">
+            </div>
+        </form>
+
+        <!--
+         <div class="form-inline d-md-block d-none">
             <div class="form-group mb-2">
                 <label for="inputPassword2" class="mr-3 d-md-block d-none">SL Tài Khoản</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option value="tat-ca" selected>10</option>
-                    <option value="doc-gia">25</option>
-                    <option value="phong-vien">50</option>
-                    <option value="bien-phong-vien">100</option>
-                </select>
+                <form name="tableForm" method="get" action="/dashboard/card">
+                    <select class="form-control" name="page">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
             </div>
         </div>
+        
+         -->
+
     </div>
 
 
@@ -60,7 +80,7 @@
     <!-- Dành Sách Bài Viết -->
     {{#if this.Err}}
     <div class="alert alert-danger" role="alert">
-        Invalid Account. <a href="/" class="alert-link">Go Back</a>
+        Invalid<a href="/" class="alert-link">Go Back</a>
     </div>
     {{else}}
     <table class="table table-bordered table-responsive-sm table-hover bg-white">
@@ -79,13 +99,13 @@
             {{#each cards}}
             <tr>
                 <th class="text-center align-middle" scope="row">
-                    <p name="account">{{name}}</p>
+                    <p name="account">{{Username}}</p>
                 </th>
                 <td class="text-center align-middle">
                     <p name="ProductBy">{{ProductBy}}</p>
                 </td>
                 <td class="text-center align-middle">
-                    <p name="Value">{{Value}}</p>
+                    <p name="Value">{{format Value}}</p>
                 </td>
                 <td class="text-center align-middle">{{Seri}}</td>
                 <td class="text-center align-middle">{{Pin}}</td>
@@ -107,68 +127,29 @@
 
         </tbody>
     </table>
-    {{/if}}
-
-    <!--Model gia han tai khoan-->
-    <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Xác Nhận</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Gia hạn tài khoản ?</p>
-                </div>
-                <div class="modal-footer">
-                    <a name="btn_giahan" id="" class="btn btn-primary w-50" href="/dashboard/card" role="button">Có</a>
-                    <button type="button" class="btn btn-danger w-50" data-dismiss="modal">Không</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Xóa -->
-    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Xác Nhận</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Bạn có chắc chắn muốn xóa nó chứa ?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary w-50">Có</button>
-                    <button type="button" class="btn btn-danger w-50" data-dismiss="modal">Không</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Pagination -->
     <nav aria-label="Page navigation example" class="mt-3">
         <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            <li class="page-item ">
+                <a class="page-link" href="?page={{pagePre}}" aria-disabled="true">Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-            <li class="page-item disabled">
-                <a class="page-link" href="#">Next</a>
+            {{#each this.pages}}
+            {{#if active}}
+            <li class="page-item active">
+                <a class="page-link" href="?page={{value}}">{{value}}<span class="sr-only">(current)</span></a>
             </li>
+            {{else}}
+            <li class="page-item"><a class="page-link" href="?page={{value}}">{{value}}</a></li>
+            {{/if}}
+            {{/each}}
+
+            <li class="page-item ">
+                <a class="page-link" href="?page={{pageNext}}">Next</a>
+            </li>
+
         </ul>
     </nav>
+    {{/if}}
+
+
 </div>
-<!-- Optional JavaScript -->
-<script src="../js/jquery-3.3.1.slim.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/manager.js"></script>
