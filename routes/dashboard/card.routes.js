@@ -1,42 +1,95 @@
 var express = require('express');
-var carddb = require('../../models/card.model')
+var carddb = require('../../models/card.model');
 var accountdb = require('../../models/account.model');
 var router = express.Router();
 
+
+
 // Quản Lý Card
 router.get('/card', (req, res, next) => {
-   // res.end('asdasdas');
+   
+    var page = req.query.page || 1;
+    var limit = req.query.limit || 5;
+    var offset = (page -1)*limit;
+    var search = req.query.search || "";
+    var produce = req.query.productBy || "";
+    var Selected ={select: produce};
+   
+  
     var Dem = 0;
-    //danh sach card
-    carddb.all().then(rows => {
-        if (rows.length > 0) {
-            var animals = [];
-            rows.forEach((value, number, rows) => {
-                carddb.single('account','AccID',value.AccID).then(accounts => {
-                    value.name = accounts[0].Username;
-                    Dem++;
-                    animals.push(accounts[0].Username);
-                    if (Dem == rows.length) {
-                        res.render('dashboard/manage/card', {Err:false, cards: rows });
-                        console.log(rows);
-                    }
-                   
-                }).catch(next);
+    Promise.all([
+        carddb.alloffset(limit,offset,search,produce),
+        carddb.countAll(search,produce),
+    ]).then(([rows,count_rows])=>{
 
+        total = count_rows[0].total;
+        var nPages = Math.floor(total/limit);
+        var pages =[];
+        if(total% limit >0) nPages++;
+        var Check =page-3;
+        if(Check<1){
+            Check=1;
+        }
+        var Dem=0;
+        for(var i=Check;i<=nPages;i++){
+            var obj = {value: i,active: i === +page};
+            pages.push(obj);
+            if(i>page){
+                Dem++;
+            }
+            if(Dem==3){
+                break;
+            }
+        }
+        var pageNext;
+        var pagePre;
+        if(page<nPages){
+            pageNext=  parseInt(page)+1;
+        }else{
+            pageNext=page;
+        }
+        if(page>1){
+            pagePre=  parseInt(page)-1;
+        }else{
+            pagePre=page;
+        }
+        if (rows.length > 0) {
+            
+            res.render('dashboard/manage/card', {Err:false, cards: rows,pages,pageNext,pagePre,search,produce,
+                helpers: {
+                    ifEquals : function(arg1, arg2, options) {
+                        return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+                    }
+                }
             });
         }else{
-            res.render('dashboard/manage/card', {Err:true, cards: rows });
+            res.render('dashboard/manage/card', {Err:true,
+                helpers: {
+                    ifEquals : function(arg1, arg2, options) {
+                        return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+                    }
+                }
+            }
+            
+            );
         }
-    }).catch(next);
+    
+    }).catch(err =>{
+    });
+
 });
 router.post('/card/Xoa/', (req, res, next) => {
     var id = req.body.CardID;
-    carddb.delete(id).then(n =>{
+    var entity ={Status: '0'};
+    carddb.delete(id,entity).then(n =>{
         if(n>0){
             res.redirect('/dashboard/card');
         }
     }).catch(next);
 });
+
+
+
 router.post('/card/GiaHan/', (req, res, next) => {
     var id = req.body.CardID;
    carddb.single('card','CardID',id).then(
@@ -51,7 +104,8 @@ router.post('/card/GiaHan/', (req, res, next) => {
                     var entity = {DatePremium: date};
                     accountdb.udpate(acc[0].AccID,entity).then(value =>{
                         if(value >0){
-                            carddb.delete(row[0].CardID).then(n =>{
+                            var entity = {Status: '0',Check:'1'};
+                            carddb.delete(row[0].CardID,entity).then(n =>{
                                 if(n>0){
                                     res.redirect('/dashboard/card');
                                 }

@@ -9,13 +9,16 @@
 <script>
     $("#form").validate({
         rules: {
-            Name: {
-                required: true
+            name: {
+                required: true,
+                remote: '/dashboard/tag/is-available'
+
             }
         },
         messages: {
-            Name: {
-                required: "Không được bỏ trống"
+            name: {
+                required: "Không được bỏ trống",
+                remote: 'Thẻ tag đã tồn tại'
             }
         },
         errorElement: 'small',
@@ -26,6 +29,72 @@
         unhighlight: (e) => {
             $(e).addClass('is-valid').removeClass('is-invalid');
         }
+    });
+    $("#form_chinhsua").validate({
+        rules: {
+            name: {
+                required: true,
+
+                remote: {
+                    url: '/dashboard/tag/is-available',
+                    type: "get",
+                    data: {
+                        username: function () {
+                            return $("#ID_edit").val();
+                        }
+                    }
+                }
+            }
+        },
+        messages: {
+            name: {
+                required: "Không được bỏ trống",
+                remote: 'Thẻ tag đã tồn tại'
+            }
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-danger',
+        highlight: (e) => {
+            $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: (e) => {
+            $(e).addClass('is-valid').removeClass('is-invalid');
+        }
+    });
+
+    $('#exampleModalCenter').on('show.bs.modal', function (event) {
+
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var tagid = button.data('tagid');
+        var name = button.data('name');
+        var des = button.data('des');
+
+        // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        //modal.find('.modal-footer #formModal').attr("action", `/dashboard/user/${recipient}/delete`);
+
+        $('#name_edit').val(name);
+
+        $('#oldname_edit').val(name);
+
+        $('#des_edit').val(des);
+        $('#ID_edit').val(tagid);
+
+    });
+    $('#exampleModalCenter1').on('show.bs.modal', function (event) {
+
+        var button = $(event.relatedTarget) // Button that triggered the modal
+
+
+        // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this);
+        var tagid = button.data('tagid');
+        $('#id_delete').val(tagid);
+        console.log(tagid);
     });
 </script>
 {{/section}}
@@ -41,14 +110,14 @@
         <!-- Them Thẻ -->
         <div class="col-md-3 col-12">
             <h6>Thêm Thẻ</h6>
-            <form id="form" method="POST">
+            <form id="form" method="POST" action="/dashboard/tag/add">
                 <div class="form-group">
                     <label for="formGroupExampleInput">Tên Thẻ</label>
-                    <input type="text" class="form-control" name="Name" id="Name" placeholder="">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="">
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput2">Mô tả</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea name="des" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary btn-block">Thêm Thẻ</button>
@@ -64,9 +133,10 @@
                     <form method="GET">
                         <div class="form-group mb-2">
                             <label for="inputPassword2" class="sr-only">Tìm Kiếm</label>
-                            <input type="text" class="form-control" id="inputPassword2" placeholder="Tìm Kiếm" name="search">
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Tìm Kiếm"
+                                value="{{search}}" name="search">
                             <div class="row btn-group">
-                                <button  class="btn btn-primary pl-3 pr-3" type="submit">Go</button>
+                                <button class="btn btn-primary pl-3 pr-3" type="submit">Go</button>
                                 <a class="btn btn-danger" href="/dashboard/tag" role="button">Clear</a>
                             </div>
                         </div>
@@ -75,96 +145,70 @@
             </div>
 
             <!-- Dành Sách Bài Viết -->
-            <table class="table table-bordered table-striped table-sm  table-responsive-sm table-hover mt-3 bg-white">
-                <thead>
-                    <tr class="bg-info text-light">
-                        <th class="text-center" style="width: 30%" scope="col">Tên</th>
-                        <th class="text-center" style="width: 50%" scope="col">Mô Tả</th>
-                        <th class="text-center" style="width: 10%" scope="col">Chức năng</th>
-                    </tr>
-                </thead>
-                <tbody>
+
+            {{#if this.Err}}
+            <div class="alert alert-danger" role="alert">
+                Invalid<a href="/dashboard/tag" class="alert-link">Go Back</a>
+            </div>
+            {{else}}
+            <tbody>
+                <table
+                    class="table table-bordered table-striped table-sm  table-responsive-sm table-hover mt-3 bg-white">
+                    <thead>
+                        <tr class="bg-info text-light">
+                            <th class="text-center" style="width: 30%" scope="col">Tên</th>
+                            <th class="text-center" style="width: 50%" scope="col">Mô Tả</th>
+                            <th class="text-center" style="width: 10%" scope="col">Chức năng</th>
+                        </tr>
+                    </thead>
+                    {{#each tags }}
                     <tr>
                         <th class="text-center align-middle" scope="row">
-                            Streamer
+                            {{Name}}
                         </th>
                         <td class="text-center align-middle">
-
+                            {{Desciption}}
                         </td>
                         <td class="text-center align-middle">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-info" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Sửa</button>
+                                    data-target="#exampleModalCenter" data-tagid='{{TagID}}' data-name='{{Name}}'
+                                    data-des='{{Desciption}}'>Sửa</button>
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#exampleModalCenter1">Xóa</button>
+                                    data-target="#exampleModalCenter1" data-tagid='{{TagID}}'>Xóa</button>
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <th class="text-center align-middle" scope="row">
-                            End Game
-                        </th>
-                        <td class="text-center align-middle">
+                    {{/each}}
 
-                        </td>
-                        <td class="text-center align-middle">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-info" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Sửa</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#exampleModalCenter1">Xóa</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center align-middle" scope="row">
-                            Gái Xinh
-                        </th>
-                        <td class="text-center align-middle">
+            </tbody>
 
-                        </td>
-                        <td class="text-center align-middle">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-info" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Sửa</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#exampleModalCenter1">Xóa</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center align-middle" scope="row">
-                            Giải Đấu
-                        </th>
-                        <td class="text-center align-middle">
+            {{/if}}
 
-                        </td>
-                        <td class="text-center align-middle">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-info" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Sửa</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#exampleModalCenter1">Xóa</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
             </table>
-
             <!-- Pagination -->
             <nav aria-label="Page navigation example" class="mt-3">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    <li class="page-item ">
+                        <a class="page-link" href="?page={{pagePre}}" aria-disabled="true">Previous</a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">Next</a>
+                    {{#each this.pages}}
+                    {{#if active}}
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{value}}">{{value}}<span class="sr-only">(current)</span></a>
                     </li>
+                    {{else}}
+                    <li class="page-item"><a class="page-link" href="?page={{value}}">{{value}}</a></li>
+                    {{/if}}
+                    {{/each}}
+
+                    <li class="page-item ">
+                        <a class="page-link" href="?page={{pageNext}}">Next</a>
+                    </li>
+
                 </ul>
             </nav>
+
         </div>
     </div>
 </div>
@@ -181,18 +225,22 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="POST" id="form_chinhsua" action="/dashboard/tag/edit">
                     <div class="form-group">
+                        <label for="formGroupExampleInput">Mã thẻ</label>
+                        <input name="ID" id="ID_edit" readonly type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+
                         <label for="formGroupExampleInput">Tên Thẻ</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder=""
-                            value="Game Online">
+                        <input name="name" type="text" class="form-control" id="name_edit" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="formGroupExampleInput2">Mô tả</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea name="des" class="form-control" id="des_edit" rows="3"></textarea>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-primary btn-block">Xác Nhận</button>
+                        <button id="btn" type="submit" class="btn btn-primary btn-block">Xác Nhận</button>
                     </div>
                 </form>
             </div>
@@ -214,10 +262,15 @@
             <div class="modal-body">
                 <p>Bạn có chắc chắn muốn xóa nó chứa ?</p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary w-50">Có</button>
+
+            <form method="POST" class="modal-footer" name="form_delete" action="/dashboard/tag/delete">
+                <input id="id_delete" name="id_delete" hidden>
+                <button type="submit" id="btn_x" class="btn btn-primary w-50">Có</button>
                 <button type="button" class="btn btn-danger w-50" data-dismiss="modal">Không</button>
-            </div>
+
+            </form>
+
+
         </div>
     </div>
 </div>
