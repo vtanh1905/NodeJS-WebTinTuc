@@ -53,10 +53,10 @@ function eventAddTag(selectorButton, selectorTXT, selectorTagGroup) {
 function eventSelectVaiTro() {
   $("#boxChuyenMuc").hide();
   $("#sltVaiTro").change(function () {
-    if ($(this).val() == "doc-gia") {
+    if ($(this).val() == "0") {
       $("#boxNgayHetHan").show();
       $("#boxChuyenMuc").hide();
-    } else if ($(this).val() == "bien-phong-vien") {
+    } else if ($(this).val() == "2") {
       $("#boxNgayHetHan").hide();
       $("#boxChuyenMuc").show();
     } else {

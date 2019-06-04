@@ -9,22 +9,98 @@
 <script src="/js/manager.js"></script>
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script>
     eventSelectVaiTro();
 
-    $('#txtDOB').datetimepicker({
+    $('#DOB').datetimepicker({
         timepicker: false,
         format: 'd/m/Y',
-        mask : true
+        value: "{{dataUser.DOBFormat}}"
     });
 
     $('#txtNgayHetHang').datetimepicker({
         format: 'd/m/Y H:i',
         minDate: 0,
-        mask : true
+        value: "{{dataUser.DatePremiumFormat}}"
     });
 
+    //Sự Kiện Upload Hình Ảnh Tiêu Đề
+    function performClick(elemId) {
+        var elem = document.getElementById(elemId);
+        if (elem && document.createEvent) {
+            var evt = document.createEvent("MouseEvents");
+            evt.initEvent("click", true, false);
+            elem.dispatchEvent(evt);
+        }
+    }
+    function previewFile() {
+        var preview = document.querySelector('img[name=avatar]'); //selects the query named img
+        var file = document.querySelector('input[name=sampleFile]').files[0]; //sames as here
+        var checkFileImage = (/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(file.name);
+        if (checkFileImage === false) {
+            alert("Hình ảnh không hợp lệ!");
+            $("#theFile").replaceWith($("#theFile").val('').clone(true));
+            return;
+        }
 
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file); //reads the data as a URL
+        } else {
+            preview.src = "";
+        }
+    }
+
+    //Check Form With Validator
+    $("#uploadForm").validate({
+        rules: {
+            FullName: {
+                required: true
+            },
+            Password: {
+                required: true,
+                minlength: 6,
+                maxlength: 20
+            },
+            Email: {
+                required: true,
+                email: true
+            },
+            DOB: {
+                required: true
+            }
+        },
+        messages: {
+            FullName: {
+                required: "Không được bỏ trống"
+            },
+            Password: {
+                required: "Không được bỏ trống",
+                minlength: "Phải có từ 6 tới 20 ký tự",
+                maxlength: "Phải có từ 6 tới 20 ký tự"
+            },
+            Email: {
+                required: "Không được bỏ trống",
+                email: "Định dạng Email không hợp lệ"
+            },
+            DOB: {
+                required: "Không được bỏ trống"
+            }
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-danger',
+        highlight: (e) => {
+            $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: (e) => {
+            $(e).addClass('is-valid').removeClass('is-invalid');
+        }
+    });
 </script>
 
 {{/section}}
@@ -39,35 +115,40 @@
     <h3 class="pl-3 pl-md-0">Sửa Thông Tin Người Dùng</h3>
     <hr>
     <div class="p-3">
-        <form>
+        <form method="POST" ref='uploadForm' id='uploadForm' encType="multipart/form-data">
+            <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">Họ và Tên</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="FullName" name="FullName" placeholder="Họ và tên"
+                        value="{{dataUser.FullName}}">
+                </div>
+            </div>
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Tài Khoản</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="staticEmail" placeholder="Tài Khoản" value="vtanh1905">
+                    <input type="text" class="form-control" id="Username" name="Username" placeholder="Tài Khoản"
+                        value="{{dataUser.Username}}" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Mật Khẩu</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Mật Khẩu"
+                        value="DontChangePassword" onfocus="this.value=''">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="" placeholder="Email" value="vtanh1905@gmail">
+                    <input type="text" class="form-control" id="Email" name="Email" placeholder="Email"
+                        value="{{dataUser.Email}}">
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Họ Tên</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="" placeholder="Tên" value="Vũ Tuấn Anh">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Mật Khẩu</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="" placeholder="Mật Khẩu" value="YeuEm3Ngan">
-                </div>
-            </div>
+
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Ngày Sinh</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="txtDOB" placeholder="Mật Khẩu">
+                    <input type="text" id="DOB" name="DOB" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
@@ -75,50 +156,47 @@
                     Hiện</label>
                 <div class="col-sm-10">
                     <span onclick="performClick('theFile');" style="cursor: pointer;">
-                        <img id="avatar"
-                            src="https://www.garena.vn/img/game-carousel-bns@2x.88f97343.jpg?fbclid=IwAR3fPuSGoqO9mHxTpFxIvZR683Ttosr54Ocr-xa33g9eo8teBJn2LzNmfuI"
-                            class="rounded d-block" alt="..." width="100px" height="100px">
+                        <img id="avatar" {{#if dataUser.Avatar}} src="{{dataUser.Avatar}}" {{else}} src="/images/no-image.png"{{/if}} class="rounded d-inline-block" alt="..." width="100px" height="100px" name="avatar">
                     </span>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Vai Trò</label>
                 <div class="col-sm-3">
-                    <select class="form-control" id="sltVaiTro">
-                        <option value="doc-gia">Độc Giả</option>
-                        <option value="phong-vien">Phóng Viên</option>
-                        <option value="bien-phong-vien">Biên Tập Viên</option>
-                        <option value="quan-tri-vien">Quản Trị Viên</option>
+                    <select class="form-control" id="sltVaiTro" name="Type">
+                        <option value="0" {{#ifEquals dataUser.Type '0' }}selected{{/ifEquals}}>Độc Giả</option>
+                        <option value="1" {{#ifEquals dataUser.Type '1' }}selected{{/ifEquals}}>Phóng Viên</option>
+                        <option value="2" {{#ifEquals dataUser.Type '2' }}selected{{/ifEquals}}>Biên Tập Viên</option>
+                        <option value="3" {{#ifEquals dataUser.Type '3' }}selected{{/ifEquals}}>Quản Trị Viên</option>
                     </select>
                 </div>
             </div>
-            <div id="boxNgayHetHan" class="form-group row">
+
+
+            <div id="boxNgayHetHan" class="form-group row"
+                style="{{#ifDifferent dataUser.Type '0' }}display: none{{/ifDifferent}}">
                 <label for="" class="col-sm-2 col-form-label">Ngày Hết Hạn</label>
                 <div class="col-sm-3">
-                    <input type="date" class="form-control" id="" value="1990-04-30">
+                    <input type="text" class="form-control" id="txtNgayHetHang" name="DatePremium">
                 </div>
             </div>
-            <div id="boxChuyenMuc" class="form-group row">
+            <div id="boxChuyenMuc" class="form-group row"
+                style="{{#ifDifferent dataUser.Type '2' }}display: none{{/ifDifferent}}">
                 <label for="" class="col-sm-2 col-form-label">Chuyên Mục</label>
                 <div class="col-sm-3">
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>None</option>
-                        <option>Game Mobile</option>
-                        <option>Game Online</option>
-                        <option>Esports</option>
-                        <option>PC/Console</option>
-                        <option>Công Nghệ</option>
-                        <option>Phim Ảnh </option>
+                    <select multiple class="form-control" id="exampleFormControlSelect1" name="ManageCatID">
+                        <option value="0">Game Mobile</option>
+                        <option value="1">Game Online</option>
+                        <option value="2">Esports</option>
                     </select>
                 </div>
             </div>
             <div class="d-flex justify-content-end">
-                <button type="reset" class="btn btn-secondary mr-3">Hủy</button>
-                <button type="submit" class="btn btn-primary">Sửa</button>
+                <a href="/dashboard/user" class="btn btn-secondary mr-3">Hủy</a>
+                <button type="submit" class="btn btn-primary">Sữa</button>
             </div>
+            <!-- input File -->
+            <input type="file" id="theFile" class="d-none" name="sampleFile" accept="image/*" onchange="previewFile()">
         </form>
     </div>
 </div>
-
-<!-- input File -->
-<input type="file" id="theFile" class="d-none">

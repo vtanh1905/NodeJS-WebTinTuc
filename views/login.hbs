@@ -37,7 +37,7 @@
             }
         },
         errorElement: 'small',
-        errorClass: 'help-block text-white',        
+        errorClass: 'help-block text-white',
     });
 
     $("#form_register").validate({
@@ -46,7 +46,13 @@
                 required: true
             },
             Username: {
-                required: true
+                required: true,
+                minlength: 6,
+                maxlength: 20,
+                remote: {
+                    url: "/check-user",
+                    type: "POST"
+                }
             },
             Password: {
                 required: true,
@@ -55,7 +61,7 @@
             },
             Confirm: {
                 required: true,
-                equalTo: "#password"
+                equalTo: "#Password"
             },
             Email: {
                 email: true,
@@ -69,7 +75,29 @@
             }
         },
         messages: {
-            username: {
+            FullName: {
+                required: "Không được bỏ trống"
+            },
+            Username: {
+                required: "Không được bỏ trống",
+                minlength: "Phải có từ 6 tới 20 ký tự",
+                maxlength: "Phải có từ 6 tới 20 ký tự",
+                remote: "Tài Khoản đã tồn tại hoặc không phù hợp"
+            },
+            Confirm: {
+                required: "Không được bỏ trống",
+                equalTo: "Không khớp với mất khẩu ở trên",
+            },
+            Password: {
+                required: "Không được bỏ trống",
+                minlength: "Phải có từ 6 tới 20 ký tự",
+                maxlength: "Phải có từ 6 tới 20 ký tự"
+            },
+            Email: {
+                required: "Không được bỏ trống",
+                email: "Định dạng Email không hợp lệ"
+            },
+            DOB: {
                 required: "Không được bỏ trống"
             }
         },
@@ -85,10 +113,17 @@
 </script>
 {{/section}}
 
+
 <img class=" backgroundimg  img" src="https://images4.alphacoders.com/932/thumb-1920-932271.jpg">
 <div class="backgroundimg" style="background-color: black; opacity: 0.5; z-index: -10;"></div>
 <!-- Login form -->
 <div class="container mFrom text-center" id="login">
+    {{#if error_message}}
+    <div class="alert alert-danger " role="alert">
+        {{error_message}}
+    </div>
+    {{/if}}
+    
     <img class="" src="images/logo-web.png">
     <form method="POST" id="form_login">
         <input type="text" class="form-control mInput" id="login_username" name="login_username" placeholder="Username">
@@ -112,8 +147,7 @@
 <!-- Register form -->
 <div class="container mFrom text-center" id="register">
     <img class="" src="images/logo-web.png">
-    <form id="form_register">
-
+    <form id="form_register" method="POST" action="/login/createAccount">
         <input type="text" class="form-control mInput" id="FullName" name="FullName" placeholder="Full Name">
         <input type="text" class="form-control mInput mt-4" id="Username" name="Username" placeholder="UserName">
         <input type="password" class="form-control mInput mt-4" id="Password" name="Password" placeholder="Password">
@@ -130,7 +164,6 @@
         </div>
         <button type="submit" class="btn btn-outline-light mt-5" id="btn_register"
             style="width: 300px; border-radius: 20px; background-color: #ff8148;">Register</button>
-
     </form>
 
 </div>

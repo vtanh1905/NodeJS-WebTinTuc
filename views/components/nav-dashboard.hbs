@@ -9,6 +9,7 @@
         Cá Nhân
       </a>
     </li>
+    {{#ifEquals authUser.Type '1' }}
     <li class="nav-body-item" data-show="#myNav1">
       <a>
         <i class="fas fa-newspaper"></i>
@@ -26,12 +27,35 @@
           </a></li>
       </ul>
     </li>
+    {{/ifEquals}}
+    {{#ifEquals authUser.Type '3' }}
+    <li class="nav-body-item" data-show="#myNav1">
+      <a>
+        <i class="fas fa-newspaper"></i>
+        Bài Viết
+        <i class="fas fa-caret-down"></i>
+      </a>
+      <ul id="myNav1" class="nav-body">
+        <li class="nav-body-item"><a href="/dashboard/list-post">
+            <i class="fas fa-clipboard-list"></i>
+            Danh Sách Bài Viết
+          </a></li>
+        <li class="nav-body-item"><a href="/dashboard/list-post/add">
+            <i class="fas fa-pen"></i>
+            Thêm Bài Viết
+          </a></li>
+      </ul>
+    </li>
+    {{/ifEquals}}
+     {{#ifEquals authUser.Type '2' }}
     <li class="nav-body-item">
       <a href="/dashboard/approve">
         <i class="fas fa-clipboard-check"></i>
         Phê Duyệt
       </a>
     </li>
+    {{/ifEquals}}
+    {{#ifEquals authUser.Type '3' }}
     <li class="nav-body-item" data-show="#myNav2">
       <a>
         <i class="fas fa-desktop"></i>
@@ -44,14 +68,17 @@
         <li class="nav-body-item"><a href="/dashboard/post"><i class="fas fa-users"></i> Quản Lý Bài Viết</a></li>
         <li class="nav-body-item"><a href="/dashboard/category"><i class="fas fa-ad"></i> Quản Lý Danh Mục</a></li>
         <li class="nav-body-item"><a href="/dashboard/tag"><i class="fas fa-tag"></i> Quản Lý Nhãn</a></li>
-        <li class="nav-body-item"><a href="/dashboard/card"><i class="fas fa-id-card  " aria-hidden="true"></i> Quản Lý Card</a></li>
+        <li class="nav-body-item"><a href="/dashboard/card"><i class="fas fa-id-card  " aria-hidden="true"></i> Quản Lý
+            Card</a></li>
       </ul>
     </li>
-    <li class="nav-body-item"><a href="#">
+    {{/ifEquals}}
+    <li class="nav-body-item"><a href="javascript: $('#formLogOut').submit()">
         <i class="fas fa-reply"></i>
         Đăng Xuất
       </a>
     </li>
   </ul>
-
 </nav>
+
+<form action="/logout" method="post" id="formLogOut"></form>

@@ -9,22 +9,111 @@
 <script src="/js/manager.js"></script>
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script>
     eventSelectVaiTro();
 
-    $('#txtDOB').datetimepicker({
+    $('#DOB').datetimepicker({
         timepicker: false,
-        format: 'd/m/Y',
-        mask : true
+        format: 'd/m/Y'
     });
 
     $('#txtNgayHetHang').datetimepicker({
         format: 'd/m/Y H:i',
-        minDate: 0,
-        mask : true
+        minDate: 0
     });
 
+    //Sự Kiện Upload Hình Ảnh Tiêu Đề
+    function performClick(elemId) {
+        var elem = document.getElementById(elemId);
+        if (elem && document.createEvent) {
+            var evt = document.createEvent("MouseEvents");
+            evt.initEvent("click", true, false);
+            elem.dispatchEvent(evt);
+        }
+    }
+    function previewFile() {
+        var preview = document.querySelector('img[name=avatar]'); //selects the query named img
+        var file = document.querySelector('input[name=sampleFile]').files[0]; //sames as here
+        var checkFileImage = (/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(file.name);
+        if (checkFileImage === false) {
+            alert("Hình ảnh không hợp lệ!");
+            $("#theFile").replaceWith($("#theFile").val('').clone(true));
+            return;
+        }
 
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file); //reads the data as a URL
+        } else {
+            preview.src = "";
+        }
+    }
+
+    //Check Form With Validator
+    $("#uploadForm").validate({
+        rules: {
+            FullName: {
+                required: true
+            },
+            Username: {
+                required: true,
+                minlength: 6,
+                maxlength: 20,
+                remote: {
+                    url: "/check-user",
+                    type : "POST"
+                }
+            },
+            Password: {
+                required: true,
+                minlength: 6,
+                maxlength: 20
+            },
+            Email: {
+                required: true,
+                email: true
+            },
+            DOB: {
+                required: true
+            }
+        },
+        messages: {
+            FullName: {
+                required: "Không được bỏ trống"
+            },
+            Username: {
+                required: "Không được bỏ trống",
+                minlength: "Phải có từ 6 tới 20 ký tự",
+                maxlength: "Phải có từ 6 tới 20 ký tự",
+                remote   : "Tài Khoản đã tồn tại hoặc không phù hợp"
+            },
+            Password: {
+                required: "Không được bỏ trống",
+                    minlength: "Phải có từ 6 tới 20 ký tự",
+                maxlength: "Phải có từ 6 tới 20 ký tự"
+            },
+            Email: {
+                required: "Không được bỏ trống",
+                email: "Định dạng Email không hợp lệ"
+            },
+            DOB: {
+                required: "Không được bỏ trống"
+            }
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-danger',
+        highlight: (e) => {
+            $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: (e) => {
+            $(e).addClass('is-valid').removeClass('is-invalid');
+        }
+    });
 </script>
 
 {{/section}}
@@ -38,36 +127,38 @@
     <h3 class="pl-3 pl-md-0">Thêm Người Dùng</h3>
     <hr>
     <div class="p-3">
-        <form>
+        <form method="POST" ref='uploadForm' id='uploadForm' encType="multipart/form-data">
+            <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">Họ và Tên</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="FullName" name="FullName" placeholder="Họ và tên">
+                </div>
+            </div>
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Tài Khoản</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="staticEmail" placeholder="Tài Khoản" value="">
+                    <input type="text" class="form-control" id="Username" name="Username" placeholder="Tài Khoản"
+                        value="">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Mật Khẩu</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Mật Khẩu"
+                        value="">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="" placeholder="Email">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Họ và Tên</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="" placeholder="Họ và tên">
+                    <input type="text" class="form-control" id="Email" name="Email" placeholder="Email">
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Mật Khẩu</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="" placeholder="Mật Khẩu">
-                </div>
-            </div>
-            <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Ngày Sinh</label>
                 <div class="col-sm-3">
-                    <input type="text" id="txtDOB" class="form-control">
+                    <input type="text" id="DOB" name="DOB" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
@@ -75,39 +166,35 @@
                     Hiện</label>
                 <div class="col-sm-10">
                     <span onclick="performClick('theFile');" style="cursor: pointer;">
-                        <img id="avatar" src="/images/no-image.png" class="rounded d-block" alt="..." width="100px"
-                            height="100px">
+                        <img id="avatar" src="/images/no-image.png" class="rounded d-inline-block" alt="..."
+                            width="100px" height="100px" name="avatar">
                     </span>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Vai Trò</label>
                 <div class="col-sm-3">
-                    <select class="form-control" id="sltVaiTro">
-                        <option value="doc-gia">Độc Giả</option>
-                        <option value="phong-vien">Phóng Viên</option>
-                        <option value="bien-phong-vien">Biên Tập Viên</option>
-                        <option value="quan-tri-vien">Quản Trị Viên</option>
+                    <select class="form-control" id="sltVaiTro" name="Type">
+                        <option value="0">Độc Giả</option>
+                        <option value="1">Phóng Viên</option>
+                        <option value="2">Biên Tập Viên</option>
+                        <option value="3">Quản Trị Viên</option>
                     </select>
                 </div>
             </div>
             <div id="boxNgayHetHan" class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Ngày Hết Hạn</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="txtNgayHetHang">
+                    <input type="text" class="form-control" id="txtNgayHetHang" name="DatePremium">
                 </div>
             </div>
             <div id="boxChuyenMuc" class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Chuyên Mục</label>
                 <div class="col-sm-3">
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>None</option>
-                        <option>Game Mobile</option>
-                        <option>Game Online</option>
-                        <option>Esports</option>
-                        <option>PC/Console</option>
-                        <option>Công Nghệ</option>
-                        <option>Phim Ảnh </option>
+                    <select multiple class="form-control" id="exampleFormControlSelect1" name="ManageCatID">
+                        <option value="0">Game Mobile</option>
+                        <option value="1">Game Online</option>
+                        <option value="2">Esports</option>
                     </select>
                 </div>
             </div>
@@ -115,8 +202,8 @@
                 <button type="reset" class="btn btn-secondary mr-3">Reset</button>
                 <button type="submit" class="btn btn-primary">Thêm</button>
             </div>
+            <!-- input File -->
+            <input type="file" id="theFile" class="d-none" name="sampleFile" accept="image/*" onchange="previewFile()">
         </form>
     </div>
 </div>
-<!-- input File -->
-<input type="file" id="theFile" class="d-none">

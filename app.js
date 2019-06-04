@@ -4,16 +4,15 @@ var exphbs = require("express-handlebars");
 var morgan = require("morgan");
 var createError = require("http-errors");
 var express_handlebars_sections = require("express-handlebars-sections");
-
+const fileUpload = require("express-fileupload");
 
 //Setting Express
 var app = express();
-
-var numeral = require('numeral');
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static("public"));
+app.use(fileUpload());
 
 app.engine(
   "hbs",
@@ -24,8 +23,14 @@ app.engine(
     partialsDir: __dirname + "/views/components/",
     helpers: {
       section: express_handlebars_sections(),
-      format: val =>{
-        return numeral(val).format('0,0')+ "  VND";
+      ifEquals: (arg1, arg2, options) => {
+        return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+      },
+      ifDifferent: (arg1, arg2, options) => {
+        return arg1 != arg2 ? options.fn(this) : options.inverse(this);
+      },
+      format: val => {
+        return numeral(val).format("0,0") + "  VND";
       }
     }
   })
@@ -33,10 +38,13 @@ app.engine(
 app.set("view engine", "hbs");
 
 //MiddleWare
-
+require("./middleware/session")(app);
+require("./middleware/passport")(app);
+app.use(require("./middleware/auth-locals"));
+app.use(require("./middleware/nav.mdw"));
 
 //Router
-require('./middleware/router')(app);
+require("./middleware/router")(app);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
