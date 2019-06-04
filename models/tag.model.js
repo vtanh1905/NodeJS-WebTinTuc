@@ -4,9 +4,9 @@ module.exports = {
     all: (search,limit,offset) =>{
         var sql;
         if(search === ""){
-            sql = `select * from tag where tag.Status = 1  LIMIT ${limit} offset ${offset}`;
+            sql = `select * from tag where tag.Status = 1  LIMIT ${offset},${limit}`;
         }else{
-            sql = `select * from tag where MATCH (tag.Name) AGAINST ('${search}') and tag.Status = 1  LIMIT ${limit} offset ${offset}` ;
+            sql = `select * from tag where MATCH (tag.Name) AGAINST ('${search}') and tag.Status = 1  LIMIT ${offset},${limit}` ;
         }
         return db.load(sql);
     },
