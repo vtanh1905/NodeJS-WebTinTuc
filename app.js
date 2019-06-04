@@ -8,6 +8,8 @@ var express_handlebars_sections = require("express-handlebars-sections");
 
 //Setting Express
 var app = express();
+
+var numeral = require('numeral');
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded());
@@ -21,7 +23,10 @@ app.engine(
     layoutsDir: __dirname + "/views/_layouts/",
     partialsDir: __dirname + "/views/components/",
     helpers: {
-      section: express_handlebars_sections()
+      section: express_handlebars_sections(),
+      format: val =>{
+        return numeral(val).format('0,0')+ "  VND";
+      }
     }
   })
 );

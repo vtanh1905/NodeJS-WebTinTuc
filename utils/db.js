@@ -3,8 +3,8 @@ var mysql      = require('mysql');
 createConnection = () => mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
-  database: "location"
+  password: "123456",
+  database: "webtintucdb"
 });
 
 module.exports = {
@@ -20,7 +20,7 @@ module.exports = {
         }); 
         connection.end();
     }),
-
+    
     add : (tableName, entity) => new Promise((resolve, reject) => {
         var connection = createConnection();
         connection.connect();
@@ -60,4 +60,5 @@ module.exports = {
         }); 
         connection.end();
     })
+   
 }
