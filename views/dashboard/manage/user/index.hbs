@@ -62,10 +62,10 @@
                 <div class="form-group mb-2">
                     <label for="inputPassword2" class="mr-3 d-md-block d-none">SL Tài Khoản</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="page" onchange="this.form.submit()">
-                        <option value="10" {{#ifEquals PageSelected '10' }}selected{{/ifEquals}}>10</option>
-                        <option value="25" {{#ifEquals PageSelected '25' }}selected{{/ifEquals}}>25</option>
-                        <option value="50" {{#ifEquals PageSelected '50' }}selected{{/ifEquals}}>50</option>
-                        <option value="100" {{#ifEquals PageSelected '100' }}selected{{/ifEquals}}>100</option>
+                        <option value="10" {{#ifEquals TotalPageSelected '10' }}selected{{/ifEquals}}>10</option>
+                        <option value="25" {{#ifEquals TotalPageSelected '25' }}selected{{/ifEquals}}>25</option>
+                        <option value="50" {{#ifEquals TotalPageSelected '50' }}selected{{/ifEquals}}>50</option>
+                        <option value="100" {{#ifEquals TotalPageSelected '100' }}selected{{/ifEquals}}>100</option>
                     </select>
                 </div>
             </div>

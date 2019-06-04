@@ -38,8 +38,21 @@ module.exports = {
     LIMIT ${page} OFFSET ${offset}`);
     }
   },
-  singleByUsername: (username) => db.load(`SELECT * FROM account WHERE Username = "${username}"`),
-  singleByUsernameStatus: (username) => db.load(`SELECT * FROM account WHERE Username = "${username}" AND Status = 1`),
+  countAll: search => {
+    var sql;
+    if (search === "") {
+      sql = `select count(*) as total from account where account.Status = 1 `;
+    } else {
+      sql = `select count(*) as total from account  WHERE account.Username like '%${search}%' and tag.Status = 1`;
+    }
+    return db.load(sql);
+  },
+  singleByUsername: username =>
+    db.load(`SELECT * FROM account WHERE Username = "${username}"`),
+  singleByUsernameStatus: username =>
+    db.load(
+      `SELECT * FROM account WHERE Username = "${username}" AND Status = 1`
+    ),
   single: id => db.load(`SELECT * FROM account WHERE AccID = ${id}`),
   update: (id, entity) => db.update("account", "AccID", id, entity),
   delete: id => db.delete("account", "AccID", id)

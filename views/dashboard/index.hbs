@@ -11,9 +11,78 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script>
-    $('#txtDOB').datetimepicker({
+    //Sự Kiện Upload Hình Ảnh Tiêu Đề
+    $("#boxSave").hide();
+    function performClick(elemId) {
+        var elem = document.getElementById(elemId);
+        if (elem && document.createEvent) {
+            var evt = document.createEvent("MouseEvents");
+            evt.initEvent("click", true, false);
+            elem.dispatchEvent(evt);
+        }
+    }
+    function previewFile() {
+        var preview = document.querySelector('img[name=avatar]'); //selects the query named img
+        var file = document.querySelector('input[name=sampleFile]').files[0]; //sames as here
+        var checkFileImage = (/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(file.name);
+        if (checkFileImage === false) {
+            alert("Hình ảnh không hợp lệ!");
+            $("#theFile").replaceWith($("#theFile").val('').clone(true));
+            return;
+        }
+
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file); //reads the data as a URL
+        } else {
+            preview.src = "";
+        }
+        $("#boxSave").show();
+    }
+
+    $('#DOB').datetimepicker({
         timepicker: false,
-        format: 'd/m/Y'
+        format: 'd/m/Y',
+        value: "{{authUser.DOBFormat}}"
+    });
+
+    $("#form-change-info").validate({
+        rules: {
+            FullName: {
+                required: true
+            },
+            Email: {
+                email: true,
+                required: true
+            },
+            DOB: {
+                required: true
+            },
+        },
+        messages: {
+            FullName: {
+                required: "Không được bỏ trống"
+            },
+            Email: {
+                required: "Không được bỏ trống",
+                email: "Định dạng Email không hợp lệ"
+            },
+            DOB: {
+                required: "Không được bỏ trống"
+            }
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-danger',
+        highlight: (e) => {
+            $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: (e) => {
+            $(e).addClass('is-valid').removeClass('is-invalid');
+        }
     });
 
     $("#form-change-pass").validate({
@@ -66,19 +135,36 @@
                 Online
             </div>
             <div class="row justify-content-center ">
-                <img class="img-fluid rounded-circle" src="../images/avatar-2.jpg">
+                <form action="/dashboard/change-avatar" method="POST" ref='uploadForm' id='uploadForm' encType="multipart/form-data">
+                    <span onclick="performClick('theFile');" style="cursor: pointer;">
+                        <img id="avatar" {{#if authUser.Avatar}} src="{{authUser.Avatar}}" {{else}}
+                            src="/images/no-image.png" {{/if}} class="rounded d-inline-block" alt="..." width="200px"
+                            height="200px" name="avatar">
+                    </span>
+                    <!-- input File -->
+                    <input type="file" id="theFile" class="d-none" name="sampleFile" accept="image/*"
+                        onchange="previewFile()">
+                </form>
+            </div>
+            <div class="row justify-content-center mt-3" id="boxSave">
+
+                <a href="javascript: $('#uploadForm').submit()" class="btn btn-info"><i class="fas fa-save"></i> Lưu</a>
+
             </div>
             <div class="row justify-content-center mt-3">
-                <div class="text-dark font-weight-bold" style="font-size: 20px;" id="name_0">Cô Gái Năm Ấy</div>
+                <div class="text-dark font-weight-bold" style="font-size: 20px;" id="name_0">{{authUser.FullName}}</div>
             </div>
             <div class="row justify-content-start p-3 mt-5">
+
                 <div class="d-block border-bottom pb-2 w-100">
                     <i class="fas fa-info-circle"></i>Detail
                 </div>
+                {{#ifEquals authUser.Type '1' }}
                 <div class="d-block mt-3 w-100">
                     <div class="float-left"><b>Bút Danh: </b></div>
-                    <div class="float-right text-info">Chém gió vcl</div>
+                    <div class="float-right text-info">{{../authUser.NickName}}</div>
                 </div>
+
                 <div class="d-block mt-3 w-100">
                     <div class="float-left"><b>Số bài viết: </b></div>
                     <div class="float-right text-info">20</div>
@@ -87,16 +173,26 @@
                     <div class="float-left"><b>Ngày đăng Gần nhất: </b></div>
                     <div class="float-right text-info">26/4/2019</div>
                 </div>
-
+                {{/ifEquals}}
             </div>
+            {{#ifEquals authUser.Type '0' }}
+            {{#if ../authUser.isPremium}}
             <div class="row justify-content-center mt-5 mb-md-0 mb-3">
-                <button type="button" class="btn btn-secondary text-white">Premium: UnActive</button>
+                <button type="button" class="btn btn-info text-white">Premium: Active</button>
             </div>
+            {{else}}
+            <div class="row justify-content-center mt-5 mb-md-0 mb-3">
+                <button type="button" class="btn btn-secondary text-white">Premium: InActive</button>
+            </div>
+            {{/if}}
+
+            {{/ifEquals}}
         </div>
         <!-- Cot info -->
         <div class="col-md-7 col-12 mt-md-0 mt-3">
+            {{#ifEquals authUser.Type '0' }}
             <!-- Mua Tài Khoản -->
-            <div class="border border-info" style="background:#ffffff">
+            <div class="border border-info mb-3" style="background:#ffffff">
                 <div class="row">
                     <!-- Gioi thieu premium -->
                     <div class="col-md-8 col-12">
@@ -126,38 +222,48 @@
                     </div>
                 </div>
             </div>
+            {{/ifEquals}}
             <!-- Thong tin nguoi dung -->
-            <div class="mt-3 p-4 border border-info" style="background:#ffffff">
-                <form>
+            <div class="p-4 border border-info" style="background:#ffffff">
+                <form id="form-change-info" method="POST" action="/dashboard/change-info">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Họ Tên</label>
-                        <input type="text" class="form-control" id="name" placeholder="" value="Nguyễn Thị A">
+                        <input type="text" class="form-control" id="FullName" name="FullName" placeholder=""
+                            value="{{authUser.FullName}}">
                     </div>
+                    {{#ifEquals authUser.Type '1' }}
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Bút Danh</label>
+                        <input type="text" class="form-control" id="NickName" name="NickName" placeholder=""
+                            value="{{../authUser.NickName}}">
+                    </div>
+                    {{/ifEquals}}
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Email</label>
-                        <input type="text" class="form-control" id="email" placeholder="" value="cogainamay@gmail.com">
+                        <input type="text" class="form-control" id="Email" name="Email" placeholder=""
+                            value="{{authUser.Email}}">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Ngày sinh</label>
-                        <input type="text" class="form-control" id="txtDOB" value="11/11/1998">
+                        <input type="text" class="form-control" id="DOB" name="DOB">
                     </div>
-                    <a href="#" class="btn btn-primary" id="btn_saveInfo">Lưu thông tin</a>
+                    <button type="submit" class="btn btn-primary">Lưu thông tin</button>
                 </form>
             </div>
             <!-- Doi mat khau -->
             <div class="mt-3 p-4 border border-info" style="background:#ffffff">
-                <form id="form-change-pass" method="POST">
-                    <div class="form-group">
+                <form id="form-change-pass" method="POST" action="/dashboard/change-pass">
+                    {{!-- <div class="form-group">
                         <label for="exampleFormControlInput1">Mật khẩu cũ:</label>
                         <input type="password" class="form-control" id="oldPass" name="oldPass" placeholder="">
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Mật khẩu mới</label>
-                        <input type="password" class="form-control" id="newPass" name="newPass" placeholder="">
+                        <input type="password" class="form-control" id="newPass" name="Password" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Nhập lại Mật khẩu mới</label>
-                        <input type="password" class="form-control" id="confNewPass" name="confNewPass" placeholder="">
+                        <input type="password" class="form-control" id="confNewPass" placeholder="">
                     </div>
                     <button type="submit" class="btn btn-primary mb-2" id="btn_changePass">Đổi mật khẩu</button>
 

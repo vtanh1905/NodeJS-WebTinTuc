@@ -11,10 +11,10 @@ var router = express.Router();
 router.get("/user", (req, res, next) => {
   const TYPE = req.query.type || -1;
   const SEARCH = req.query.search || '';
-  const PAGE = req.query.page || 10;
+  const TOTALPAGE = req.query.page || 10;
 
   account_model
-    .allWithPostsFSP(TYPE, SEARCH, PAGE, 0)
+    .allWithPostsFSP(TYPE, SEARCH, TOTALPAGE, 0)
     .then(result => {
       result.forEach(element => {
         switch (element.Type) {
@@ -37,7 +37,7 @@ router.get("/user", (req, res, next) => {
       res.render("dashboard/manage/user/index", {
         dataUser: result,
         TypeSelected: TYPE,
-        PageSelected: PAGE,
+        TotalPageSelected: TOTALPAGE,
         TextSearch: SEARCH
       });
     })
