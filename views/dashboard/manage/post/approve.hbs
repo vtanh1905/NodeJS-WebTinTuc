@@ -21,7 +21,19 @@
     timepicker: true,
     format: 'd/m/Y H:i',
     minDate: 0
-  });</script>
+  });
+ 
+  $("#AttrSelector").change(function(){
+        var selected = $(this).children("option:selected").val();
+        if(selected === 'huy'){
+          $('#btn_change').attr('data-target','#modal-tu-choi');
+        }
+        else{
+          $('#btn_change').attr('data-target','#modal-duyet');
+        }
+  }); 
+  
+  </script>
 
 {{/section}}
 
@@ -111,7 +123,6 @@
           <div class="card-body p-3 " style="background:#FFFFFF">
             <div class="form-group mb-2">
               <select class="form-control" id="AttrSelector">
-                <option value="duyet">Đã Xuất Bản</option>
                 <option value="cho">Chờ Xuất Bản</option>
                 <option value="chua-duyet">Chưa Kiểm Duyệt</option>
                 <option value="huy">Từ Chối</option>

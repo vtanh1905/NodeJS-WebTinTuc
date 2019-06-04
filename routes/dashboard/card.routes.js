@@ -2,6 +2,8 @@ var express = require('express');
 var carddb = require('../../models/card.model');
 var accountdb = require('../../models/account.model');
 var router = express.Router();
+var Handlebars = require('express-handlebars');
+
 
 
 
@@ -9,7 +11,11 @@ var router = express.Router();
 router.get('/card', (req, res, next) => {
    
     var page = req.query.page || 1;
+<<<<<<< HEAD
     var limit = req.query.limit || 5;
+=======
+    var limit = req.query.limit || 10;
+>>>>>>> master
     var offset = (page -1)*limit;
     var search = req.query.search || "";
     var produce = req.query.productBy || "";
@@ -21,11 +27,17 @@ router.get('/card', (req, res, next) => {
         carddb.alloffset(limit,offset,search,produce),
         carddb.countAll(search,produce),
     ]).then(([rows,count_rows])=>{
+<<<<<<< HEAD
 
+=======
+       console.log('rows = '+rows.length);
+       var CheckXX = [true,false,false];
+>>>>>>> master
         total = count_rows[0].total;
         var nPages = Math.floor(total/limit);
         var pages =[];
         if(total% limit >0) nPages++;
+<<<<<<< HEAD
         var Check =page-3;
         if(Check<1){
             Check=1;
@@ -40,6 +52,11 @@ router.get('/card', (req, res, next) => {
             if(Dem==3){
                 break;
             }
+=======
+        for(var i=1;i<=nPages;i++){
+            var obj = {value: i,active: i === +page};
+            pages.push(obj);
+>>>>>>> master
         }
         var pageNext;
         var pagePre;
@@ -63,6 +80,7 @@ router.get('/card', (req, res, next) => {
                 }
             });
         }else{
+<<<<<<< HEAD
             res.render('dashboard/manage/card', {Err:true,
                 helpers: {
                     ifEquals : function(arg1, arg2, options) {
@@ -72,6 +90,9 @@ router.get('/card', (req, res, next) => {
             }
             
             );
+=======
+            res.render('dashboard/manage/card', {Err:true});
+>>>>>>> master
         }
     
     }).catch(err =>{
