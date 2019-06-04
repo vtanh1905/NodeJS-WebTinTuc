@@ -2,6 +2,7 @@ var express = require("express");
 var moment = require("moment");
 const bcrypt = require("bcrypt");
 var account_model = require("../../models/account.model");
+var category_model = require("../../models/category.model");
 
 var router = express.Router();
 
@@ -45,7 +46,15 @@ router.get("/user", (req, res, next) => {
 
 //Add
 router.get("/user/add", (req, res, next) => {
-  res.render("dashboard/manage/user/add", {});
+  category_model.all().then(result=>{
+    console.log('====================================');
+    console.log(result);
+    console.log('====================================');
+    res.render("dashboard/manage/user/add", {
+      dataCat : result
+    });
+  }).catch(next);
+  
 });
 
 router.post("/user/add", (req, res, next) => {
@@ -114,27 +123,25 @@ router.get("/user/:id/edit", (req, res, next) => {
     return;
   }
 
-  account_model
-    .single(ID)
-    .then(result => {
-      if (result.length === 0) {
-        next();
-        return;
-      }
+  Promise.all([account_model.single(ID), category_model.all()]).then(([result, catData]) =>{
+    if (result.length === 0) {
+      next();
+      return;
+    }
 
-      result[0].DOBFormat = moment(result[0].DOB, "YYYY-MM-DD").format(
-        "DD/MM/YYYY"
-      );
-      result[0].DatePremiumFormat = moment(
-        result[0].DatePremium,
-        "YYYY-MM-DD HH:mm"
-      ).format("DD/MM/YYYYTHH:mm");
+    result[0].DOBFormat = moment(result[0].DOB, "YYYY-MM-DD").format(
+      "DD/MM/YYYY"
+    );
+    result[0].DatePremiumFormat = moment(
+      result[0].DatePremium,
+      "YYYY-MM-DD HH:mm"
+    ).format("DD/MM/YYYYTHH:mm");
 
-      res.render("dashboard/manage/user/edit", {
-        dataUser: result[0]
-      });
-    })
-    .catch(next);
+    res.render("dashboard/manage/user/edit", {
+      dataUser: result[0],
+      dataCat : catData
+    });
+  } ).catch(next);
 });
 
 router.post("/user/:id/edit", (req, res, next) => {

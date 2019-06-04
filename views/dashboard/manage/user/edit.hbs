@@ -11,7 +11,11 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script>
-    //eventSelectVaiTro();
+    eventSelectVaiTro();
+    {{#ifEquals dataUser.Type '2' }}
+        $("#boxChuyenMuc").show();
+    {{/ifEquals}}
+    
 
     $('#DOB').datetimepicker({
         timepicker: false,
@@ -185,9 +189,9 @@
                 <label for="" class="col-sm-2 col-form-label">Chuyên Mục</label>
                 <div class="col-sm-3">
                     <select multiple class="form-control" id="exampleFormControlSelect1" name="ManageCatID">
-                        <option value="0">Game Mobile</option>
-                        <option value="1">Game Online</option>
-                        <option value="2">Esports</option>
+                        {{#each dataCat}}
+                            <option value="{{CatID}}">{{Name}}</option>
+                        {{/each}}
                     </select>
                 </div>
             </div>
