@@ -43,24 +43,24 @@ router.get("/user", (req, res, next) => {
       const TOTALPAGE = Math.ceil(countAcc[0].TotalAccount / LIMITPAGE);
       const SPACE = 6;
       var Paging = {
-        Pages : [],
-        PageCurrent : PAGECURRNT,
-        nextPage : (PAGECURRNT + 1) - TOTALPAGE < 0 ? (PAGECURRNT + 1) : false,
-        prePage : (PAGECURRNT - 1) > 0 ? (PAGECURRNT - 1) : false
-      }
+        Pages: [],
+        PageCurrent: PAGECURRNT,
+        nextPage: PAGECURRNT + 1 - TOTALPAGE < 0 ? PAGECURRNT + 1 : false,
+        prePage: PAGECURRNT - 1 > 0 ? PAGECURRNT - 1 : false
+      };
       var i;
-      if(PAGECURRNT - (SPACE - 2) <= 0){
-        i = 1
-      }else if((PAGECURRNT  > (TOTALPAGE  - 3))){
+      if (PAGECURRNT - (SPACE - 2) <= 0) {
+        i = 1;
+      } else if (PAGECURRNT > TOTALPAGE - 3) {
         i = TOTALPAGE - SPACE;
-      }else {
+      } else {
         i = PAGECURRNT - 3;
       }
 
       Paging.Pages.push(i);
-      for(var count = 0; count < SPACE; ++count){
+      for (var count = 0; count < SPACE; ++count) {
         ++i;
-        if(i > TOTALPAGE){
+        if (i > TOTALPAGE) {
           break;
         }
         Paging.Pages.push(i);
@@ -71,7 +71,7 @@ router.get("/user", (req, res, next) => {
         TypeSelected: TYPE,
         TotalPageSelected: LIMITPAGE,
         TextSearch: SEARCH,
-        Paging : Paging
+        Paging: Paging
       });
     })
     .catch(next);
@@ -170,6 +170,16 @@ router.get("/user/:id/edit", (req, res, next) => {
         "YYYY-MM-DD HH:mm"
       ).format("DD/MM/YYYYTHH:mm");
 
+      var arrCat = result[0].ManageCatID.split(",");
+      catData.forEach(x => {
+        arrCat.forEach(y => {
+          if(x.CatID === +y){
+            x.Selected = true;
+            return;
+          }
+        });
+      });
+    
       res.render("dashboard/manage/user/edit", {
         dataUser: result[0],
         dataCat: catData

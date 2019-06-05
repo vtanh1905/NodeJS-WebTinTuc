@@ -190,7 +190,7 @@
                 <div class="col-sm-3">
                     <select multiple class="form-control" id="exampleFormControlSelect1" name="ManageCatID">
                         {{#each dataCat}}
-                            <option value="{{CatID}}">{{Name}}</option>
+                            <option value="{{CatID}}" {{#if Selected}}selected{{/if}}>{{Name}}</option>
                         {{/each}}
                     </select>
                 </div>
