@@ -38,14 +38,19 @@ module.exports = {
     LIMIT ${page} OFFSET ${offset}`);
     }
   },
-  countAll: search => {
-    var sql;
-    if (search === "") {
-      sql = `select count(*) as total from account where account.Status = 1 `;
+  countAll: (type, search) => {
+    if (type >= 0) {
+      return db.load(`SELECT COUNT( * ) as TotalAccount
+                      FROM account 
+                      WHERE account.Username LIKE '%${search}%'
+                        AND account.Status = 1
+                        AND account.Type = ${type}`);
     } else {
-      sql = `select count(*) as total from account  WHERE account.Username like '%${search}%' and tag.Status = 1`;
+      return db.load(`SELECT COUNT( * ) as TotalAccount
+                      FROM account 
+                      WHERE account.Username LIKE '%${search}%'
+                        AND account.Status = 1`);
     }
-    return db.load(sql);
   },
   singleByUsername: username =>
     db.load(`SELECT * FROM account WHERE Username = "${username}"`),

@@ -10,13 +10,18 @@ var router = express.Router();
 // Quản Lý User
 router.get("/user", (req, res, next) => {
   const TYPE = req.query.type || -1;
-  const SEARCH = req.query.search || '';
-  const TOTALPAGE = req.query.page || 10;
+  const SEARCH = req.query.search || "";
+  const LIMITPAGE = req.query.pageShow || 10;
+  const PAGECURRNT = req.query.page || 1;
+  const OFFSET = (PAGECURRNT - 1) * LIMITPAGE;
 
-  account_model
-    .allWithPostsFSP(TYPE, SEARCH, TOTALPAGE, 0)
-    .then(result => {
+  Promise.all([
+    account_model.allWithPostsFSP(TYPE, SEARCH, LIMITPAGE, OFFSET),
+    account_model.countAll(TYPE, SEARCH)
+  ])
+    .then(([result, countAcc]) => {
       result.forEach(element => {
+        //Them Vai Tro Cac Element
         switch (element.Type) {
           case 0:
             element.Role = "Độc Giả";
@@ -34,11 +39,39 @@ router.get("/user", (req, res, next) => {
             break;
         }
       });
+      // //Phan Trang
+      const TOTALPAGE = Math.ceil(countAcc[0].TotalAccount / LIMITPAGE);
+      const SPACE = 6;
+      var Paging = {
+        Pages : [],
+        PageCurrent : PAGECURRNT,
+        nextPage : (PAGECURRNT + 1) - TOTALPAGE < 0 ? (PAGECURRNT + 1) : false,
+        prePage : (PAGECURRNT - 1) > 0 ? (PAGECURRNT - 1) : false
+      }
+      var i;
+      if(PAGECURRNT - (SPACE - 2) <= 0){
+        i = 1
+      }else if((PAGECURRNT  > (TOTALPAGE  - 3))){
+        i = TOTALPAGE - SPACE;
+      }else {
+        i = PAGECURRNT - 3;
+      }
+
+      Paging.Pages.push(i);
+      for(var count = 0; count < SPACE; ++count){
+        ++i;
+        if(i > TOTALPAGE){
+          break;
+        }
+        Paging.Pages.push(i);
+      }
+
       res.render("dashboard/manage/user/index", {
         dataUser: result,
         TypeSelected: TYPE,
-        TotalPageSelected: TOTALPAGE,
-        TextSearch: SEARCH
+        TotalPageSelected: LIMITPAGE,
+        TextSearch: SEARCH,
+        Paging : Paging
       });
     })
     .catch(next);
@@ -46,15 +79,14 @@ router.get("/user", (req, res, next) => {
 
 //Add
 router.get("/user/add", (req, res, next) => {
-  category_model.all().then(result=>{
-    console.log('====================================');
-    console.log(result);
-    console.log('====================================');
-    res.render("dashboard/manage/user/add", {
-      dataCat : result
-    });
-  }).catch(next);
-  
+  category_model
+    .all()
+    .then(result => {
+      res.render("dashboard/manage/user/add", {
+        dataCat: result
+      });
+    })
+    .catch(next);
 });
 
 router.post("/user/add", (req, res, next) => {
@@ -123,25 +155,27 @@ router.get("/user/:id/edit", (req, res, next) => {
     return;
   }
 
-  Promise.all([account_model.single(ID), category_model.all()]).then(([result, catData]) =>{
-    if (result.length === 0) {
-      next();
-      return;
-    }
+  Promise.all([account_model.single(ID), category_model.all()])
+    .then(([result, catData]) => {
+      if (result.length === 0) {
+        next();
+        return;
+      }
 
-    result[0].DOBFormat = moment(result[0].DOB, "YYYY-MM-DD").format(
-      "DD/MM/YYYY"
-    );
-    result[0].DatePremiumFormat = moment(
-      result[0].DatePremium,
-      "YYYY-MM-DD HH:mm"
-    ).format("DD/MM/YYYYTHH:mm");
+      result[0].DOBFormat = moment(result[0].DOB, "YYYY-MM-DD").format(
+        "DD/MM/YYYY"
+      );
+      result[0].DatePremiumFormat = moment(
+        result[0].DatePremium,
+        "YYYY-MM-DD HH:mm"
+      ).format("DD/MM/YYYYTHH:mm");
 
-    res.render("dashboard/manage/user/edit", {
-      dataUser: result[0],
-      dataCat : catData
-    });
-  } ).catch(next);
+      res.render("dashboard/manage/user/edit", {
+        dataUser: result[0],
+        dataCat: catData
+      });
+    })
+    .catch(next);
 });
 
 router.post("/user/:id/edit", (req, res, next) => {
