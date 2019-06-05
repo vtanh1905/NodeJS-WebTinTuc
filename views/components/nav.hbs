@@ -3,7 +3,7 @@
     style={{#if fixed-top}} "top:0; left:0; z-index: 11;  opacity: 0.9;" {{else}} "background: #222222" {{/if}}>
 
     <a class="navbar-brand" href="/">
-        <img src="images/logo-web.png" class="rounded float-left" alt="..." width="45" height="45">
+        <img src="/images/logo-web.png" class="rounded float-left" alt="..." width="45" height="45">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
         aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,50 +14,22 @@
             <li class="nav-item active active-danger ">
                 <a class="nav-link" href="/">Trang Chủ<span class="sr-only">(current)</span></a>
             </li>
+            {{#each lcCategories}}
             <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/category" role="button"
-                    aria-haspopup="true" aria-expanded="false">Game Mobile</a>
+                {{#if this.children.length}}
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/category"
+                    role="button">{{this.element.Name}}</a>
                 <div class="dropdown-menu bg-dark border-top-0">
-                    <a class="dropdown-item set-dropdown-item" href="/category">Tất Cả</a>
-                    <a class="dropdown-item set-dropdown-item" href="/category">Android</a>
-                    <a class="dropdown-item set-dropdown-item" href="/category">IOS</a>
+                    <a class="dropdown-item set-dropdown-item" href="/category/{{this.element.CatID}}">Tất Cả</a>
+                    {{#each this.children as |childValue childKey|}}
+                    <a class="dropdown-item set-dropdown-item" href="/category/{{childValue.CatID}}">{{childValue.Name}}</a>
+                    {{/each}}
                 </div>
+                {{else}}
+                    <a class="nav-link" href="/category/{{this.element.CatID}}">{{this.element.Name}}<span class="sr-only">(current)</span></a>
+                {{/if}}
             </li>
-            <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                    aria-expanded="false">Game Online</a>
-                <div class="dropdown-menu bg-dark border-top-0">
-                    <a class="dropdown-item set-dropdown-item" href="/category">Tất Cả</a>
-                    <a class="dropdown-item set-dropdown-item" href="/category">Trong Nước</a>
-                    <a class="dropdown-item set-dropdown-item" href="/category">Ngoài Nước</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                    aria-expanded="false">Esports</a>
-                <div class="dropdown-menu bg-dark border-top-0">
-                    <a class="dropdown-item set-dropdown-item" href="/category">Tất Cả</a>
-                    <a class="dropdown-item set-dropdown-item" href="/category">Liên Mình Huyền Thoại</a>
-                    <a class="dropdown-item set-dropdown-item" href="/category">Đột Kích</a>
-                    <a class="dropdown-item set-dropdown-item" href="/category">CSGO</a>
-                    <a class="dropdown-item set-dropdown-item" href="/category">Dota</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                    aria-expanded="false">PC/Console</a>
-                <div class="dropdown-menu bg-dark border-top-0">
-                    <a class="dropdown-item set-dropdown-item" href="/category">Tất Cả</a>
-                    <a class="dropdown-item set-dropdown-item" href="/category">PC</a>
-                    <a class="dropdown-item set-dropdown-item" href="/category">Console</a>
-                </div>
-            </li>
-            <li class="nav-item active active-danger">
-                <a class="nav-link" href="/category">Công Nghệ<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active active-danger">
-                <a class="nav-link" href="/category">Phim Ảnh<span class="sr-only">(current)</span></a>
-            </li>
+            {{/each}}
         </ul>
         <span class="navbar-text d-block p-0">
             {{#if isAuthenticated}}
@@ -67,7 +39,7 @@
                         width="25px" height="25px">
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg-right">
-                     <a href="/dashboard" class="btn text-dark dropdown-item">Thông tin cá nhân</a>
+                    <a href="/dashboard" class="btn text-dark dropdown-item">Thông tin cá nhân</a>
                     <div class="dropdown-divider"></div>
                     <a href="javascript: $('#formLogOut').submit()" class="btn text-dark dropdown-item">Đăng xuất</a>
                 </div>
