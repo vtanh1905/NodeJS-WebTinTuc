@@ -35,6 +35,14 @@ module.exports = {
     },
     add : (entity)=>{
         return db.add('tag',entity);
+    },
+    getAll : () => db.load(`select * from tag where tag.Status = 1`),
+    mutiAdd: (arr) =>{
+        var sql = `INSERT INTO tag (Name, Status) VALUES `;
+        sql += `("${arr[0]}", 1)`;
+        for (let index = 1; index < arr.length; index++) {
+            sql += `,("${arr[index]}", 1)`;
+        }
+        return db.load(sql);
     }
-
 }
