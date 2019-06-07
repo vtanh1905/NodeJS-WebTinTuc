@@ -99,6 +99,7 @@ router.post("/list-post/add", (req, res, next) => {
         }).catch(next);
       } else {
         //Th Khong co Tag
+        req.body.ListTagID = listTagIsExist.toString();
         if (req.files) {
           post_model.nextID().then(nextID =>{
             //Th Có File Ảnh
@@ -212,6 +213,9 @@ router.post("/list-post/:id/edit", (req, res, next) => {
       
 
       if (listTagMustAdd.length > 0) {
+        console.log('====================================');
+        console.log("Có Tag");
+        console.log('====================================');
         tag_model.mutiAdd(listTagMustAdd).then(resultMutiAdd => {
           //Xu lý conver ID Tag To String
           req.body.ListTagID = [];
@@ -247,6 +251,10 @@ router.post("/list-post/:id/edit", (req, res, next) => {
 
         }).catch(next);
       } else {
+        console.log('====================================');
+        console.log("Khong Có Tag");
+        console.log('====================================');
+        req.body.ListTagID = listTagIsExist.toString();
         //Th Khong co Tag
         if (req.files) {
           //Th Có File Ảnh
