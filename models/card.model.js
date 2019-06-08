@@ -7,8 +7,6 @@ module.exports = {
     },
     alloffset: (limit, offset, search, produce) => {
         var sql;
-    
-        
         if (search === "" && produce === "") {
             sql = `select c.*,a.Username from card as c,account as a where c.AccID = a.AccID and c.Check =0 and c.Status =1  LIMIT ${offset},${limit}`;
         } else if (search != "" && produce != "") {
@@ -16,7 +14,6 @@ module.exports = {
               
                  sql = `select c.*,a.Username from card as c,account as a where '${search}' = a.Username and a.AccID = c.AccID and c.Check =0 and c.Status =1 LIMIT ${offset},${limit}`;
             } else {
-                
                 sql = `select c.*,a.Username from card as c,account as a where c.ProductBy='${produce}' and '${search}' = a.Username and a.AccID = c.AccID and c.Check =0 and c.Status =1  LIMIT ${offset},${limit}`;
             }
 
@@ -42,6 +39,8 @@ module.exports = {
     countAll: (search, produce) => {
         var sql;
         if (search === "" && produce === "") {
+            console.log('search === "  " ');
+            
             sql = `select count(*) as total from card as c where c.Check =0 and c.Status =1`;
         } else if (search != "" && produce != "") {
             if (produce === 'tat-ca') {
@@ -52,12 +51,12 @@ module.exports = {
                 sql = `select count(*) as total from card as c,account as a where c.ProductBy='${produce}' and '${search}' = a.Username and a.AccID = c.AccID  and c.Check =0 and c.Status =1`;
             }
         } else if (produce != "" && search == "") {
+          var sql;
             console.log('Tim duoi produce');
             if (produce === 'tat-ca') {
-                sql = `select  count(*) from card as c where c.Check =0 and c.Status =1`;
+                sql = `select  count(*) as total from card as c where c.Check =0 and c.Status =1`;
             } else {
-               
-                 sql = `select  count(*) from card as c where c.ProductBy='${produce} and c.Check =0 and c.Status =1' `;
+                 sql = `select  count(*) as total from card as c where c.ProductBy='${produce}' and c.Check =0 and c.Status =1 `;
             }
         }
         return db.load(sql);

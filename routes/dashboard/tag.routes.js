@@ -99,17 +99,22 @@ router.get('/tag', (req, res, next) =>{
         if(page<nPages){
             pageNext=  parseInt(page)+1;
         }else{
-            pageNext=page;
+            pageNext=0;
         }
         if(page>1){
             pagePre=  parseInt(page)-1;
         }else{
-            pagePre=page;
+            pagePre=0;
         }
 
         if (rows.length > 0) {
             
-            res.render('dashboard/manage/tag', {Err:false, tags: rows,pages,pageNext,pagePre,search
+            res.render('dashboard/manage/tag', {Err:false, tags: rows,pages,pageNext,pagePre,search,
+                helpers: {
+                    ifEquals: function (arg1, arg2, options) {
+                        return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+                    }
+                }
             });
         }else{
             res.render('dashboard/manage/tag', {Err:true});

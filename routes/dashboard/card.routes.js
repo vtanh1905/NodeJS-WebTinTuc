@@ -12,13 +12,14 @@ router.get('/card', (req, res, next) => {
 
     var page = req.query.page || 1;
     var limit = req.query.limit || 5;
-    var limit = req.query.limit || 10;
+    var limit = req.query.limit || 5;
     var offset = (page - 1) * limit;
     var search = req.query.search || "";
     var produce = req.query.productBy || "";
     var Selected = { select: produce };
-
-
+    console.log("producce  "+produce);
+    console.log("search"+search);
+    
     var Dem = 0;
     Promise.all([
         carddb.alloffset(limit, offset, search, produce),
@@ -26,6 +27,7 @@ router.get('/card', (req, res, next) => {
     ]).then(([rows, count_rows]) => {
 
         console.log('rows = ' + rows.length);
+        console.log('count rows = ' + count_rows[0].total);
         var CheckXX = [true, false, false];
         total = count_rows[0].total;
         var nPages = Math.floor(total / limit);
@@ -45,21 +47,19 @@ router.get('/card', (req, res, next) => {
             if (Dem == 3) {
                 break;
             }
-            for (var i = 1; i <= nPages; i++) {
-                var obj = { value: i, active: i === +page };
-                pages.push(obj);
-            }
+        }
+           
             var pageNext;
             var pagePre;
             if (page < nPages) {
                 pageNext = parseInt(page) + 1;
             } else {
-                pageNext = page;
+                pageNext = 0;
             }
             if (page > 1) {
                 pagePre = parseInt(page) - 1;
             } else {
-                pagePre = page;
+                pagePre = 0;
             }
             if (rows.length > 0) {
 
@@ -73,18 +73,14 @@ router.get('/card', (req, res, next) => {
                 });
             } else {
                 res.render('dashboard/manage/card', {
-                    Err: true,
+                    Err: true, cards: rows, pages, pageNext, pagePre, search, produce,
                     helpers: {
                         ifEquals: function (arg1, arg2, options) {
                             return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
                         }
                     }
-                }
-
-                );
-                res.render('dashboard/manage/card', { Err: true });
+                }); 
             }
-        }
     }).catch(err => {
     });
 

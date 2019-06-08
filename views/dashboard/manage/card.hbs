@@ -75,19 +75,7 @@
 
     </div>
 
-
-
-    <!-- Dành Sách Bài Viết -->
-    {{#if this.Err}}
-    <div class="alert alert-danger" role="alert">
-<<<<<<< HEAD
-        Invalid<a href="/dashboard/card" class="alert-link">Go Back</a>
-=======
-        Invalid<a href="/" class="alert-link">Go Back</a>
->>>>>>> master
-    </div>
-    {{else}}
-    <table class="table table-bordered table-responsive-sm table-hover bg-white">
+        <table class="table table-bordered table-responsive-sm table-hover bg-white">
         <thead>
             <tr>
                 <th class="text-center" style="width: 15%" scope="col">Tài Khoản</th>
@@ -98,6 +86,12 @@
                 <th class="text-center" style="width: 10%" scope="col">Chức Năng</th>
             </tr>
         </thead>
+
+    <!-- Dành Sách Bài Viết -->
+    {{#if this.Err}}
+    
+    {{else}}
+    
         <tbody>
 
             {{#each cards}}
@@ -135,20 +129,29 @@
     <nav aria-label="Page navigation example" class="mt-3">
         <ul class="pagination justify-content-center">
             <li class="page-item ">
-                <a class="page-link" href="?page={{pagePre}}" aria-disabled="true">Previous</a>
+                <a class="page-link" {{#ifEquals pagePre '0'}}
+                                    
+                                    {{else}}
+                            href="/dashboard/card?productBy={{produce}}&search={{search}}&page={{pagePre}}"
+                            {{/ifEquals}}
+                      aria-disabled="true">Previous</a>
             </li>
             {{#each this.pages}}
             {{#if active}}
             <li class="page-item active">
-                <a class="page-link" href="?page={{value}}">{{value}}<span class="sr-only">(current)</span></a>
+                <a class="page-link" href="/dashboard/card?productBy={{../produce}}&search={{../search}}&page={{value}}">{{value}}<span class="sr-only">(current)</span></a>
             </li>
             {{else}}
-            <li class="page-item"><a class="page-link" href="?page={{value}}">{{value}}</a></li>
+            <li class="page-item"><a class="page-link" href="/dashboard/card?productBy={{../produce}}&search={{../search}}&page={{value}}">{{value}}</a></li>
             {{/if}}
             {{/each}}
 
             <li class="page-item ">
-                <a class="page-link" href="?page={{pageNext}}">Next</a>
+                <a class="page-link" {{#ifEquals pageNext '0'}}
+                                    
+                                    {{else}}
+                               href="/dashboard/card?productBy={{produce}}&search={{search}}&page={{pageNext}}"
+                            {{/ifEquals}} >Next</a>
             </li>
 
         </ul>

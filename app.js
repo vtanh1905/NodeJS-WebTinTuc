@@ -5,7 +5,7 @@ var morgan = require("morgan");
 var createError = require("http-errors");
 var express_handlebars_sections = require("express-handlebars-sections");
 const fileUpload = require("express-fileupload");
-
+var numeral = require('numeral');
 //Setting Express
 var app = express();
 app.use(morgan("dev"));
