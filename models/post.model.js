@@ -1,4 +1,5 @@
-var db = require('../utils/db');
+var db = require("../utils/db");
+var nameDataBase = "webtintucdb";
 
 module.exports = {
     SinglePageById: (id) => {
@@ -25,9 +26,13 @@ module.exports = {
         `;
         return db.load(sql);
     },
+    add: entity => {
+        return db.add("post", entity);
+      },
+    
     all: (Status, search, Offset, Limit, KyHieuSoSanh) => {
         var sql;
-
+  
         if (Status == '4') {
             if (search != "") {
                 sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a,category as c
@@ -126,5 +131,5 @@ module.exports = {
         }
         return db.load(sql);
     }
-
 }
+ 
