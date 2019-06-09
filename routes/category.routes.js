@@ -1,12 +1,15 @@
-var express = require('express');
+var express = require("express");
 
 var router = express.Router();
 
-router.get('/category', (req, res, next) =>{
-    res.render('category', {
-        
-    });
-});
+router.get("/category/:id", (req, res, next) => {
+  const ID = req.params.id;
 
+  if (isNaN(ID)) {
+    next();
+    return;
+  }
+  res.render("category", {});
+});
 
 module.exports = router;

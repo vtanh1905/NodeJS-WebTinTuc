@@ -5,11 +5,89 @@
 
 {{#section 'js'}}
 <script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script src="/js/manager.js"></script>
 <script>
     settingEditor(false);
 
     eventAddTag("#btn-add-tag", "#txtTag", "#tag-group");
+
+    //Sự Kiện Upload Hình Ảnh Tiêu Đề
+    function performClick(elemId) {
+        var elem = document.getElementById(elemId);
+        if (elem && document.createEvent) {
+            var evt = document.createEvent("MouseEvents");
+            evt.initEvent("click", true, false);
+            elem.dispatchEvent(evt);
+        }
+    }
+    function previewFile() {
+        var preview = document.querySelector('img[name=avatar]'); //selects the query named img
+        var file = document.querySelector('input[name=sampleFile]').files[0]; //sames as here
+        var checkFileImage = (/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(file.name);
+        if (checkFileImage === false) {
+            alert("Hình ảnh không hợp lệ!");
+            $("#theFile").replaceWith($("#theFile").val('').clone(true));
+            return;
+        }
+
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file); //reads the data as a URL
+        } else {
+            preview.src = "";
+        }
+    }
+
+    $("#uploadForm").validate({
+        rules: {
+            Title: {
+                required: true,
+                minlength: 15,
+            },
+            Abstract: {
+                required: true,
+                minlength: 30,
+                maxlength: 250,
+            },
+            Content : {
+                required: true,
+                minlength: 30,
+            },
+            CatID : {
+                required : true
+            }
+        },
+        messages: {
+            Title: {
+                required: "Không được bỏ trống"
+            },
+            Abstract: {
+                required: "Không được bỏ trống",
+                minlength: "Phải có từ 30 tới 150 ký tự",
+                maxlength: "Phải có từ 30 tới 150 ký tự",
+            },
+            Content: {
+                required: "Không được bỏ trống",
+                minlength: "Phải có tối thiểu 30 ký tự",
+            },
+            CatID : {
+                required : ""
+            }
+        },
+        errorElement: 'small',
+        errorClass: 'help-block text-danger',
+        highlight: (e) => {
+            $(e).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: (e) => {
+            $(e).addClass('is-valid').removeClass('is-invalid');
+        }
+    });
 </script>
 {{/section}}
 
@@ -20,20 +98,25 @@
 <div id="content" style="background:#F1F1F1; overflow-y: scroll;">
     <h2 class="pt-3 pl-3">Đăng Bài Viết</h2>
     <hr>
-    <form>
+    <form method="POST" encType="multipart/form-data" ref='uploadForm' id='uploadForm'>
         <div class="row m-0">
-            <div class="col-xl-3 col-12">
-                <span onclick="performClick('theFile');" style="cursor: pointer;">
-                    <img id="avatar"
-                        src="https://www.garena.vn/img/game-carousel-bns@2x.88f97343.jpg?fbclid=IwAR3fPuSGoqO9mHxTpFxIvZR683Ttosr54Ocr-xa33g9eo8teBJn2LzNmfuI"
-                        class="rounded mx-auto d-block avatar" alt="..." width="100%" height="100%">
-                </span>
+            <div class="col-xl-4 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <span onclick="performClick('theFile');" style="cursor: pointer;">
+                            <img id="avatar" src="/images/photograp.png" class=" w-100" height="200px" alt="..."
+                                name="avatar">
+                        </span>
+                    </div>
+                    <div class="card-footer text-center">
+                        Ảnh đại diện bài viết
+                    </div>
+                </div>
             </div>
-            <div class="col-xl-9 col-12">
+            <div class="col-xl-8 col-12">
                 <div class="form-group pt-3">
                     <label for="exampleInputEmail1" class="h4">Tiêu đề</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="">
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="Title" placeholder="">
                 </div>
                 <!-- Lý Do Từ Chối -->
                 <div class="card bg-light mb-3  sr-only">
@@ -49,7 +132,7 @@
             <div class="my-3 col-xl-10 col-12">
                 <!-- Viết Bài Viết -->
                 <div class="form-group">
-                    <div id="editor">
+                    <textarea id="editor" name="Content">
                         <h2>The three greatest things you learn from traveling</h2>
 
                         <p>Like all the great things on earth traveling teaches us by example. Here are some of the most
@@ -86,109 +169,74 @@
                             face
                             your
                             fear and see there was nothing to be afraid of, is the moment you discover bliss.</p>
-                    </div>
+                    </textarea>
                 </div>
 
                 <!-- Tóm Tắt -->
                 <div class="form-group pt-3">
                     <label for="exampleFormControlTextarea1" class="h4">Tóm Tắt</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="Abstract" rows="3"></textarea>
                 </div>
             </div>
 
             <div class="col-xl-2 col-12 mt-3">
-                <button type="button" class="btn btn-primary font-weight-bold btn btn-block mb-3">Đăng bài viết</button>
+                <button type="submit" class="btn btn-primary font-weight-bold btn btn-block mb-3">Đăng bài viết</button>
+
+                <!-- Premium -->
+                <div class="card mb-3">
+                    <h5 class="card-header bg-light">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch1" name="isPremium">
+                            <label class="custom-control-label" for="customSwitch1">Premium</label>
+                        </div>
+                    </h5>
+                </div>
                 <!-- Danh sach danh mục -->
                 <div class="card bg-light mb-3 ">
                     <div class="card-header bg-info text-white">Danh mục</div>
                     <div class="card-body p-3 " style="background:#FFFFFF">
-                        <form action="#">
-                            <div class="form-group">
-                                <label class="h6" for="inputAddress">Game Mobile</label>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio1" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio1">Android</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio2" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio2">IOS</label>
-                                </div>
+                        {{#each lcCategories}}
+                        <div class="form-group">
+                            {{#if this.children}}
+                            <label class="h6" for="inputAddress">{{this.element.Name}}</label>
+                            {{#each this.children as |childValue childKey|}}
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="CatID-{{childValue.CatID}}" name="CatID" class="custom-control-input"
+                                    value="{{childValue.CatID}}">
+                                <label class="custom-control-label" for="CatID-{{childValue.CatID}}">{{childValue.Name}}</label>
                             </div>
-                            <div class="form-group">
-                                <label class="h6" for="inputAddress">Game Online</label>
+                            {{/each}}
+                            {{else}}
+                            <label class="h6" for="inputAddress">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio3" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio3">Trong Nước</label>
+                                    <input type="radio" id="CatID-{{this.element.CatID}}" name="CatID" class="custom-control-input"
+                                        value="{{this.element.CatID}}">
+                                    <label class="custom-control-label" for="CatID-{{this.element.CatID}}">{{this.element.Name}}</label>
                                 </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio4" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio4">Ngoài Nước</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="h6" for="inputAddress">Esports</label>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio5" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio5">LMHT</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio6" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio6">Đột Kích</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio7" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio7">CS:GO</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio8" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio8">Dota</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="h6" for="inputAddress">PC/Console</label>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio9" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio9">PC</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio10" name="customRadio"
-                                        class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio10">Console</label>
-                                </div>
-                            </div>
-                        </form>
+                            </label>
+                            {{/if}}
+                        </div>
+                        {{/each}}
                     </div>
+
                 </div>
                 <!-- Them Tag -->
                 <div class="card bg-light mb-3">
                     <div class="card-header bg-info text-white">Thêm Tag</div>
                     <div class="card-body p-3" style="background:#FFFFFF">
-                        <form action="#">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="txtTag" placeholder="Tên Tag">
-                            </div>
-                            <div id="btn-add-tag" class="form-group text-center">
-                                <button type="button" class="btn btn-secondary btn-sm">Thêm</button>
-                            </div>
-                            <div id="tag-group" class="form-group">
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="txtTag" placeholder="Tên Tag">
+                        </div>
+                        <div id="btn-add-tag" class="form-group text-center">
+                            <button type="button" class="btn btn-secondary btn-sm">Thêm</button>
+                        </div>
+                        <div id="tag-group" class="form-group">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- input File -->
+        <input type="file" id="theFile" class="d-none" name="sampleFile" accept="image/*" onchange="previewFile()">
     </form>
 </div>
-
-
-<!-- input File -->
-<input type="file" id="theFile" class="d-none">

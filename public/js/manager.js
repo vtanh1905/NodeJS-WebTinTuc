@@ -43,8 +43,7 @@ function eventAddTag(selectorButton, selectorTXT, selectorTagGroup) {
       return;
     }
     $(selectorTagGroup).append(
-      '<button type="button" class="btn btn-primary btn-sm mt-1" onclick="removeElement()">' + textTag +
-      '</button> ');
+      '<input type="text" name="ListTagName" style="cursor: pointer;" class="btn btn-primary btn-sm d-inline-block mt-1 text-white" onclick="removeElement()" value="'+ textTag +'">');
     $("#txtTag").val("");
   });
 }
