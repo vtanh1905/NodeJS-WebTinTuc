@@ -139,5 +139,16 @@ module.exports = {
           AND post.Approve != 2
           AND post.PostID = ${PostID}
           AND post.AccID = ${AccID}`);
+  },
+  getNewPosts : (offset) =>{
+    return db.load(`SELECT post.PostID, post.Title, post.URLImage, post.DatePost, post.Abstract, post.ListTagID, post.isPremium, category.Name as 'CatName', category.CatID, account.NickName
+    FROM post 
+    LEFT JOIN category ON post.CatID = category.CatID
+    LEFT JOIN account ON post.AccID = account.AccID
+    WHERE post.Status = 1
+      AND post.Approve = 2
+      AND post.DatePost < CURRENT_TIMESTAMP() 
+    ORDER BY post.isPremium DESC, post.DatePost DESC
+    LIMIT 10 OFFSET ${offset}`);
   }
 };
