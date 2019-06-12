@@ -1,186 +1,40 @@
 <ul class="list-group list-group-flush">
-    <li href="#" class="list-group-item list-group-item-action">
+    {{#each dataPost}}
+    <li class="list-group-item list-group-item-action">
         <div class="card border-0">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <a href="/post" class="">
-                        <img src="http://static.gamehub.vn/img/files/2019/04/23/4901088611496051085290486879089650162466816nHLgh8.jpg?fbclid=IwAR2fDb586GcQB7DHMZCG9Tl_S4nVVCSl7W3agLXZQXR56cQTrsruMwNVMoc"
-                            class="card-img img-fluid " alt="...">
+                    <a href="/post/{{this.PostID}}" class="">
+                        <img src="{{this.URLImage}}" class="card-img img-fluid " alt="...">
                     </a>
                     <div class="position-absolute " style="top:0%; left: 3%">
-                        <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Trong
-                            nước</a>
+                        <a class="badge badge-danger  text-white text-decoration-none "
+                            href="/category/{{this.CatID}}">{{this.CatName}}</a>
                     </div>
+                    {{#if this.isPremium}}
                     <span href="/post" class="btn badge badge-info text-white">
                         <i class="fas fa-star"></i> Premium
                     </span>
+                    {{/if}}
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <a href="/post"
-                            class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">Thiên
-                            An - Kiều nữ stream Liên Quân
-                            Mobile: “Em cứ đi một mình là gặp phải biến thái”</a>
-                        <p class="card-text text-justify">Cộng đồng Streamer đang càng ngày càng
-                            phát triển với số lượng tăng chóng mặt từng ngày từng giờ. Trong số đó
-                            luôn có những gương mặt nổi bật mà chỉ cần nhìn qua một lần là </p>
+                        <a href="/post/{{this.PostID}}"
+                            class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">{{this.Title}}</a>
+                        <p class="card-text text-justify">{{this.Abstract}}</p>
                         <p class="card-text">
-                            <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                22/04/2019 17:14</small>
+                            <small class="font-weight-bold"><span class="text-danger">{{this.NickName}}</span> -
+                                {{this.DatePost}}</small>
                         </p>
                         <p class="card-text">
-                            <a href="/tag" class="btn badge badge-danger text-white ">Gái
-                                Xinh</a>
-                            <a href="/tag" class="btn badge badge-danger text-white">Streamer</a>
+                            {{#each this.ListTag}}
+                            <a href="/tag/{{ID}}" class="btn badge badge-danger text-white ">{{Name}}</a>
+                            {{/each}}
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </li>
-    <li href="/post" class="list-group-item list-group-item-action">
-        <div class="card border-0">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <a href="/post" class="">
-                        <img src="https://channel.mediacdn.vn/thumb_w/640/prupload/1131/2019/04/img20190422102252238.jpg?fbclid=IwAR0tpquOsQ-PXKLRSaQA-iS2-lLh__q-p-_ZtuGez421A0-GqJLWjNSHul8"
-                            class="card-img img-fluid " alt="...">
-                    </a>
-                    <div class="position-absolute " style="top:0%; left: 3%">
-                        <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">CSGO</a>
-                    </div>
-                    <span href="#" class="btn badge badge-info text-white">
-                        <i class="fas fa-star"></i> Premium
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <a href="/post"
-                            class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">Top
-                            Game Esports trên
-                            Mobile phải chơi nếu muốn thành bậc thầy game thủ</a>
-                        <p class="card-text text-justify">Esports - Thể Thao Điện Tử, đang là phân
-                            khúc game lên như diều gặp... bão. Quả thật vậy, khác hoàn toàn với một
-                            MMO cày cuốc hay bắn súng Online,...</p>
-                        <p class="card-text">
-                            <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                22/04/2019 17:14</small>
-                        </p>
-                        <p class="card-text">
-                            <a href="/tag" class="btn badge badge-danger text-white">
-                                Top Game</a>
-                            <a href="/tag" class="btn badge badge-danger text-white">Moba</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li href="#" class="list-group-item list-group-item-action">
-        <div class="card border-0">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <a href="/post" class="">
-                        <img src="http://static.gamehub.vn/img/files/2019/04/18/gamehubvn-game-sony-that-chat-quan-li-cac-yeu-to-nhay-cam.jpg?fbclid=IwAR1kJNz_GeaGN5OwiSfZSsgYr6JZPHTAIdCIoQtFww_EHowW5UQIzyPpNc8"
-                            class="card-img img-fluid " alt="...">
-                    </a>
-                    <div class="position-absolute " style="top:0%; left: 3%">
-                        <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Trong
-                            nước</a>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <a href="/post"
-                            class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">Liệt
-                            Hỏa VNG: Hài
-                            Nhi tính năng độc nhất vô nhị chỉ có tại Big Update Liệt Hỏa Công Thành
-                            Chiến</a>
-                        <p class="card-text text-justify">Bên cạnh vô số thời trang mới lạ tuyệt
-                            đẹp, tính năng 12 con giáp và chiến trường đẫm máu Công Thành Chiến,
-                            tính năng Hài Nhi độc nhất vô nhị đang được vô số game...</p>
-                        <p class="card-text">
-                            <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                22/04/2019 17:14</small>
-                        </p>
-                        <p class="card-text">
-                            <a href="/tag" class="btn badge badge-danger text-white">VNG
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li href="#" class="list-group-item list-group-item-action">
-        <div class="card border-0">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <a href="/post" class="">
-                        <img src="http://static.gamehub.vn/img/files/2019/04/17/GameHubVN-Game_th%E1%BB%A7_9_tu%E1%BB%95i_%C4%91%E1%BB%A5ng_m%E1%BA%B7t_cha_minh_trong_gi%E1%BA%A3i_%C4%91%E1%BA%A5u_7_Vien_Ng%E1%BB%8Dc_R%E1%BB%93ng-20.jpg?fbclid=IwAR3ve3wUXHwKnp24mlgaJPPxWeMruFMBuJ9X02m85jGM6CrB2BYQnGwrMO4"
-                            class="card-img img-fluid " alt="...">
-                    </a>
-                    <div class="position-absolute " style="top:0%; left: 3%">
-                        <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Trong
-                            nước</a>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <a href="/post"
-                            class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">PS4
-                            xác nhận sẽ thắt
-                            chặt kiểm soát yếu tố 18+, khiến các nhà phát triển bất mãn</a>
-                        <p class="card-text text-justify">Trước đây từng có nhiều công ty tiết lộ
-                            rằng Sony sẽ tiến hành kiểm soát chặt chẽ những nội dung 18+ nhạy cảm
-                            trog các tựa game trên PS4 và mới đây tin tức này không chỉ còn...</p>
-                        <p class="card-text">
-                            <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                22/04/2019 17:14</small>
-                        </p>
-                        <p class="card-text">
-                            <a href="/tag" class="btn badge badge-danger text-white">PS4
-                            </a>
-                            <a href="/tag" class="btn badge badge-danger text-white">18+</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li href="#" class="list-group-item list-group-item-action">
-        <div class="card border-0">
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <a href="/post" class="">
-                        <img src="http://static.gamehub.vn/img/files/2019/04/22/GameHubVN-Top_Game_Esports_tren_Mobile_ph%E1%BA%A3i_ch%C6%A1i_n%E1%BA%BFu_mu%E1%BB%91n_thanh_b%E1%BA%ADc_th%E1%BA%A7y_game_th%E1%BB%A7-14.th.jpg?fbclid=IwAR0x61Hse3WibDB1_mrovhkAmrvlnECY1iqtFGF4PVScs9Slt_uTiFkun_Y"
-                            class="card-img img-fluid " alt="...">
-                    </a>
-                    <div class="position-absolute " style="top:0%; left: 3%">
-                        <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Android</a>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <a href="/post"
-                            class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">Game
-                            thủ 9 tuổi đụng
-                            mặt cha mình trong giải đấu 7 Viên Ngọc Rồng</a>
-                        <p class="card-text text-justify">Đối với một game thủ đã có gia đình hẳn
-                            một trong nhiều niềm vui chính là việc đưa con cái đến với niềm đam mê
-                            chơi game. Gia đình của Tsuyoshi cũng không phải là ngoại lệ khi ...</p>
-                        <p class="card-text">
-                            <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                22/04/2019 17:14</small>
-                        </p>
-                        <p class="card-text">
-                            <a href="/tag" class="btn badge badge-danger text-white">Sogoku</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-
-
+    {{/each}}
 </ul>

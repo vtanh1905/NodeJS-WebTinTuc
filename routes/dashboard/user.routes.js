@@ -45,16 +45,20 @@ router.get("/user", (req, res, next) => {
       var Paging = {
         Pages : [],
         PageCurrent : PAGECURRNT,
-        nextPage : (PAGECURRNT + 1) - TOTALPAGE < 0 ? (PAGECURRNT + 1) : false,
-        prePage : (PAGECURRNT - 1) > 0 ? (PAGECURRNT - 1) : false
+        nextPage : (+PAGECURRNT + 1) - TOTALPAGE <= 0 ? (+PAGECURRNT + 1) : false,
+        prePage : (+PAGECURRNT - 1) > 0 ? (+PAGECURRNT - 1) : false
       }
       var i;
-      if(PAGECURRNT - (SPACE - 2) <= 0){
+      if(+PAGECURRNT - (SPACE - 2) <= 0){
         i = 1
-      }else if((PAGECURRNT  > (TOTALPAGE  - 3))){
-        i = TOTALPAGE - SPACE;
+      }else if((+PAGECURRNT  > (TOTALPAGE  - 3))){
+        if(TOTALPAGE < SPACE){
+          i = 1
+        }else{
+          i = TOTALPAGE - SPACE;
+        }
       }else {
-        i = PAGECURRNT - 3;
+        i = +PAGECURRNT - 3;
       }
 
       Paging.Pages.push(i);

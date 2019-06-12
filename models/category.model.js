@@ -34,5 +34,12 @@ module.exports={
     },
     countNumOfCat: ()=>{
         return db.load('select count(*) as total from category where Status = 1');
+    },
+    singleWithParent : (id) =>{
+        return db.load(`SELECT Cat1.CatID, Cat1.Name, Cat2.CatID as 'CatParentID', Cat2.Name as 'CatParentName'
+        FROM category AS Cat1 
+        LEFT JOIN category AS Cat2 ON Cat1.CatParent = Cat2.CatID 
+        WHERE Cat1.Status = 1 
+        AND Cat1.CatID = ${id}`);
     }
 }

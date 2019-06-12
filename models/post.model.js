@@ -140,7 +140,7 @@ module.exports = {
           AND post.PostID = ${PostID}
           AND post.AccID = ${AccID}`);
   },
-  getNewPosts : (offset) =>{
+  getNewPosts: offset => {
     return db.load(`SELECT post.PostID, post.Title, post.URLImage, post.DatePost, post.Abstract, post.ListTagID, post.isPremium, category.Name as 'CatName', category.CatID, account.NickName
     FROM post 
     LEFT JOIN category ON post.CatID = category.CatID
@@ -148,7 +148,40 @@ module.exports = {
     WHERE post.Status = 1
       AND post.Approve = 2
       AND post.DatePost < CURRENT_TIMESTAMP() 
-    ORDER BY post.isPremium DESC, post.DatePost DESC
+    ORDER BY post.DatePost DESC, post.isPremium DESC
     LIMIT 10 OFFSET ${offset}`);
-  }
+  },
+  allWithPaging: (CatID, isCatParent, limit, offset) => {
+    return db.load(`SELECT post.PostID,
+    post.Title,
+    post.URLImage,
+    post.DatePost,
+    post.Abstract,
+    post.ListTagID,
+    post.isPremium,
+    category.Name AS 'CatName',
+    category.CatID,
+    account.NickName 
+    FROM post , category , account 
+    WHERE post.CatID = category.CatID 
+    AND (category.CatParent = ${CatID} or 0=${isCatParent})
+    AND post.AccID = account.AccID 
+    AND post.Status = 1 
+    AND post.Approve = 2 
+    AND post.DatePost < CURRENT_TIMESTAMP()
+    AND (post.CatID = ${CatID} or 1=${isCatParent})
+    ORDER BY post.DatePost DESC , post.isPremium DESC
+    LIMIT ${limit} OFFSET ${offset}`);
+  },
+  countAllWithPaging: (CatID, isCatParent) => {
+    return db.load(`SELECT count(*) as 'TotalPost'
+    FROM post , category , account 
+    WHERE post.CatID = category.CatID 
+    AND (category.CatParent = ${CatID} or 0=${isCatParent})
+    AND post.AccID = account.AccID 
+    AND post.Status = 1 
+    AND post.Approve = 2 
+    AND post.DatePost < CURRENT_TIMESTAMP()
+    AND (post.CatID = ${CatID} or 1=${isCatParent})`);
+  },
 };

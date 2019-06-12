@@ -122,7 +122,7 @@
             {{#if Paging.prePage}}
             <li class="page-item">
                 <a class="page-link"
-                    href="/dashboard/user?type={{../TypeSelected}}&search={{../TextSearch}}&pageShow={{../TotalPageSelected}}&page={{Paging.prePage}}">Previous</a>
+                    href="/dashboard/user?type={{TypeSelected}}&search={{TextSearch}}&pageShow={{TotalPageSelected}}&page={{Paging.prePage}}">Previous</a>
             </li>
             {{else}}
                 <li class="page-item disabled">
@@ -131,7 +131,7 @@
             {{/if}}
 
             {{#each Paging.Pages}}
-            <li class="page-item"><a class="page-link"
+            <li class="page-item {{#ifEquals ../Paging.PageCurrent this}}active{{/ifEquals}}"><a class="page-link"
                     href="/dashboard/user?type={{../TypeSelected}}&search={{../TextSearch}}&pageShow={{../TotalPageSelected}}&page={{this}}">{{this}}</a>
             </li>
             {{/each}}
@@ -139,7 +139,7 @@
             {{#if Paging.nextPage}}
             <li class="page-item">
                 <a class="page-link"
-                    href="/dashboard/user?type={{../TypeSelected}}&search={{../TextSearch}}&pageShow={{../TotalPageSelected}}&page={{Paging.nextPage}}">Next</a>
+                    href="/dashboard/user?type={{TypeSelected}}&search={{TextSearch}}&pageShow={{TotalPageSelected}}&page={{Paging.nextPage}}">Next</a>
             </li>
             {{else}}
             <li class="page-item disabled">
