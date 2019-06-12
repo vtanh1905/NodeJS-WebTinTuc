@@ -214,5 +214,36 @@ module.exports = {
     AND post.Approve = 2
     AND post.DatePost < CURRENT_TIMESTAMP()
     AND FIND_IN_SET('${TagID}', post.ListTagID)`);
+  },
+  allWithSearchPaging : (StringSearch, limit, offset) =>{
+    return db.load(`SELECT post.PostID,
+    post.Title,
+    post.URLImage,
+    post.DatePost,
+    post.Abstract,
+    post.ListTagID,
+    post.isPremium,
+    category.Name AS 'CatName',
+    category.CatID,
+    account.NickName 
+    FROM post 
+    LEFT JOIN category ON post.CatID = category.CatID 
+    LEFT JOIN account ON post.AccID = account.AccID 
+    WHERE post.Status = 1
+    AND post.Approve = 2
+    AND post.DatePost < CURRENT_TIMESTAMP()
+    AND MATCH (post.Title, post.Abstract) AGAINST ('${StringSearch}')
+    ORDER BY post.DatePost DESC, post.isPremium DESC
+    LIMIT ${limit} OFFSET ${offset}`);
+  },
+  countAllWithSearchPaging : (StringSearch) =>{
+    return db.load(`SELECT count(*) as 'TotalPost'
+    FROM post 
+    LEFT JOIN category ON post.CatID = category.CatID 
+    LEFT JOIN account ON post.AccID = account.AccID 
+    WHERE post.Status = 1
+    AND post.Approve = 2
+    AND post.DatePost < CURRENT_TIMESTAMP()
+    AND MATCH (post.Title, post.Abstract) AGAINST ('${StringSearch}')`);
   }
 };
