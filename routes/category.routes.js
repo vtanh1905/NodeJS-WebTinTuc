@@ -20,7 +20,6 @@ router.get("/category/:id", (req, res, next) => {
   category_model.singleWithParent(ID).then(breadcrumb => {
     Promise.all([post_model.allWithPaging(ID, (breadcrumb[0].CatParentID === null ? 1 : 0),LIMITPAGE, OFFSET), tag_model.getAll(), post_model.countAllWithPaging(ID, (breadcrumb[0].CatParentID === null ? 1 : 0))]).then(([dataPost, ListTag, countPost]) => {
       
-
       //Xu Li Dư Lieu
       dataPost.forEach(element => {
         //Fomat DateTime
@@ -74,10 +73,6 @@ router.get("/category/:id", (req, res, next) => {
         }
         Paging.Pages.push(i);
       }
-      
-      console.log('====================================');
-      console.log(Paging);
-      console.log('====================================');
 
       res.render("category", {
         breadcrumb : breadcrumb[0],

@@ -184,4 +184,35 @@ module.exports = {
     AND post.DatePost < CURRENT_TIMESTAMP()
     AND (post.CatID = ${CatID} or 1=${isCatParent})`);
   },
+  allWithTagIDPaging : (TagID, limit, offset) =>{
+    return db.load(`SELECT post.PostID,
+    post.Title,
+    post.URLImage,
+    post.DatePost,
+    post.Abstract,
+    post.ListTagID,
+    post.isPremium,
+    category.Name AS 'CatName',
+    category.CatID,
+    account.NickName 
+    FROM post 
+    LEFT JOIN category ON post.CatID = category.CatID 
+    LEFT JOIN account ON post.AccID = account.AccID 
+    WHERE post.Status = 1
+    AND post.Approve = 2
+    AND post.DatePost < CURRENT_TIMESTAMP()
+    AND FIND_IN_SET('${TagID}', post.ListTagID)
+    ORDER BY post.DatePost DESC, post.isPremium DESC
+    LIMIT ${limit} OFFSET ${offset}`);
+  },
+  countAllWithTagIDPaging : (TagID) =>{
+    return db.load(`SELECT count(*) as 'TotalPost'
+    FROM post 
+    LEFT JOIN category ON post.CatID = category.CatID 
+    LEFT JOIN account ON post.AccID = account.AccID 
+    WHERE post.Status = 1
+    AND post.Approve = 2
+    AND post.DatePost < CURRENT_TIMESTAMP()
+    AND FIND_IN_SET('${TagID}', post.ListTagID)`);
+  }
 };
