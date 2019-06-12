@@ -4,7 +4,9 @@ var nameDataBase = "webtintucdb";
 module.exports = {
   SinglePageById: id => {
     var sql = `select p.*,a.NickName from post as p ,account as a where  p.PostID = '${id}' and p.AccID 
-        = a.AccID and p.Status ='1' and a.Status ='1' `;
+        = a.AccID and p.Status ='1' and a.Status ='1'
+        AND p.Approve = 2
+        AND p.DatePost < CURRENT_TIMESTAMP()  `;
     return db.load(sql);
   },
   PostByCategogy :(CatID,limit)=>{
@@ -150,11 +152,11 @@ module.exports = {
       if (search != "") {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a,category as c
                 where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1' and a.Status ='1' and c.Status ='1'
-                and p.AccID = '${id}' LIMIT ${Offset},${Limit} `;
+                and p.AccID = '${id}' ORDER BY p.DatePost DESC  LIMIT ${Offset},${Limit}`;
       } else {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a ,category as c
-                where p.AccID = a.AccID and p.AccID = '${id}' and c.CatID = p.CatID and p.Status ='1'  and  a.Status ='1'  and  c.Status ='1'
-                  LIMIT ${Offset},${Limit}
+                where p.AccID = a.AccID and p.AccID = '${id}' and c.CatID = p.CatID and p.Status ='1'  and  a.Status ='1'  and  c.Status ='1' ORDER BY p.DatePost DESC  
+                  LIMIT ${Offset},${Limit} 
                 
                 `;
       }
@@ -162,12 +164,12 @@ module.exports = {
       if (search != "") {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a,category as c
                 where p.AccID = a.AccID and p.AccID = '${id}' and MATCH (p.Title) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1'
-                 and a.Status ='1' and c.Status ='1' and p.DatePost >now() and p.Approve ='2'
+                 and a.Status ='1' and c.Status ='1' and p.DatePost >now() and p.Approve ='2' ORDER BY p.DatePost DESC  
                  LIMIT ${Offset},${Limit} `;
       } else {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a ,category as c
                 where p.AccID = a.AccID and p.AccID = '${id}' and c.CatID = p.CatID and p.Status ='1'  and  a.Status ='1'  and  c.Status ='1'
-                and p.DatePost >now() and p.Approve ='2'
+                and p.DatePost >now() and p.Approve ='2' ORDER BY p.DatePost DESC  
                   LIMIT ${Offset},${Limit}
                 
                 `;
@@ -176,12 +178,12 @@ module.exports = {
       if (search != "") {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a,category as c
                 where p.AccID = a.AccID and p.AccID = '${id}' and MATCH (p.Title) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1'
-                 and a.Status ='1' and c.Status ='1' and p.DatePost < now() and p.Approve ='2'
+                 and a.Status ='1' and c.Status ='1' and p.DatePost < now() and p.Approve ='2' ORDER BY p.DatePost DESC  
                  LIMIT ${Offset},${Limit} `;
       } else {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a ,category as c
                 where p.AccID = a.AccID and p.AccID = '${id}' and c.CatID = p.CatID and p.Status ='1'  and  a.Status ='1'  and  c.Status ='1'
-                and p.DatePost < now() and p.Approve ='2'
+                and p.DatePost < now() and p.Approve ='2' ORDER BY p.DatePost DESC  
                   LIMIT ${Offset},${Limit}
                 
                 `;

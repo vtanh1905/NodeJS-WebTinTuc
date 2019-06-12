@@ -19,7 +19,7 @@ router.get('/post', (req, res, next) => {
       var ArrTag ;
       var ArrCmt;
       //Xet Comment ==0
-      if(row[0].ListComID.length ==0){
+      if(!row[0].ListComID){
          ArrCmt ='-1,-1';
         
       }else{

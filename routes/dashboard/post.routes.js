@@ -75,7 +75,21 @@ router.get('/post', (req, res, next) => {
             }
             element.DatePost = moment(element.DatePost, "YYYY-MM-DD HH:MM").format("DD/MM/YYYY HH:MM");
             var cmt = element.ListComID;
-            element.count = (cmt.split(',')).length;
+            console.log('====================================');
+            console.log(cmt);
+            console.log('====================================');
+            if(cmt==null){
+               
+                element.count=0;
+            }else{
+                if(cmt.length ==0){
+                    element.count=0;
+                }else{
+                    element.count = (cmt.split(',')).length;
+                }
+                
+            }
+            
         });
         res.render('dashboard/manage/post', {
             rows, pages, pageNext, pagePre, search, status, limit

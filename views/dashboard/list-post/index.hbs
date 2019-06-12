@@ -100,17 +100,24 @@
 
                     {{/if}}
                     {{/ifEquals}}
-                    {{#ifEquals Approve '3' }}
-                    <i class="fas fa-minus-circle text-info"></i>
-                    {{/ifEquals}}
-
                 </th>
                 <td class="text-center align-middle">
-                    <img src="{{URLImage}}" class="rounded mx-auto d-block" alt="..." width="100%">
+                    <img {{#if URLImage}}
+                         src="{{URLImage}}" 
+                    {{else}}
+                         src="/images/no-image-available.jpg" 
+                    {{/if}}
+                    
+                         class="rounded mx-auto d-block" alt="..." width="100%">
                 </td>
                 <td class="align-middle">
-                    <a {{#ifEquals Approve '2'}} href="/post?id={{PostID}}" {{/ifEquals}} class="font-weight-bold "
-                        target="_blank" rel="noopener noreferrer">{{Title}}</a>
+                    <a {{#ifEquals Approve '2'}} 
+                    {{#if this.NotYet}} 
+                    {{else}} 
+                      href="/post?id={{PostID}}"
+                    {{/if}} 
+                  
+                        {{/ifEquals}} class="font-weight-bold " target="_blank" rel="noopener noreferrer">{{Title}}</a>
                 </td>
                 <td class="text-center align-middle">{{CateName}}</td>
                 <td class="text-center align-middle">{{DatePost}}</td>
@@ -118,9 +125,10 @@
                 <td class="text-center align-middle">{{Username}}</td>
                 <td class="text-center align-middle">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a {{#ifEquals Approve '0'}} href="/dashboard/list-post/{{PostID}}/edit" class="btn btn-info" {{else}}
-                            {{#ifEquals Approve '1'}} href="/dashboard/list-post/{{PostID}}/edit" class="btn btn-info" {{else}}
-                            class="btn btn-info disabled" {{/ifEquals}} {{/ifEquals}}>Sửa</a>
+                        <a {{#ifEquals Approve '0'}} href="/dashboard/list-post/{{PostID}}/edit" class="btn btn-info"
+                            {{else}} {{#ifEquals Approve '1'}} href="/dashboard/list-post/{{PostID}}/edit"
+                            class="btn btn-info" {{else}} class="btn btn-info disabled" href="#" {{/ifEquals}}
+                            {{/ifEquals}}>Sửa</a>
                         <button type="button" class="btn btn-danger" data-toggle="modal"
                             data-target="#exampleModalCenter1" data-tagid='{{PostID}}'>Xóa</button>
                     </div>
