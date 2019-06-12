@@ -2,10 +2,6 @@ var express = require('express');
 var carddb = require('../../models/card.model');
 var accountdb = require('../../models/account.model');
 var router = express.Router();
-var Handlebars = require('express-handlebars');
-
-
-
 
 // Quản Lý Card
 router.get('/card', (req, res, next) => {
@@ -16,11 +12,13 @@ router.get('/card', (req, res, next) => {
     var offset = (page - 1) * limit;
     var search = req.query.search || "";
     var produce = req.query.productBy || "";
-    var Selected = { select: produce };
-    console.log("producce  "+produce);
-    console.log("search"+search);
+   
+    if(isNaN(limit) || isNaN(page)){
+        res.redirect('/dashboard/approve');
+        return;
+    }
     
-    var Dem = 0;
+   
     Promise.all([
         carddb.alloffset(limit, offset, search, produce),
         carddb.countAll(search, produce),
@@ -28,7 +26,7 @@ router.get('/card', (req, res, next) => {
 
         console.log('rows = ' + rows.length);
         console.log('count rows = ' + count_rows[0].total);
-        var CheckXX = [true, false, false];
+      
         total = count_rows[0].total;
         var nPages = Math.floor(total / limit);
         var pages = [];
@@ -109,7 +107,7 @@ router.post('/card/GiaHan/', (req, res, next) => {
                         console.log(acc);
                         date = XuLiDate(date, row[0].Value);
                         var entity = { DatePremium: date };
-                        accountdb.udpate(acc[0].AccID, entity).then(value => {
+                        accountdb.update(acc[0].AccID, entity).then(value => {
                             if (value > 0) {
                                 var entity = { Status: '0', Check: '1' };
                                 carddb.delete(row[0].CardID, entity).then(n => {
@@ -131,13 +129,17 @@ router.post('/card/GiaHan/', (req, res, next) => {
 
 });
 var curday = (sp) => {
-    today = new Date();
+    var today = new Date();
     var dd = today.getDate();
+    console.log(dd);
+    
     var mm = today.getMonth() + 1; //As January is 0.
+    console.log(mm);
     var yyyy = today.getFullYear();
+    console.log(yyyy);
     if (dd < 10) dd = '0' + dd;
     if (mm < 10) mm = '0' + mm;
-    return (mm + sp + dd + sp + yyyy);
+    return (yyyy + sp + mm + sp + dd );
 };
 var XuLiDate = (date, Value) => {
     var currentday = curday('/');
@@ -146,6 +148,8 @@ var XuLiDate = (date, Value) => {
 
         date = currentday;
     }
+    var date = new Date(date);
+    
     if (Value == 10000) {
         date.setDate(date.getDate() + 7);
 

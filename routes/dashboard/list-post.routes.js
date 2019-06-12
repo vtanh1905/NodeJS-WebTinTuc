@@ -1,6 +1,7 @@
 var express = require("express");
 var tag_model = require("../../models/tag.model");
 var post_model = require("../../models/post.model");
+var moment = require("moment");
 var router = express.Router();
 
 // ==================================================================================================================================================================================================================
@@ -8,7 +9,79 @@ var router = express.Router();
 
 //Danh Sach Bài Viết
 router.get("/list-post", (req, res, next) => {
-  res.render("dashboard/list-post/index", {});
+  var id = res.locals.authUser.AccID;
+  var page = req.query.page || 1;
+  var status = req.query.Status || 4;
+  var search = req.query.Search || "";
+  var limit = req.query.Limit || 10;
+  var offset = (page - 1) * limit;
+  if(isNaN(limit) || isNaN(page) || isNaN(status)){
+    res.redirect('/dashboard/approve');
+    return;
+}
+
+  Promise.all([post_model.allById(status, search, offset, limit,id), post_model.CountallById(status, search,id)]).then(([rows, count_rows]) => {
+      var total = count_rows[0].total;
+      var nPages = Math.floor(total / limit);
+      var pages = [];
+      if (total % limit > 0) nPages++;
+      var Check = page - 3;
+      if (Check < 1) {
+          Check = 1;
+      }
+      var Dem = 0;
+      for (var i = Check; i <= nPages; i++) {
+          var obj = { value: i, active: i === +page };
+          pages.push(obj);
+          if (i > page) {
+              Dem++;
+          }
+          if (Dem == 3) {
+              break;
+          }
+      }
+      var pageNext;
+      var pagePre;
+      if (page < nPages) {
+          pageNext = parseInt(page) + 1;
+      } else {
+          pageNext = 0;
+      }
+      if (page > 1) {
+          pagePre = parseInt(page) - 1;
+      } else {
+          pagePre = 0;
+      }
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      today = mm + '/' + dd + '/' + yyyy;
+      rows.forEach((element, number, arr) => {
+          var tday = new Date(today);
+          var postday = new Date(element.DatePost);
+          if(postday <=tday){
+              element.NotYet= false;
+          }else{
+              element.NotYet= true;
+          }
+          element.DatePost = moment(element.DatePost, "YYYY-MM-DD HH:MM").format("DD/MM/YYYY HH:MM");
+          var cmt = element.ListComID;
+          element.count = (cmt.split(',')).length;
+      });
+     
+
+      res.render('dashboard/list-post/index', {
+          rows, pages, pageNext, pagePre, search, status, limit,
+          helpers: {
+              ifEquals: function (arg1, arg2, options) {
+                  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+              }
+          }
+      });
+
+  }).catch(next);
+  //res.render("dashboard/list-post/index", {});
 });
 
 //Thêm Bài Viết Mới
