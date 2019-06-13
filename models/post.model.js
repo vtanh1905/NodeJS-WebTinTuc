@@ -397,5 +397,11 @@ module.exports = {
     AND post.Approve = 2
     AND post.DatePost < CURRENT_TIMESTAMP()
     AND MATCH (post.Title, post.Abstract) AGAINST ('${StringSearch}')`);
+  },
+  singleWithPostID : (PostID) =>{
+    return db.load(`SELECT * 
+        FROM post 
+        WHERE post.Status = 1
+          AND post.PostID = ${PostID}`);
   }
 };

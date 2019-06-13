@@ -107,8 +107,14 @@ router.get('/approve', (req, res, next) =>{
 
 });
 
-router.get('/approve/edit', (req, res, next) =>{
-    res.render('dashboard/approve/edit', {});
+router.get('/approve/:id/edit', (req, res, next) =>{
+    const POSTID = req.param.id;
+    postdb.singleWithPostID(POSTID).then(DataPost => {
+        res.render('dashboard/approve/edit', {
+            DataPost
+        });
+    }).catch(next);
+    
 });
 
 // Phê duyệt - END
