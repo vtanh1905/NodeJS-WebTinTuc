@@ -5,16 +5,6 @@ var router = express.Router();
 var moment = require("moment");
 // ==================================================================================================================================================================================================================
 // Phê duyệt - START
-var ConverArr = a => {
-  var Temp = [];
-  for (var i = 0; i < a.length; i++) {
-    if (a.charAt(i) != ",") {
-      Temp.push(a.charAt(i));
-    }
-  }
-  return Temp;
-};
-
 router.get("/approve", (req, res, next) => {
   var account = res.locals.authUser;
   var ComId = account.ManageCatID;
@@ -39,7 +29,7 @@ router.get("/approve", (req, res, next) => {
 
     return;
   }
-  var Cat = ConverArr(ComId);
+  var Cat = ComId.split(",");
 
   if (isNaN(limit) || isNaN(page) || isNaN(status)) {
     res.redirect("/dashboard/approve");

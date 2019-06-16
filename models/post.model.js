@@ -318,7 +318,7 @@ module.exports = {
     account.NickName 
     FROM post , category , account 
     WHERE post.CatID = category.CatID 
-    AND (category.CatParent = ${CatID} or 0=${isCatParent})
+    AND ((category.CatParent = ${CatID} or 0=${isCatParent})  or post.CatID = ${CatID})
     AND post.AccID = account.AccID 
     AND post.Status = 1 
     AND post.Approve = 2 
@@ -327,6 +327,7 @@ module.exports = {
     ORDER BY post.DatePost DESC , post.isPremium DESC
     LIMIT ${limit} OFFSET ${offset}`);
   },
+
   countAllWithPaging: (CatID, isCatParent) => {
     return db.load(`SELECT count(*) as 'TotalPost'
     FROM post , category , account 
