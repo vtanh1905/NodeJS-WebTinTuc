@@ -45,6 +45,8 @@
             pdf.save("HTML-Document.pdf");
         });
     };
+
+    $("img").attr("crossOrigin","anonymous");
     $('#exampleModalCenter2').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         // Extract info from data-* attributes
