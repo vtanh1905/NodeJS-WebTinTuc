@@ -302,7 +302,7 @@ module.exports = {
     WHERE post.Status = 1
       AND post.Approve = 2
       AND post.DatePost < CURRENT_TIMESTAMP() 
-    ORDER BY post.DatePost DESC, post.isPremium DESC
+      ORDER BY date(post.DatePost) DESC, post.isPremium DESC, post.PostID DESC
     LIMIT 10 OFFSET ${offset}`);
   },
   allWithPaging: (CatID, isCatParent, limit, offset) => {
@@ -324,7 +324,7 @@ module.exports = {
     AND post.Approve = 2 
     AND post.DatePost < CURRENT_TIMESTAMP()
     AND (post.CatID = ${CatID} or 1=${isCatParent})
-    ORDER BY post.DatePost DESC , post.isPremium DESC
+    ORDER BY date(post.DatePost) DESC, post.isPremium DESC, post.PostID DESC
     LIMIT ${limit} OFFSET ${offset}`);
   },
 
@@ -332,7 +332,7 @@ module.exports = {
     return db.load(`SELECT count(*) as 'TotalPost'
     FROM post , category , account 
     WHERE post.CatID = category.CatID 
-    AND (category.CatParent = ${CatID} or 0=${isCatParent})
+    AND ((category.CatParent = ${CatID} or 0=${isCatParent})  or post.CatID = ${CatID})
     AND post.AccID = account.AccID 
     AND post.Status = 1 
     AND post.Approve = 2 
