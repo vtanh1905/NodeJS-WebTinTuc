@@ -23,10 +23,18 @@ router.post('/post/tl-comment/:id', (req, res, next)=>{
       postdb.singleID(Postid).then(rows=>{
          if(rows.length>0){
                var cmlist= rows[0].ListComID;
-               var repla=  id_parent+',';
-               cmlist = cmlist.replace(repla,'');
-               cmlist = cmlist+','+n;
-               var entity = {ListComID :cmlist};
+
+               cmlist = ConverArr(cmlist);
+              
+               var list="";
+               cmlist.forEach(ele =>{
+                     if(ele != id_parent){
+                        list+=ele+",";
+                     }
+               });
+               list+=n;
+
+               var entity = {ListComID :list};
                postdb.update(Postid,entity).then(n=>{
                   res.redirect('/post?id='+Postid);
                   return;
@@ -38,23 +46,27 @@ router.post('/post/tl-comment/:id', (req, res, next)=>{
 router.post('/post/add-comment/:id', (req, res, next)=>{
    var Acc_id= res.locals.authUser.AccID;
    var Postid = req.params.id;
-   console.log('id la ' +Postid);
+   //console.log('id la ' +Postid);
    
    var content = req.body.comment;
       var today  =  moment().format('YYYY-MM-DD HH:mm');
-      console.log(today);
+     // console.log(today);
       
    var entity = {
       AccID:Acc_id,Content:content,Date:today,Status: '1'
    }
    commentdb.add(entity).then(Id_comment=>{
-      console.log(Id_comment);
+     // console.log(Id_comment);
       
          if(Id_comment>0){
             postdb.singleID(Postid).then(rows=>{
                if(rows.length>0){
                      var cmlist= rows[0].ListComID;
+                    if(!cmlist){
+                     cmlist+=Id_comment;
+                    }else{
                      cmlist = cmlist+','+Id_comment;
+                    }
                      var entity = {ListComID :cmlist};
                      postdb.update(Postid,entity).then(n=>{
                         res.redirect('/post?id='+Postid);
@@ -102,7 +114,7 @@ router.get('/post', (req, res, next) => {
          CheckPre=true;
       }
       //Xet Comment ==0
-      console.log('list comt '+row[0].ListComID);
+     // console.log('list comt '+row[0].ListComID);
       
       if (!row[0].ListComID) {
          ArrCmt = '-1,-1';
@@ -164,7 +176,7 @@ router.get('/post', (req, res, next) => {
          });
          
          
-         console.log(Cmt);
+        // console.log(Cmt);
          
          res.render('post', {
             Content: row[0], Tag: rows_tag, Cmt: Cmt, CatRows: rows_cat, Cate: Cat[0],CheckPre
