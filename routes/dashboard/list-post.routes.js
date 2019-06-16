@@ -6,7 +6,14 @@ var router = express.Router();
 
 // ==================================================================================================================================================================================================================
 // Bai Viết - START
-
+router.post('/list-post/delete',(req, res, next) =>{
+  var id = req.body.id_delete;
+  var entity  ={ Status : '0'};
+  post_model.update(id,entity).then(n =>{
+    res.redirect('/dashboard/list-post');
+    return;
+  }).catch(next);
+});
 //Danh Sach Bài Viết
 router.get("/list-post", (req, res, next) => {
   var id = res.locals.authUser.AccID;
@@ -16,7 +23,7 @@ router.get("/list-post", (req, res, next) => {
   var limit = req.query.Limit || 10;
   var offset = (page - 1) * limit;
   if (isNaN(limit) || isNaN(page) || isNaN(status)) {
-    res.redirect("/dashboard/approve");
+    res.redirect("/dashboard/list-post");
     return;
   }
 
@@ -56,11 +63,11 @@ router.get("/list-post", (req, res, next) => {
       } else {
         pagePre = 0;
       }
-      var today = new Date();
-      var dd = String(today.getDate()).padStart(2, "0");
-      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-      var yyyy = today.getFullYear();
-      today = mm + "/" + dd + "/" + yyyy;
+
+      var today_curr = new Date();
+      var date = today_curr.getFullYear()+'-'+(today_curr.getMonth()+1)+'-'+today_curr.getDate();
+      var time = today_curr.getHours() + ":" + today_curr.getMinutes() + ":" + today_curr.getSeconds();
+      var today = date+' '+time;
       rows.forEach((element) => {
         var tday = new Date(today);
         var postday = new Date(element.DatePost);
@@ -69,8 +76,8 @@ router.get("/list-post", (req, res, next) => {
         } else {
           element.NotYet = true;
         }
-        element.DatePost = moment(element.DatePost, "YYYY-MM-DD HH:MM").format(
-          "DD/MM/YYYY HH:MM"
+        element.DatePost = moment(element.DatePost, "YYYY-MM-DD HH:mm").format(
+          "DD/MM/YYYY HH:mm"
         );
         var cmt = element.ListComID;
         if (cmt == null) {
@@ -85,8 +92,6 @@ router.get("/list-post", (req, res, next) => {
       });
         console.log(rows);
         if(rows.length >0){
-          console.log('>>>>>>>>>>>>>>>>>0');
-          
           res.render("dashboard/list-post/index", {
             Err:false,
             rows,

@@ -144,8 +144,8 @@ router.get("/approve", (req, res, next) => {
           rows.forEach(element => {
             element.DatePost = moment(
               element.DatePost,
-              "YYYY-MM-DD HH:MM"
-            ).format("DD/MM/YYYY HH:MM");
+              "YYYY-MM-DD HH:mm"
+            ).format("DD/MM/YYYY HH:mm");
             var cmt = element.ListComID;
             if (cmt == null) {
               element.count = 0;
@@ -158,6 +158,8 @@ router.get("/approve", (req, res, next) => {
             }
           });
           Check_QuanLi = true;
+          console.log(rows);
+          
           res.render("dashboard/approve", {
             rows,
             CatShow,

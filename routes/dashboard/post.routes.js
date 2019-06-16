@@ -64,11 +64,11 @@ router.get("/post", (req, res, next) => {
       } else {
         pagePre = 0;
       }
-      var today = new Date();
-      var dd = String(today.getDate()).padStart(2, "0");
-      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-      var yyyy = today.getFullYear();
-      today = mm + "/" + dd + "/" + yyyy;
+
+      var today_curr = new Date();
+      var date = today_curr.getFullYear()+'-'+(today_curr.getMonth()+1)+'-'+today_curr.getDate();
+      var time = today_curr.getHours() + ":" + today_curr.getMinutes() + ":" + today_curr.getSeconds();
+      var today = date+' '+time;
       rows.forEach((element, number, arr) => {
         var tday = new Date(today);
         var postday = new Date(element.DatePost);
@@ -77,9 +77,11 @@ router.get("/post", (req, res, next) => {
         } else {
           element.NotYet = true;
         }
-        element.DatePost = moment(element.DatePost, "YYYY-MM-DD HH:MM").format(
-          "DD/MM/YYYY HH:MM"
+        console.log('time truoc  '+element.DatePost);
+        element.DatePost = moment(element.DatePost, "YYYY-MM-DD HH:mm").format(
+          "DD/MM/YYYY HH:mm"
         );
+        console.log('time sau   '+element.DatePost);
         var cmt = element.ListComID;
         if (cmt == null) {
           element.count = 0;

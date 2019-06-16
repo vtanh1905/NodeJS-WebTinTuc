@@ -4,6 +4,21 @@
 {{/section}}
 {{#section 'js'}}
 <script src="/js/manager.js"></script>
+<script>
+      $('#exampleModalCenter1').on('show.bs.modal', function (event) {
+
+    var button = $(event.relatedTarget) // Button that triggered the modal
+
+
+    // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this);
+    var tagid = button.data('tagid');
+    $('#id_delete').val(tagid);
+    console.log(tagid);
+  });
+</script>
 {{/section}}
 <!-- Nav Top -->
 {{> nav-dashboard}}
@@ -180,22 +195,24 @@
 
 <!-- Modal Xóa -->
 <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Xác Nhận</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Bạn có chắc chắn muốn xóa nó chứa ?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary w-50">Có</button>
-                <button type="button" class="btn btn-danger w-50" data-dismiss="modal">Không</button>
-            </div>
-        </div>
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Xác Nhận</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn xóa nó chứa ?</p>
+      </div>
+
+      <form method="POST" class="modal-footer" name="form_delete" action="/dashboard/list-post/delete">
+        <input id="id_delete" name="id_delete" hidden>
+        <button type="submit" id="btn_x" class="btn btn-primary w-50">Có</button>
+        <button type="button" class="btn btn-danger w-50" data-dismiss="modal">Không</button>
+      </form>
     </div>
+  </div>
 </div>
