@@ -42,6 +42,7 @@ require("./middleware/session")(app);
 require("./middleware/passport")(app);
 app.use(require("./middleware/auth-locals"));
 app.use(require("./middleware/nav.mdw"));
+app.use(require("./middleware/hot.mdw"));
 
 //Router
 require("./middleware/router")(app);

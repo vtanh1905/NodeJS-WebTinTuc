@@ -5,7 +5,7 @@ module.exports={
         return db.load('select *  from category where Status = 1');
     },
     allWithParentName:()=>{
-        return db.load(`SELECT CAT2.* , CAT1.Name AS ParentName FROM category CAT1 RIGHT JOIN category CAT2 ON CAT1.CatID = CAT2.CatParent where CAT2.Status = 1 `);
+        return db.load(`SELECT CAT2.* , CAT1.Name AS ParentName FROM category CAT1 RIGHT JOIN category CAT2 ON CAT1.CatID = CAT2.CatParent and CAT1.Status = 1 where CAT2.Status = 1 `);
     },
     single: (id) => {
         return db.load(`select * from category where CatID = ${id}`);
@@ -38,7 +38,7 @@ module.exports={
     singleWithParent : (id) =>{
         return db.load(`SELECT Cat1.CatID, Cat1.Name, Cat2.CatID as 'CatParentID', Cat2.Name as 'CatParentName'
         FROM category AS Cat1 
-        LEFT JOIN category AS Cat2 ON Cat1.CatParent = Cat2.CatID 
+        LEFT JOIN category AS Cat2 ON Cat1.CatParent = Cat2.CatID  and Cat2.Status = 1
         WHERE Cat1.Status = 1 
         AND Cat1.CatID = ${id}`);
     },

@@ -398,5 +398,50 @@ module.exports = {
     AND post.Approve = 2
     AND post.DatePost < CURRENT_TIMESTAMP()
     AND MATCH (post.Title, post.Abstract) AGAINST ('${StringSearch}')`);
+  },
+  singleWithPostID : (PostID) =>{
+    return db.load(`SELECT * 
+        FROM post 
+        WHERE post.Status = 1
+          AND post.PostID = ${PostID}`);
+  },
+  getFiveNewHot: ()=>{
+    return db.load(`SELECT * 
+    FROM webtintucdb.post 
+    where status = 1 and post.Approve = 2 and post.DatePost < cast(cast(now() as date) as datetime)
+    order by  post.View desc, post.isPremium desc
+    limit 0,5`);
+  },
+  getFourImpressPost: ()=>{
+    return db.load(`
+    SELECT * , category.Name as CatName, account.NickName as NickName
+    FROM post
+    Left JOIN category ON post.CatID = category.CatID and category.Status = 1
+    Left JOIN account ON post.AccID = account.AccID and account.Status = 1 
+    where post.status = 1 and post.Approve = 2 and post.DatePost > DATE_ADD(now(), INTERVAL(-WEEKDAY(now())) DAY) and post.DatePost < now()
+    order by  post.View desc, post.isPremium desc
+    limit 0,4`);
+  },
+  getTop10Post: ()=>{
+    return db.load(`SELECT *, category.Name as CatName, account.NickName as NickName
+    FROM post
+    Left JOIN category ON post.CatID = category.CatID and category.Status = 1
+    Left JOIN account ON post.AccID = account.AccID and account.Status = 1 
+    where post.status = 1 and post.Approve = 2 and post.DatePost < cast(cast(now() as date) as datetime)
+    order by  post.View desc, post.isPremium desc
+    limit 0,11`);
+  },
+  getNewestPostPerCat : ()=>{
+    return db.load(`SELECT *, category.Name as CatName, account.NickName as NickName
+    FROM post
+    Left JOIN category ON post.CatID = category.CatID and category.Status = 1 
+    Left JOIN account ON post.AccID = account.AccID and account.Status = 1
+    where post.status = 1 and post.Approve = 2 and post.DatePost < cast(cast(now() as date) as datetime)
+    group by post.CatID
+    having max(DatePost) 
+    order by post.View desc, post.isPremium desc
+    limit 0,10`);
   }
+
+
 };

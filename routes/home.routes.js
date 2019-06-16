@@ -7,8 +7,8 @@ var router = express.Router();
 
 router.get("/", (req, res, next) => {
   // 10 Bài Viết Mới Nhất Mọi Chuyên Mục
-  Promise.all([post_model.getNewPosts(0), tag_model.getAll()])
-    .then(([ListNewsPost, ListTag]) => {
+  Promise.all([post_model.getNewPosts(0), tag_model.getAll(), post_model.getFourImpressPost(), post_model.getTop10Post(), post_model.getNewestPostPerCat()])
+    .then(([ListNewsPost, ListTag,impressPost, top10PostByView,newestPost]) => {
       ListNewsPost.forEach(element => {
         //Fomat DateTime
         element.DatePost = moment(element.DatePost, "YYYY-MM-DD HH:mm").format(
@@ -30,9 +30,63 @@ router.get("/", (req, res, next) => {
           element.ListTag.push(ObjectTag);
         });
       });
+      for(var i of impressPost){
+        i.DatePost = moment(i.DatePost, "YYYY-MM-DD HH:mm").format(
+          "DD/MM/YYYY HH:mm"
+        );
+      }
+      for(var i of top10PostByView){
+        i.DatePost = moment(i.DatePost, "YYYY-MM-DD HH:mm").format(
+          "DD/MM/YYYY HH:mm"
+        );
+      }
+      for(var i of newestPost){
+        i.DatePost = moment(i.DatePost, "YYYY-MM-DD HH:mm").format(
+          "DD/MM/YYYY HH:mm"
+        );
+        
+      }
 
+      var matrixTop10View = [];
+      var index = 0;
+      var listTemp = [];
+      for(var i = 2, counter = 1; i < top10PostByView.length; i++, counter++){
+        listTemp.push(top10PostByView[i]);
+        if(counter === 3) {
+          var entity = {child:[]};
+          matrixTop10View.push(entity);
+          matrixTop10View[index].child = listTemp;
+          index++; counter = 0;
+          listTemp = [];
+        }
+      }
+      
+      var matrixNewest = [];
+      listTemp=[];index = 0;
+      for(var i = 0; i < newestPost.length; i++){
+        listTemp.push(newestPost[i]);
+        if((i + 1) % 5 === 0) {
+          var entity = {child:[]};
+          matrixNewest.push(entity);
+          matrixNewest[index].child = listTemp;
+          index++;
+          listTemp = [];
+        }
+      }
+      
+      matrixNewest[0].active ="active";
+      newestPost[0].active="active";
+      matrixTop10View[0].active = "active";
+      impressPost[0].active = "active";
+
+      
       res.render("index", {
-        ListNewsPost
+        ListNewsPost,
+        impressPost,
+        top10PostByView,
+        matrixTop10View,
+        matrixNewest,
+        newestPost
       });
     })
     .catch(next);
