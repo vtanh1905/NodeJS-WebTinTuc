@@ -84,65 +84,21 @@
 
         <!-- Slide - Slide Main-->
         <div class="carousel-inner">
-            <a href="/post" class="carousel-item active">
-                <img class="d-block w-100 img-fluid" src="https://www.garena.vn/img/game-carousel-lol@2x.850d2756.jpg"
+            {{#each this.impressPost}}
+            <a href="/post?id={{PostID}}" class="carousel-item {{active}}">
+                <img class="d-block w-100 img-fluid" src="{{URLImage}}" style="height:800px"
                     alt="First slide">
                 <div class="carousel-caption text-left w-100 bg-dark-linear-gradient h-50 p-0 justify-content-center d-md-block d-flex"
                     style="left:0; bottom:0;">
                     <div class="position-absolute  px-md-5 px-3" style="bottom: 5px">
-                        <h1 class="font-weight-bold text-reponsive">Âm Dương Sứ: SỰ KIỆN PVP - SƠN THỐ
-                            ĐẠI
-                            CHIẾN</h1>
+                        <h1 class="font-weight-bold text-reponsive">{{Title}}</h1>
                         <p class="d-none d-md-block">
-                            <span class="px-2 py-1 bg-danger text-white">Mobile</span> - 19/05/1998
+                            <span class="px-2 py-1 bg-danger text-white">{{CatName}}</span> - {{DatePost}}
                         </p>
                     </div>
                 </div>
             </a>
-            <a href="/post" class="carousel-item">
-                <img class="d-block w-100 img-fluid" src="https://www.garena.vn/img/game-carousel-bns@2x.88f97343.jpg"
-                    alt="First slide">
-                <div class="carousel-caption text-left w-100 bg-dark-linear-gradient h-50 p-0 justify-content-center d-md-block d-flex"
-                    style="left:0; bottom:0;">
-                    <div class="position-absolute px-md-5 px-3" style="bottom: 5px">
-                        <h1 class="font-weight-bold text-reponsive">Blade And Soul: Thần Đồng May Mắn –
-                            THIÊN
-                            MÃ!</h1>
-                        <p class="d-none d-md-block"> <span class="px-2 py-1 bg-danger text-white">PC</span> -
-                            19/05/1998</p>
-                    </div>
-                </div>
-            </a>
-            <a href="/post" class="carousel-item">
-                <img class="d-block w-100 img-fluid"
-                    src="http://vn.onmyojigame.com/wp-content/uploads/2019/03/ADS_SonThoDaiChien-2.jpg"
-                    alt="First slide">
-                <div class="carousel-caption text-left w-100 bg-dark-linear-gradient h-50 p-0 justify-content-center d-md-block d-flex"
-                    style="left:0; bottom:0;">
-                    <div class="position-absolute px-md-5 px-3" style="bottom: 5px">
-                        <h1 class="font-weight-bold text-reponsive">Liên Minh Huyền Thoại: Giới thiệu Bộ
-                            Truyện tranh</h1>
-                        <p class="d-none d-md-block"> <span class="px-2 py-1 bg-danger text-white">LOL</span> -
-                            19/05/1998</p>
-                    </div>
-                </div>
-            </a>
-            <a href="/post" class="carousel-item">
-                <img class="d-block w-100 img-fluid"
-                    src="https://congngheviet.com/wp-content/uploads/2019/04/avengers-endgame.jpg?fbclid=IwAR2-HqqIEVFkGOD6y2WkwdQr71Zxp4N8kpjOJM3tfODH997bs4l-edfgJos"
-                    alt="First slide">
-                <div class="carousel-caption text-left w-100 bg-dark-linear-gradient h-50 p-0 justify-content-center d-md-block d-flex"
-                    style="left:0; bottom:0;">
-                    <div class="position-absolute px-md-5 px-3" style="bottom: 5px">
-                        <h1 class="font-weight-bold text-reponsive">Avengers: Endgame thu 1,2 tỷ USD sau
-                            5
-                            ngày, kỷ lục thế giới</h1>
-                        <p class="d-none d-md-block"> <span class="px-2 py-1 bg-danger text-white">Phim Ảnh</span> -
-                            19/05/1998</p>
-                    </div>
-                </div>
-            </a>
-
+            {{/each}}           
         </div>
 
         <!-- Click Move Page - Slide Main-->
@@ -165,39 +121,43 @@
         <!-- The first big card -->
         <div class="col-md no-gutters col-12">
             <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset; ">
-                <a href="/post" title="title-link" class="">
-                    <img class="img-fluid" src="https://images2.alphacoders.com/206/thumb-1920-206292.jpg" alt=""
+                {{#with this.top10PostByView.[0]}}   
+                    <a href="/post?id={{PostID}}" title="title-link" class="">
+                    <img class="w-100" src="{{URLImage}}" alt="" height="350px" 
                         title="title-image" style="background-size:cover;" />
                     <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                        <div class=" font-weight-bold testOfnewest pr-3">Cuộc chiến của những nhà đứng đầu lo
+                        <div class=" font-weight-bold testOfnewest pr-3">{{Title}}
                         </div>
-                        <small class="font-weight-bold"><span class="text-danger">VGA</span> - 22/04/2019
-                            17:14</small>
+                        <small class="font-weight-bold"><span class="text-danger">{{NickName}}</span> - {{DatePost}}</small>
                     </div>
-                </a>
-                <div class="position-absolute " style="top:0%; left: 3%">
-                    <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">PC</a>
-                </div>
+                    </a>
+                
+                    <div class="position-absolute " style="top:0%; left: 3%">
+                        <a class="badge badge-danger  text-white text-decoration-none " href="/category/{{CatID}}">{{CatName}}</a>
+                    </div>
+                {{/with}}
             </div>
         </div>
 
         <div style="width:3px;"></div>
 
         <div class="col-md no-gutters col-12">
-            <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                <a href="/post" title="title-link">
-                    <img class="img-fluid" src="https://images4.alphacoders.com/118/thumb-1920-118414.jpg" alt=""
-                        title="title-image" />
+            <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset; ">
+                {{#with this.top10PostByView.[1]}}   
+                    <a href="/post?id={{PostID}}" title="title-link" class="">
+                    <img class="w-100" src="{{URLImage}}" alt="" height="350px" 
+                        title="title-image" style="background-size:cover;" />
                     <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                        <div class=" font-weight-bold  testOfnewest  pr-3">CS:GO Sự tái sinh của một vị vua lo
+                        <div class=" font-weight-bold testOfnewest pr-3">{{Title}}
                         </div>
-                        <small class="font-weight-bold"><span class="text-danger">VGA</span> - 22/04/2019
-                            17:14</small>
+                        <small class="font-weight-bold"><span class="text-danger">{{NickName}}</span> - {{DatePost}}</small>
                     </div>
-                </a>
-                <div class="position-absolute " style="top:0%; left: 3%">
-                    <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">CSGO</a>
-                </div>
+                    </a>
+                
+                    <div class="position-absolute " style="top:0%; left: 3%">
+                        <a class="badge badge-danger  text-white text-decoration-none " href="/category/{{CatID}}">{{CatName}}</a>
+                    </div>
+                {{/with}}
             </div>
         </div>
 
@@ -207,188 +167,36 @@
     <div id="demo" class="carousel slide d-md-block d-none" data-ride="carousel">
 
         <!-- The slideshow - 3 images -->
+        
         <div class="carousel-inner">
-            <div class="carousel-item active">
+            {{#each this.matrixTop10View}}
+            <div class="carousel-item {{active}}">
                 <div class="row">
-                    <div class="col">
+                    {{#each child}}
+                    <div class="col-md-4">
                         <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images2.alphacoders.com/522/thumb-1920-522622.jpg"
-                                    alt="" title="title-image" />
+                            
+                            <a href="/post?id={{PostID}}" title="title-link" class="">
+                                <img class="w-100" src="{{URLImage}}" alt="" height="200px"
+                                    title="title-image" style="background-size:cover;" />
                                 <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold testOfnewestSmall">Ác quỷ và thiên thần.
+                                    <div class=" font-weight-bold testOfnewest pr-3">{{Title}}
                                     </div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
+                                    <small class="font-weight-bold"><span class="text-danger">{{NickName}}</span> - {{DatePost}}</small>
                                 </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Ngoài nước</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images4.alphacoders.com/606/thumb-1920-606667.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold  testOfnewestSmall">Zoro: Quỷ kiếm</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
+                                </a>
+                            
+                                <div class="position-absolute " style="top:0%; left: 3%">
+                                    <a class="badge badge-danger  text-white text-decoration-none " href="/category/{{CatID}}">{{this.CatName}}</a>
                                 </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Android</a>
-                            </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images3.alphacoders.com/723/thumb-1920-72397.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold  testOfnewestSmall">Khi màn đêm buông
-                                        xuống</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Trong nước</a>
-                            </div>
-                        </div>
-                    </div>
+                    </div>                   
+                    {{/each}}                                           
                 </div>
-            </div>
-            <div class="carousel-item ">
-                <div class="row">
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images2.alphacoders.com/522/thumb-1920-522622.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold  testOfnewestSmall">Khi sát thủ lên báo
-                                    </div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">IOS</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images5.alphacoders.com/508/508365.jpg" alt=""
-                                    title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold testOfnewestSmall">Chuẩn bị mở khẩu trang
-                                    </div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Trong nước</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images5.alphacoders.com/301/301609.jpg" alt=""
-                                    title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold testOfnewestSmall">Đêm, bạn hay mơ về
-                                        điều gì</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Công nghệ</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="row">
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images4.alphacoders.com/153/thumb-1920-153504.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold testOfnewestSmall">Sức mạnh của tình yêu
-                                    </div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Công nghệ</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images4.alphacoders.com/105/thumb-1920-105706.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold testOfnewestSmall">Cuộc đua kỳ thú</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Phim ảnh</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images8.alphacoders.com/570/thumb-1920-570875.png"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold testOfnewestSmall">End Game, đấu chấm hết
-                                        của mavel?</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Phim ảnh</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div> 
+            {{/each}}
+            
+           
         </div>
 
         <!-- Left and right controls -->
@@ -405,219 +213,26 @@
     <div id="demo1" class="carousel slide d-md-none d-block " data-ride="carousel">
         <div class="carousel-inner">
             <!-- 1 -->
-            <div class="carousel-item active">
+            {{#each this.top10PostByView}}
+            <div class="carousel-item {{active}}">
                 <div class="col-md no-gutters col-12">
                     <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images2.alphacoders.com/522/thumb-1920-522622.jpg"
+                        <a href="/post?id={{PostID}}" title="title-link">
+                            <img class="img-fluid" src="{{URLImage}}"
                                 alt="" title="title-image" />
                             <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
+                                <div class="font-weight-bold text-reponsive-small">{{Title}}</div>
+                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">{{NickName}}</span>{{DatePost}}</small>
                             </div>
                         </a>
 
                         <div class="position-absolute " style="top:0%; left: 3%">
-                            <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Công
-                                nghệ</a>
+                            <a class="badge badge-danger  text-white text-decoration-none " href="/category/{{CatID}}">{{CatName}}</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- 2 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images2.alphacoders.com/522/thumb-1920-522622.jpg"
-                                alt="" title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold  text-reponsive-small">Thị trường
-                                    Fintech Vietnam 2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute " style="top:0%; left: 3%">
-                            <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Công
-                                nghệ</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 3 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images7.alphacoders.com/587/thumb-1920-587593.png"
-                                alt="" title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute " style="top:0%; left: 3%">
-                            <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Công
-                                nghệ</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 4 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images2.alphacoders.com/522/thumb-1920-522622.jpg"
-                                alt="" title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute " style="top:0%; left: 3%">
-                            <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Công
-                                nghệ</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 5 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images4.alphacoders.com/606/thumb-1920-606667.jpg"
-                                alt="" title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute " style="top:0%; left: 3%">
-                            <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Công
-                                nghệ</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 6 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images3.alphacoders.com/723/thumb-1920-72397.jpg" alt=""
-                                title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute " style="top:0%; left: 3%">
-                            <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Công
-                                nghệ</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 7 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images5.alphacoders.com/508/508365.jpg" alt=""
-                                title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute " style="top:0%; left: 3%">
-                            <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Liên
-                                minh huyền thoại</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 8 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images5.alphacoders.com/301/301609.jpg" alt=""
-                                title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute " style="top:0%; left: 3%">
-                            <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Đột
-                                kích</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 9 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom_content  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images4.alphacoders.com/153/thumb-1920-153504.jpg"
-                                alt="" title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute " style="top:0%; left: 3%">
-                            <a class="badge badge-danger  text-white text-decoration-none " href="danh-muc.html">Công
-                                nghệ</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{/each}}
 
         </div>
         <a class="carousel-control-prev" href="#demo1" data-slide="prev">
@@ -717,295 +332,34 @@
 
         <!-- The slideshow - 5 images -->
         <div class="carousel-inner ">
-            <div class="carousel-item active">
+            {{#each this.matrixNewest }}
+            <div class="carousel-item {{active}}">
                 <div class="row">
+                    {{#each this.child}}
                     <div class="col">
                         <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images2.alphacoders.com/522/thumb-1920-522622.jpg"
+                            <a href="/post?id={{PostID}}" title="title-link">
+                                <img class="w-100" src="{{URLImage}}" height="200px"
                                     alt="" title="title-image" />
                                 <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold text-reponsive-small">Ác quỷ và thiên thần.
+                                    <div class=" font-weight-bold text-reponsive-small">{{Title}}
                                     </div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
+                                    <small class="font-weight-bold"><span class="text-danger">{{NickName}}</span> -
+                                        {{DatePost}}</small>
                                 </div>
                             </a>
 
                             <div class="position-absolute " style="top:0%; left: 3%">
                                 <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Ngoài nước</a>
+                                    href="/category/{{CatID}}">{{CatName}}</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images4.alphacoders.com/606/thumb-1920-606667.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold  text-reponsive-small">Zoro: Quỷ kiếm</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Ngoài nước</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images3.alphacoders.com/723/thumb-1920-72397.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold  text-reponsive-small">Khi màn đêm buông
-                                        xuống</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Phim ảnh</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images4.alphacoders.com/606/thumb-1920-606667.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold  text-reponsive-small">Zoro: Quỷ kiếm</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Ngoài nước</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images3.alphacoders.com/723/thumb-1920-72397.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold  text-reponsive-small">Khi màn đêm buông
-                                        xuống</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Phim ảnh</a>
-                            </div>
-                        </div>
-                    </div>
+                    {{/each}}
                 </div>
             </div>
-            <div class="carousel-item ">
-                <div class="row">
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images2.alphacoders.com/522/thumb-1920-522622.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold  text-reponsive-small">Khi sát thủ lên báo
-                                    </div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Trong nước</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images5.alphacoders.com/508/508365.jpg" alt=""
-                                    title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold text-reponsive-small">Chuẩn bị mở khẩu trang
-                                    </div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Trong nước</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images5.alphacoders.com/301/301609.jpg" alt=""
-                                    title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold text-reponsive-small">Đêm, bạn hay mơ về
-                                        điều gì</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Công nghệ</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images5.alphacoders.com/508/508365.jpg" alt=""
-                                    title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold text-reponsive-small">Chuẩn bị mở khẩu trang
-                                    </div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Ngoài nước</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images5.alphacoders.com/301/301609.jpg" alt=""
-                                    title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold text-reponsive-small">Đêm, bạn hay mơ về
-                                        điều gì</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Trong nước</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="row">
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images4.alphacoders.com/153/thumb-1920-153504.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold text-reponsive-small">Sức mạnh của tình yêu
-                                    </div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">
-                                Android</div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images4.alphacoders.com/105/thumb-1920-105706.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold text-reponsive-small">Cuộc đua kỳ thú</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">IOS</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images8.alphacoders.com/570/thumb-1920-570875.png"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold testOfnewestSmall">End Game, đấu chấm hết</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Phim ảnh</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images4.alphacoders.com/105/thumb-1920-105706.jpg"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold text-reponsive-small">Cuộc đua kỳ thú</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">Liên minh huyền thoại</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                            <a href="/post" title="title-link">
-                                <img class="img-fluid" src="https://images8.alphacoders.com/570/thumb-1920-570875.png"
-                                    alt="" title="title-image" />
-                                <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                    <div class=" font-weight-bold text-reponsive-small">End Game, đấu chấm hết</div>
-                                    <small class="font-weight-bold"><span class="text-danger">VGA</span> -
-                                        22/04/2019 17:14</small>
-                                </div>
-                            </a>
-
-                            <div class="position-absolute " style="top:0%; left: 3%">
-                                <a class="badge badge-danger  text-white text-decoration-none "
-                                    href="danh-muc.html">CSGO</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{/each}}
+            
         </div>
 
         <!-- Left and right controls -->
@@ -1022,201 +376,30 @@
     <div id="nav-bottom-1" class="carousel slide d-xl-none d-block p-3" data-ride="carousel">
         <div class="carousel-inner">
             <!-- 1 -->
-            <div class="carousel-item active">
+            {{#each this.newestPost}}
+            <div class="carousel-item {{active}}">
                 <div class="col-md no-gutters col-12">
                     <div class="card bg-dark text-white zoom border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images2.alphacoders.com/522/thumb-1920-522622.jpg"
+                        <a href="/post?id={{PostID}}" title="title-link">
+                            <img class="img-fluid" src="{{URLImage}}"
                                 alt="" title="title-image" />
                             <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
+                                <div class="font-weight-bold text-reponsive-small">{{Title}}</div>
+                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">{{NickName}}</span>
+                                    {{DatePost}}</small>
                             </div>
                         </a>
 
-                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game
+                        <a>
+
+                        <div class="position-absolute " style="top:0%; left: 3%">
+                            <a class="badge badge-danger  text-white text-decoration-none " href="/category/{{CatID}}">{{CatName}}</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- 2 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images2.alphacoders.com/522/thumb-1920-522622.jpg"
-                                alt="" title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold  text-reponsive-small">Thị trường
-                                    Fintech Vietnam 2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 3 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images7.alphacoders.com/587/thumb-1920-587593.png"
-                                alt="" title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 4 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images2.alphacoders.com/522/thumb-1920-522622.jpg"
-                                alt="" title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 5 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images4.alphacoders.com/606/thumb-1920-606667.jpg"
-                                alt="" title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 6 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images3.alphacoders.com/723/thumb-1920-72397.jpg" alt=""
-                                title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 7 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images5.alphacoders.com/508/508365.jpg" alt=""
-                                title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 8 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images5.alphacoders.com/301/301609.jpg" alt=""
-                                title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các
-                                    công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 9 -->
-            <div class="carousel-item">
-                <div class="col-md no-gutters col-12">
-                    <div class="card bg-dark text-white zoom  border-0" style="border-radius: unset;">
-                        <a href="/post" title="title-link">
-                            <img class="img-fluid" src="https://images4.alphacoders.com/153/thumb-1920-153504.jpg"
-                                alt="" title="title-image" />
-                            <div class="card-img-overlay bg-dark-linear-gradient text-white" style="top:unset;">
-                                <div class="font-weight-bold text-reponsive-small">Thị trường Fintech Vietnam
-                                    2019 Các công ty Công nghệ</div>
-                                <small class="font-weight-bold d-none d-md-block"><span class="text-danger">VGA</span>
-                                    22/04/2019
-                                    17:14</small>
-                            </div>
-                        </a>
-
-                        <div class="position-absolute bg-danger px-2 text-white" style="top:0%; left: 3%">Game
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{/each}}
+            
 
         </div>
         <a class="carousel-control-prev" href="#nav-bottom-1" data-slide="prev">
