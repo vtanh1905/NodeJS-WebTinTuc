@@ -58,7 +58,9 @@ module.exports = {
     db.load(
       `SELECT * FROM account WHERE Username = "${username}" AND Status = 1`
     ),
-  single: id => db.load(`SELECT * FROM account WHERE AccID = ${id}`),
+  single: id =>{
+    return db.load(`SELECT * FROM account WHERE AccID = ${id}`);
+  } ,
   update: (id, entity) => db.update("account", "AccID", id, entity),
   delete: id => db.delete("account", "AccID", id)
 };

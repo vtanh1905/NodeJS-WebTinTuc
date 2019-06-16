@@ -17,18 +17,25 @@ var ConverArr = (a) => {
 router.get('/approve', (req, res, next) =>{
     var account = res.locals.authUser;
     var ComId = account.ManageCatID;
-    if(ComId == null){
-      
-        return;
-    }
-    var Cat = ConverArr(ComId);
     var page = req.query.page || 1;
     var status = req.query.Status || -1;
-    
-    console.log('status = '+status);
     var search = req.query.Search || "";
     var limit = req.query.Limit || 10;
     var offset = (page - 1) * limit;
+    if(ComId == null){
+        Check_QuanLi = false;
+            res.render('dashboard/approve', {Check_QuanLi, search, status, limit,
+                helpers: {
+                    ifEquals: function (arg1, arg2, options) {
+                        return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+                    }
+                }
+            });
+        
+        return;
+    }
+    var Cat = ConverArr(ComId);
+   
 
    if(isNaN(limit) || isNaN(page) || isNaN(status)){
        res.redirect('/dashboard/approve');
@@ -36,13 +43,26 @@ router.get('/approve', (req, res, next) =>{
    }
 
     postdb.AllCatInArr(Cat).then(rows =>{
+        var Check_QuanLi= true;
         //Danh sach thu muc hien thi
         var  CatShow= [];
         //Danh sach ID de lay post
         var CatID= [];
+        
+        // khong quan li bat ki thu muc nao
+        if(rows.length ==0){
+            Check_QuanLi = false;
+            res.render('dashboard/approve', {Check_QuanLi,rows, search, status, limit,
+                helpers: {
+                    ifEquals: function (arg1, arg2, options) {
+                        return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+                    }
+                }
+            });
+                return;
+        }
         //Lay ten cac thu muc
         rows.forEach(element => {
-               
             var ele = {
                 name: element.Name,
                 Id :element.CatID
@@ -56,6 +76,19 @@ router.get('/approve', (req, res, next) =>{
         }
         console.log(CatShow);
         Promise.all([postdb.AllByCatID(search,offset,limit,CatID),postdb.CountAllByCatID(search,CatID)]).then(([rows,rows_count])=>{
+            
+            if(rows.length ==0){
+                Check_QuanLi = false;
+                res.render('dashboard/approve', {Check_QuanLi,rows, search, status, limit,
+                    helpers: {
+                        ifEquals: function (arg1, arg2, options) {
+                            return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+                        }
+                    }
+                });
+                    return;
+            }
+            
             var total = rows_count[0].total;
             var nPages = Math.floor(total / limit);
             var pages = [];
@@ -90,9 +123,20 @@ router.get('/approve', (req, res, next) =>{
             rows.forEach((element) => {
                 element.DatePost = moment(element.DatePost, "YYYY-MM-DD HH:MM").format("DD/MM/YYYY HH:MM");
                 var cmt = element.ListComID;
-                element.count = (cmt.split(',')).length;
+                if(cmt==null){
+               
+                    element.count=0;
+                }else{
+                    if(cmt.length ==0){
+                        element.count=0;
+                    }else{
+                        element.count = (cmt.split(',')).length;
+                    }
+                    
+                }
             });
-            res.render('dashboard/approve', {rows,CatShow,pages, pageNext, pagePre, search, status, limit,
+            Check_QuanLi=true;
+            res.render('dashboard/approve', {rows,CatShow,pages, pageNext, pagePre, search, status, limit, Check_QuanLi,
                 helpers: {
                     ifEquals: function (arg1, arg2, options) {
                         return (arg1 == arg2) ? options.fn(this) : options.inverse(this);

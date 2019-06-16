@@ -41,5 +41,6 @@ module.exports={
         LEFT JOIN category AS Cat2 ON Cat1.CatParent = Cat2.CatID 
         WHERE Cat1.Status = 1 
         AND Cat1.CatID = ${id}`);
-    }
+    },
+    
 }

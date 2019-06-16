@@ -2,8 +2,6 @@
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="images/logo-web.png">
 <title>Tìm Kiếm - GameX</title>
-{{/section}}
-
 <style>
     .binhluan {
         color: blue;
@@ -15,127 +13,177 @@
         font-weight: bold;
     }
 </style>
+{{/section}}
+
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
+    integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+    crossorigin="anonymous"></script>
+<script src="/js/html2canvas.js"></script>
+<script>
+    function getPDF() {
+        console.log("dowload");
+        var HTML_Width = $("#canvas_div_pdf").width();
+        var HTML_Height = $("#canvas_div_pdf").height();
+        var top_left_margin = 15;
+        var PDF_Width = HTML_Width + (top_left_margin * 2);
+        var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+        var canvas_image_width = HTML_Width;
+        var canvas_image_height = HTML_Height;
+        var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+        html2canvas($("#canvas_div_pdf")[0], { allowTaint: true }).then(function (canvas) {
+            canvas.getContext('2d');
+            console.log(canvas.height + "  " + canvas.width);
+            var imgData = canvas.toDataURL("image/jpeg", 1.0);
+            var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+            pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+            for (var i = 1; i <= totalPDFPages; i++) {
+                pdf.addPage(PDF_Width, PDF_Height);
+                pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
+            }
+            pdf.save("HTML-Document.pdf");
+        });
+    };
+</script>
+{{/section}}
+
 
 
 
 <header>
     <!-- Menu Top + Slide Main -->
     {{> nav  fixed-top=false}}
+
 </header>
 
 <main class="container mt-3">
     <!-- Breadcumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb px-3 py-1" style="border-left: 4px solid red;">
-            <li class="breadcrumb-item small"><a href="index.html"><i class="fas fa-home"></i> Trang Chủ</a></li>
-            <li class="breadcrumb-item small"><a href="danh-muc.html">Game Online</a></li>
-            <li class="breadcrumb-item small"><a href="danh-muc.html">Trong Nước</a></li>
-            <li class="breadcrumb-item small active" aria-current="page">Rồng trắng mắt xanh - Quân bài vô địch thiên hạ
-                sắp được tung hoành tại Đột Kích</li>
+            <li class="breadcrumb-item small"><a href="/"><i class="fas fa-home"></i> Trang Chủ</a></li>
+            {{#if Cate.CatParentID}}
+            <li class="breadcrumb-item small"><a href="/category/{{Cate.CatParentID}}">{{Cate.CatParentName}}</a></li>
+            {{else}}
+
+            {{/if}}
+            <li class="breadcrumb-item small"><a href="/category/{{Cate.CatID}}">{{Cate.Name}}</a></li>
+            <li class="breadcrumb-item small active" aria-current="page">{{Content.Title}}</li>
         </ol>
     </nav>
+    <div id="canvas_div_pdf">
+        <!-- Title -->
+        <h2 class="font-weight-bold text-justify">{{this.Content.Title}}</h2>
 
-    <!-- Title -->
-    <h2 class="font-weight-bold text-justify">{{this.Content.Title}}</h2>
+        <!-- Ảnh Đại Diện -->
+        <p>
+            <img alt="Rồng trắng mắt xanh - Quân bài vô địch thiên hạ sắp được tung hoành tại Đột Kích"
+                src="{{Content.URLImage}}" style="display: inline-block;" class="img-fluid d-block w-100">
+        </p>
+        <!-- Name Author + Date Post -->
+        <small class="font-weight-bold"><span class="text-danger">{{this.Content.NickName}}</span> -
+            {{this.Content.DatePost}}</small>
 
-    <!-- Ảnh Đại Diện -->
-    <p>
-        <img alt="Rồng trắng mắt xanh - Quân bài vô địch thiên hạ sắp được tung hoành tại Đột Kích"
-            src="{{Content.URLImage}}" style="display: inline-block;" class="img-fluid d-block w-100">
-    </p>
-    <!-- Name Author + Date Post -->
-    <small class="font-weight-bold"><span class="text-danger">{{this.Content.NickName}}</span> -
-        {{this.Content.DatePost}}</small>
+        <hr>
 
-    <hr>
-
-    <!-- Bài Viết + Các Bài Viết Liên Quan -->
-    <div class="row">
-        <!-- Bài Viết + Từ Khóa -->
-        <div class="col-sm-9 col-md-9">
-            <!-- Bài Viết -->
-            <div class="text-justify">
-                {{{this.Content.Content}}}
-            </div>
-            <!-- Từ Khóa -->
-            <div>
-                <hr>
-                Từ Khóa :
-                {{#each this.Tag }}
-                <a href="#" class="badge badge-danger text-white">{{this.Name}}</a>
-                {{/each}}
-                <hr>
-            </div>
-        </div>
-
-
-        <!-- DownLoad  Các Bài Viết Liên Quan -->
-        <div class="col-sm-3 col-md-3">
-            <!-- DownLoad -->
-            <div class="card">
-                <div class="card-body">
-                    <button button type="button" class="btn btn-primary btn-block" data-toggle="modal"
-                        data-target="#exampleModalCenter1">
-                        <i class="fas fa-arrow-down"></i> Tải Xuống
-                    </button>
+        <!-- Bài Viết + Các Bài Viết Liên Quan -->
+        <div class="row">
+            <!-- Bài Viết + Từ Khóa -->
+            <div class="col-sm-9 col-md-9">
+                {{#if CheckPre}}
+                <div class="text-justify" id="content_page">
+                    {{{this.Content.Content}}}
                 </div>
-            </div>
+                <!-- Từ Khóa -->
+                <div>
+                    <hr>
+                    Từ Khóa :
+                    {{#each this.Tag }}
+                    <a href="#" class="badge badge-danger text-white">{{this.Name}}</a>
+                    {{/each}}
+                    <hr>
+                </div>
+                {{else}}
+                <h1>Xem the lol nao dc</h1>
+                {{/if}}
+                <!-- Bài Viết -->
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Đăng Nhập</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <button type="button" class="btn btn-block text-left" style="background: #f4f4f2">
-                                <div class="d-inline-block logo-icon text-center" style="background: #4267B2;">
-                                    <i class="fab fa-facebook-f text-white"></i>
-                                </div>
-                                <span class="font-weight-bold ml-md-3 ml-sm-2">Kết nối bằng Facebook</span>
-                            </button>
-                            <button type="button" class="btn btn-block text-left" style="background: #f4f4f2">
-                                <div class="d-inline-block logo-icon text-center" style="background: #da4c40;">
-                                    <i class="fab fa-google text-white"></i>
-                                </div>
-                                <span class="font-weight-bold ml-md-3 ml-sm-2">Kết nối bằng Gmail</span>
-                            </button>
-                            <div class="text-center text-uppercase my-3">
-                                HOẶC DÙNG TÀI KHOẢN CỦA BẠN
+            </div>
+            <!-- DownLoad  Các Bài Viết Liên Quan -->
+            <div class="col-sm-3 col-md-3">
+                <!-- DownLoad -->
+                <div class="card">
+                    <div class="card-body">
+                        {{#if CheckPre}}
+                             <button  type="button" onclick="getPDF()" class="btn btn-primary btn-block ">
+                            <i class="fas fa-arrow-down "></i> Tải Xuống
+                        </button>
+                        {{else}}
+                             <button disabled type="button" title="Không thể dowload"  data-target="tooltip" class="btn btn-primary btn-block ">
+                            <i class="fas fa-arrow-down "></i> Tải Xuống
+                        </button>
+                        {{/if}}
+                       
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Đăng Nhập</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="row p-3">
-                                <a class="btn btn-primary col-md-4 offset-md-1 mb-3 mb-md-0" href="#" role="button">Đăng
-                                    Nhập</a>
-                                <a class="btn btn-primary col-md-4 offset-md-2" href="#" role="button">Đăng Ký</a>
+                            <div class="modal-body">
+                                <button type="button" class="btn btn-block text-left" style="background: #f4f4f2">
+                                    <div class="d-inline-block logo-icon text-center" style="background: #4267B2;">
+                                        <i class="fab fa-facebook-f text-white"></i>
+                                    </div>
+                                    <span class="font-weight-bold ml-md-3 ml-sm-2">Kết nối bằng Facebook</span>
+                                </button>
+                                <button type="button" class="btn btn-block text-left" style="background: #f4f4f2">
+                                    <div class="d-inline-block logo-icon text-center" style="background: #da4c40;">
+                                        <i class="fab fa-google text-white"></i>
+                                    </div>
+                                    <span class="font-weight-bold ml-md-3 ml-sm-2">Kết nối bằng Gmail</span>
+                                </button>
+                                <div class="text-center text-uppercase my-3">
+                                    HOẶC DÙNG TÀI KHOẢN CỦA BẠN
+                                </div>
+                                <div class="row p-3">
+                                    <a class="btn btn-primary col-md-4 offset-md-1 mb-3 mb-md-0" href="#"
+                                        role="button">Đăng
+                                        Nhập</a>
+                                    <a class="btn btn-primary col-md-4 offset-md-2" href="#" role="button">Đăng Ký</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Các Bài Viết Liên Quan -->
-            <div class="card mt-3">
-                <div class="card-header text-danger font-weight-bold h5 text-uppercase" style="">
-                    Tin Liên Quan
+                <!-- Các Bài Viết Liên Quan -->
+                <div class="card mt-3">
+                    <div class="card-header text-danger font-weight-bold h5 text-uppercase" style="">
+                        Tin Liên Quan
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {{#each CatRows}}
+                        <a href="/post?id={{PostID}}" class="list-group-item list-group-item-action">
+                            <figure class="figure">
+                                <img src="{{URLImage}}" class="figure-img img-fluid" alt="...">
+                                <figcaption class="figure-caption font-weight-bold text-justify">{{Title}}</figcaption>
+                            </figure>
+                        </a>
+                        {{/each}}
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush">
-                     {{#each CatRows}}
-                     <a href="/post?id={{PostID}}" class="list-group-item list-group-item-action">
-                        <figure class="figure">
-                            <img src="{{URLImage}}"
-                                class="figure-img img-fluid" alt="...">
-                            <figcaption class="figure-caption font-weight-bold text-justify">{{Title}}</figcaption>
-                        </figure>
-                    </a>
-                     {{/each}}
-                </ul>
             </div>
         </div>
     </div>
+
 
     <!-- Box Đăng Bình Luận -->
     <form action="">
@@ -160,20 +208,20 @@
                     <img class="justify-content-center rounded-circle " src="{{element.CmtLevel2.AvatarCha}}" alt="..."
                         width="64px" height="64px">
                 </div>
-                <div class="justify-content-center d-flex mt-1 mb-0">                 
-                        {{#ifEquals element.CmtLevel2.TypeCha '0'}}
-                            <p class="badge badge-secondary">Member</p>
-                        {{/ifEquals}}
-                        {{#ifEquals element.CmtLevel2.TypeCha '1'}}
-                            <p class="badge badge-secondary">Writer</p>
-                        {{/ifEquals}}
-                          {{#ifEquals element.CmtLevel2.TypeCha '2'}}
-                            <p class="badge badge-danger">Editor</p>
-                        {{/ifEquals}}
-                          {{#ifEquals element.CmtLevel2.TypeCha '3'}}
-                            <p class="badge badge-warning">Admin</p>
-                        {{/ifEquals}}
- 
+                <div class="justify-content-center d-flex mt-1 mb-0">
+                    {{#ifEquals element.CmtLevel2.TypeCha '0'}}
+                    <p class="badge badge-secondary">Member</p>
+                    {{/ifEquals}}
+                    {{#ifEquals element.CmtLevel2.TypeCha '1'}}
+                    <p class="badge badge-secondary">Writer</p>
+                    {{/ifEquals}}
+                    {{#ifEquals element.CmtLevel2.TypeCha '2'}}
+                    <p class="badge badge-danger">Editor</p>
+                    {{/ifEquals}}
+                    {{#ifEquals element.CmtLevel2.TypeCha '3'}}
+                    <p class="badge badge-warning">Admin</p>
+                    {{/ifEquals}}
+
                 </div>
                 <h5 class="font-weight-bold ">{{element.CmtLevel2.NickNameCha}}</h5>
             </div>
@@ -192,19 +240,19 @@
                                 width="64px" height="64px">
                         </div>
                         <div class="justify-content-center d-flex mt-1 mb-0">
-                             {{#ifEquals Type '0'}}
+                            {{#ifEquals Type '0'}}
                             <p class="badge badge-secondary">Member</p>
-                        {{/ifEquals}}
-                        {{#ifEquals Type '1'}}
+                            {{/ifEquals}}
+                            {{#ifEquals Type '1'}}
                             <p class="badge badge-secondary">Writer</p>
-                        {{/ifEquals}}
-                          {{#ifEquals Type '2'}}
+                            {{/ifEquals}}
+                            {{#ifEquals Type '2'}}
                             <p class="badge badge-danger">Editor</p>
-                        {{/ifEquals}}
-                          {{#ifEquals Type '3'}}
+                            {{/ifEquals}}
+                            {{#ifEquals Type '3'}}
                             <p class="badge badge-warning">Admin</p>
-                        {{/ifEquals}}
-                           
+                            {{/ifEquals}}
+
                         </div>
                         <h5 class="font-weight-bold ">{{level1.FullName}}</h5>
                     </div>
@@ -218,9 +266,10 @@
                 </div>
                 {{/each}}
                 <!-- Binh luan  -->
-                
-                      <h5 class="binhluan"  data-toggle="modal"  data-target="#exampleModalCenter2" id="binhluan" onclick="myFunction()">Bình luận</h5>
-               
+
+                <h5 class="binhluan" data-toggle="modal" data-target="#exampleModalCenter2" id="binhluan"
+                    onclick="myFunction()">Bình luận</h5>
+
             </div>
 
         </div>
@@ -232,18 +281,18 @@
                         width="64px" height="64px">
                 </div>
                 <div class="justify-content-center d-flex mt-1 mb-0">
-                     {{#ifEquals element.CmtLevel1.Type '0'}}
-                            <p class="badge badge-secondary">Member</p>
-                        {{/ifEquals}}
-                        {{#ifEquals element.CmtLevel1.Type '1'}}
-                            <p class="badge badge-secondary">Writer</p>
-                        {{/ifEquals}}
-                          {{#ifEquals element.CmtLevel1.Type '2'}}
-                            <p class="badge badge-danger">Editor</p>
-                        {{/ifEquals}}
-                          {{#ifEquals element.CmtLevel1.Type '3'}}
-                            <p class="badge badge-warning">Admin</p>
-                        {{/ifEquals}}
+                    {{#ifEquals element.CmtLevel1.Type '0'}}
+                    <p class="badge badge-secondary">Member</p>
+                    {{/ifEquals}}
+                    {{#ifEquals element.CmtLevel1.Type '1'}}
+                    <p class="badge badge-secondary">Writer</p>
+                    {{/ifEquals}}
+                    {{#ifEquals element.CmtLevel1.Type '2'}}
+                    <p class="badge badge-danger">Editor</p>
+                    {{/ifEquals}}
+                    {{#ifEquals element.CmtLevel1.Type '3'}}
+                    <p class="badge badge-warning">Admin</p>
+                    {{/ifEquals}}
                 </div>
                 <h5 class="font-weight-bold ">{{element.CmtLevel1.FullName}}</h5>
             </div>
@@ -254,8 +303,9 @@
                     {{element.CmtLevel1.Content}}
                 </p>
                 <!-- Binh luan  -->
-                <h5 class="binhluan"   data-toggle="modal"  data-target="#exampleModalCenter2"  id="binhluan" onclick="myFunction()">Bình luận</h5>
-                
+                <h5 class="binhluan" data-toggle="modal" data-target="#exampleModalCenter2" id="binhluan"
+                    onclick="myFunction()">Bình luận</h5>
+
             </div>
         </div>
 
@@ -305,7 +355,7 @@
             </div>
             <div class="modal-body">
                 <form method="POST" id="form_chinhsua" action="/dashboard/tag/edit">
-                     <textarea name="cmt" cols="50%" class="form-control"></textarea>
+                    <textarea name="cmt" cols="50%" class="form-control"></textarea>
                     <div>
                         <button id="btn" type="submit" class="btn btn-primary btn-block">Gửi</button>
                     </div>

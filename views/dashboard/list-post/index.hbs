@@ -79,7 +79,11 @@
             </tr>
         </thead>
         <tbody>
-            {{#each rows}}
+          
+            {{#if Err}}
+                
+            {{else}}
+                {{#each rows}}
             <tr>
                 <th class="text-center align-middle" scope="row">
                     <!-- bi tu choi -->
@@ -135,6 +139,8 @@
                 </td>
             </tr>
             {{/each}}
+            {{/if}}
+            
 
         </tbody>
     </table>

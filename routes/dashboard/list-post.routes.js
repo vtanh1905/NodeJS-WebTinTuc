@@ -61,7 +61,7 @@ router.get("/list-post", (req, res, next) => {
       var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
       var yyyy = today.getFullYear();
       today = mm + "/" + dd + "/" + yyyy;
-      rows.forEach((element, number, arr) => {
+      rows.forEach((element) => {
         var tday = new Date(today);
         var postday = new Date(element.DatePost);
         if (postday <= tday) {
@@ -83,21 +83,44 @@ router.get("/list-post", (req, res, next) => {
           }
         }
       });
-
-      res.render("dashboard/list-post/index", {
-        rows,
-        pages,
-        pageNext,
-        pagePre,
-        search,
-        status,
-        limit,
-        helpers: {
-          ifEquals: function(arg1, arg2, options) {
-            return arg1 == arg2 ? options.fn(this) : options.inverse(this);
-          }
+        console.log(rows);
+        if(rows.length >0){
+          console.log('>>>>>>>>>>>>>>>>>0');
+          
+          res.render("dashboard/list-post/index", {
+            Err:false,
+            rows,
+            pages,
+            pageNext,
+            pagePre,
+            search,
+            status,
+            limit,
+            helpers: {
+              ifEquals: function(arg1, arg2, options) {
+                return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+              }
+            }
+          });
+        }else{
+          console.log('=================0');
+          res.render("dashboard/list-post/index", {
+            Err:true,
+            rows,
+            pages,
+            pageNext,
+            pagePre,
+            search,
+            status,
+            limit,
+            helpers: {
+              ifEquals: function(arg1, arg2, options) {
+                return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+              }
+            }
+          });
         }
-      });
+    
     })
     .catch(next);
   //res.render("dashboard/list-post/index", {});

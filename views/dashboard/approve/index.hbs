@@ -10,9 +10,9 @@
 
 <!-- Nav Top -->
 {{> nav-dashboard}}
-
-
-<!-- Content -->
+ 
+ 
+     <!-- Content -->
 <div id="content" class="p-3" style="background:#F1F1F1; overflow-y: scroll;">
     <h3>Duyệt Bài Viết</h3>
     <hr>
@@ -73,14 +73,19 @@
                 <th class="text-center" style="width: 10%" scope="col">Chức năng</th>
             </tr>
         </thead>
-        <tbody>
+         {{#if Check_QuanLi}}
+              <tbody>
             {{#each rows}}
             <tr>
                 <th class="text-center align-middle" scope="row">
                     <i class="fas fa-times-circle text-danger"></i>
                 </th>
                 <td class="text-center align-middle">
-                    <img src="{{URLImage}}"
+                   <img {{#if URLImage}}
+                         src="{{URLImage}}" 
+                    {{else}}
+                         src="/images/no-image-available.jpg" 
+                    {{/if}}
                         class="rounded mx-auto d-block" alt="..." width="100%">
                 </td>
                 <td class="align-middle">
@@ -133,5 +138,11 @@
 
         </ul>
     </nav>
+            {{else}}
+             </table>
+            {{/if}}
+   
 </div>
 </div>
+
+
