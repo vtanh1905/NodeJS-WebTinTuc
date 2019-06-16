@@ -10,7 +10,8 @@ module.exports = {
     return db.load(sql);
   },
   PostByCategogy :(CatID,limit)=>{
-    var sql  =`select * from post where post.CatID = '${CatID}'  order by post.View DESC limit ${limit}`
+    var sql  =`select * from post where post.CatID = '${CatID}' AND post.Approve = 2
+    AND post.DatePost < CURRENT_TIMESTAMP()  order by post.View DESC limit ${limit}`
     return db.load(sql);
   },
   AllTag: arr => {
