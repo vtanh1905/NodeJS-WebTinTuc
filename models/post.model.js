@@ -9,8 +9,8 @@ module.exports = {
         AND p.DatePost < CURRENT_TIMESTAMP()  `;
     return db.load(sql);
   },
-  PostByCategogy :(CatID,limit)=>{
-    var sql  =`select * from post where post.CatID = '${CatID}' AND post.Approve = 2
+  PostByCategogy :(CatID,limit,id)=>{
+    var sql  =`select * from post where post.CatID = '${CatID}' and post.PostID != ${id} AND post.Approve = 2
     AND post.DatePost < CURRENT_TIMESTAMP()  order by post.View DESC limit ${limit}`
     return db.load(sql);
   },

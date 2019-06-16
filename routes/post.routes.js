@@ -66,7 +66,7 @@ router.get('/post', (req, res, next) => {
       var Arr = ConverArr(ArrTag);
       var Arr2 = ConverArr(ArrCmt);
 
-      Promise.all([postdb.AllTag(Arr), postdb.AllComt(Arr2), postdb.PostByCategogy(row[0].CatID, 5),
+      Promise.all([postdb.AllTag(Arr), postdb.AllComt(Arr2), postdb.PostByCategogy(row[0].CatID, 5,id),
       catdb.singleWithParent(row[0].CatID)
       ]).then(([rows_tag, rows_cmt, rows_cat, Cat]) => {
          var Cmt = [];
