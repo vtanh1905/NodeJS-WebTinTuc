@@ -31,7 +31,7 @@
                     <div class="card border-0">
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                                <a href="/post/${element.PostID}" class="">
+                                <a href="/post?id=${element.PostID}" class="">
                                     <img src="${element.URLImage}" class="card-img img-fluid " alt="...">
                                 </a>
                                 <div class="position-absolute " style="top:0%; left: 3%">
@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <a href="/post/${element.PostID}"
+                                    <a href="/post?id=${element.PostID}"
                                         class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">${element.Title}</a>
                                     <p class="card-text text-justify">${element.Abstract}</p>
                                     <p class="card-text">
@@ -643,7 +643,7 @@
                     <div class="card border-0">
                         <div class="row no-gutters">
                             <div class="col-md-4">
-                                <a href="/post/{{this.PostID}}" class="">
+                                <a href="/post?id={{this.PostID}}" class="">
                                     <img src="{{this.URLImage}}" class="card-img img-fluid " alt="...">
                                 </a>
                                 <div class="position-absolute " style="top:0%; left: 3%">
@@ -658,7 +658,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <a href="/post/{{this.PostID}}"
+                                    <a href="/post?id={{this.PostID}}"
                                         class="h5 card-title font-weight-bold text-justify text-hover-red text-my-dark">{{this.Title}}</a>
                                     <p class="card-text text-justify">{{this.Abstract}}</p>
                                     <p class="card-text">
