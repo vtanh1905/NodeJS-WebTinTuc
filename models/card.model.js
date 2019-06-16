@@ -5,6 +5,9 @@ module.exports = {
         var sql = `select * from card as c where c.Check = 0 and c.Status =1 `;
         return db.load(sql);
     },
+    addById: (entity)=>{
+        return db.add('card',entity);
+    },
     alloffset: (limit, offset, search, produce) => {
         var sql;
         if (search === "" && produce === "") {

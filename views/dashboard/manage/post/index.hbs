@@ -106,32 +106,37 @@
 
           {{#ifEquals Approve '2' }}
           <!-- chua cho xuat ban-->
-           {{#if this.NotYet}}
-             <i class="fas fa-minus-circle text-info"></i>
-              {{else}}
-               <i class="fas fa-check-circle text-success"></i>
-              
-           {{/if}}
-          {{/ifEquals}}
-          {{#ifEquals Approve '3' }}
+
+          {{#if ../this.NotYet}}
           <i class="fas fa-minus-circle text-info"></i>
+          {{else}}
+          <i class="fas fa-check-circle text-success"></i>
+
+          {{/if}}
           {{/ifEquals}}
+
 
         </th>
         <td class="text-center align-middle">
-          <img src="{{URLImage}}" class="rounded mx-auto d-block" alt="..." width="100%">
+          <img {{#if URLImage}} src="{{URLImage}}" {{else}} src="/images/no-image-available.jpg" {{/if}}
+            class="rounded mx-auto d-block" alt="..." width="100%">
         </td>
         <td class="align-middle">
-          <a href="/post?id={{PostID}}" class="font-weight-bold " target="_blank"
-            rel="noopener noreferrer">{{Title}}</a>
-        </td>
+                    <a {{#ifEquals Approve '2'}} 
+                    {{#if ../this.NotYet}} 
+                    {{else}} 
+                      href="/post?id={{../PostID}}"
+                    {{/if}} 
+                  
+                        {{/ifEquals}} class="font-weight-bold " target="_blank" rel="noopener noreferrer">{{Title}}</a>
+                </td>
         <td class="text-center align-middle">{{CateName}}</td>
         <td class="text-center align-middle">{{DatePost}}</td>
         <td class="text-center align-middle">{{count}}</td>
         <td class="text-center align-middle">{{Username}}</td>
         <td class="text-center align-middle">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="/dashboard/post/approve" class="btn btn-info">Sửa</a>
+            <a href="/dashboard/post/{{PostID}}/approve" class="btn btn-info">Sửa</a>
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter1"
               data-tagid='{{PostID}}'>Xóa</button>
           </div>
@@ -153,7 +158,7 @@
       {{#each pages as |page|}}
       {{#if active}}
       <li class="page-item active">
-        
+
         <a class="page-link"
           href="/dashboard/post?Status={{../status}}&Search={{../search}}&Limit={{../limit}}&page={{page.value}}">{{page.value}}<span
             class="sr-only">(current)</span></a>

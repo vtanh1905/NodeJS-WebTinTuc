@@ -2,32 +2,41 @@ var express = require('express');
 var postdb = require('../models/post.model');
 var moment = require('moment');
 var router = express.Router();
+// Chuyen 1,2,3,4 => [1,2,3,4]
 var ConverArr = (a) => {
-   var Temp = [];
-   for (var i = 0; i < a.length; i++) {
-      if (a.charAt(i) != ',') {
-         Temp.push(a.charAt(i));
-      }
-   }
-   return Temp;
+   return a.split(",");
+  
 }
 
 router.get('/post', (req, res, next) => {
-   var Arr2 = [1, 2, 3, 4];
-
    var id = req.query.id;
-   postdb.SinglePageById(id).then(row => {
 
-      var ArrTag = row[0].ListTagID;
-      var ArrCmt = row[0].ListComID;
+   postdb.SinglePageById(id).then(row => {
+      if(row.length == 0){
+         res.redirect('/');
+         return;
+      }
+      var ArrTag ;
+      var ArrCmt;
+      //Xet Comment ==0
+      if(!row[0].ListComID){
+         ArrCmt ='-1,-1';
+        
+      }else{
+         ArrCmt = row[0].ListComID;  
+      }
+      //Xet tag ==0
+      if(row[0].ListTagID.length ==0){
+         ArrTag ='-1,-1';
+         
+      }else{
+         ArrTag = row[0].ListTagID;
+      }
       row[0].DatePost = moment(row[0].DatePost, "YYYY-MM-DD HH:MM").format("DD/MM/YYYY HH:MM");
       var Arr = ConverArr(ArrTag);
       var Arr2 = ConverArr(ArrCmt);
-      console.log('tag list');
-      console.log(Arr);
-      
-      Promise.all([postdb.AllTag(Arr), postdb.AllComt(Arr2)]).then(([rows_tag, rows_cmt]) => {
-
+     
+      Promise.all([postdb.AllTag(Arr), postdb.AllComt(Arr2),postdb.PostByCategogy(row[0].CatID,5)]).then(([rows_tag, rows_cmt,rows_cat]) => {
          var Cmt = [];
          var Check = [];
          rows_cmt.forEach((element, number, rows_cmt) => {
@@ -35,7 +44,6 @@ router.get('/post', (req, res, next) => {
             if (element.DateCha != 'null') {
                element.DateCha = moment(element.DateCha, "YYYY-MM-DD HH:MM").format("DD/MM/YYYY HH:MM");
             }
-
             if (element.ComParent == null) {
 
                var cmtCon = [];
@@ -60,16 +68,12 @@ router.get('/post', (req, res, next) => {
                   Cmt.push(CmtLevel);
                }
             }
-
          });
-
-         Cmt.forEach(rows => {
-            console.log(rows);
-         });
-         console.log('tag name');
-         console.log(rows_tag);
+        
+         console.log(Cmt);
+         
          res.render('post', {
-            Content: row[0], Tag: rows_tag, Cmt: Cmt
+            Content: row[0], Tag: rows_tag, Cmt: Cmt,CatRows : rows_cat
          });
       }).catch(next);
    }
