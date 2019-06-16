@@ -46,7 +46,7 @@
         });
     };
 
-    $("img").attr("crossOrigin","anonymous");
+    $("img").attr("crossOrigin", "anonymous");
     $('#exampleModalCenter2').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         // Extract info from data-* attributes
@@ -116,7 +116,41 @@
                     <hr>
                 </div>
                 {{else}}
-                <h1>Xem the lol nao dc</h1>
+              <div class="card">
+                  <div class="card-header bg-primary text-white">
+                     <h5>BÀI VIẾT DÀNH CHO TÀI KHOẢN PREMIUM</h5> 
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                    <!-- Gioi thieu premium -->
+                    <div class="col-md-8 col-12">
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <h5 class="card-title">Premium Account</h5>
+
+                                <p class="card-text">Với tài khoảng Premium:</p>
+
+                                <p class="card-text "><i class="fas fa-check d-inline mr-2 text-info"></i>Bạn có thể
+                                    download các
+                                    bài viết có Tag Premium</p>
+
+
+                                <p class="card-text"><i class="fas fa-check d-inline mr-2 text-info"></i>Không bị gián
+                                    đoạn bới
+                                    quảng cáo</p>
+                                <p class="card-text"><i class="fas fa-check d-inline mr-2 text-info"></i>Đội ngũ hộ trợ
+                                    trực tuyến
+                                    24/7</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Nut đăng ký -->
+                    <div class="col-md-4 col-12 d-flex align-items-center justify-content-center mb-md-0 mb-3">
+                        <a href="/dashboard/buy-premium" class="btn btn-lg btn-primary ">Go Premium</a>
+                    </div>
+                </div>
+                  </div>
+              </div>
                 {{/if}}
                 <!-- Bài Viết -->
 
@@ -127,15 +161,16 @@
                 <div class="card">
                     <div class="card-body">
                         {{#if CheckPre}}
-                             <button  type="button" onclick="getPDF()" class="btn btn-primary btn-block ">
+                        <button type="button" onclick="getPDF()" class="btn btn-primary btn-block ">
                             <i class="fas fa-arrow-down "></i> Tải Xuống
                         </button>
                         {{else}}
-                             <button disabled type="button" title="Không thể dowload"  data-target="tooltip" class="btn btn-primary btn-block ">
+                        <button disabled type="button" title="Không thể dowload" data-target="tooltip"
+                            class="btn btn-primary btn-block ">
                             <i class="fas fa-arrow-down "></i> Tải Xuống
                         </button>
                         {{/if}}
-                       
+
                     </div>
                 </div>
 
@@ -195,8 +230,8 @@
             </div>
         </div>
     </div>
-{{#if isAuthenticated}}
-<form method="POST" action="/post/add-comment/{{this.Content.PostID}}">
+    {{#if isAuthenticated}}
+    <form method="POST" action="/post/add-comment/{{this.Content.PostID}}">
         <div class="form-group">
             <label for="exampleFormControlTextarea1" class="h3 p-1 pl-3 mt-3 d-block rounded"
                 style="border-left: 5px solid red; background: #E9ECEF;font-weight: bold;">Comment</label>
@@ -206,11 +241,11 @@
             <button type="submit" type="button" class="btn btn-primary">Gửi Bình Luận</button>
         </div>
     </form>
-{{else}}
-{{/if}}
+    {{else}}
+    {{/if}}
 
     <!-- Box Đăng Bình Luận -->
-    
+
 
     <!-- Media Object -->
     <div>
@@ -220,8 +255,9 @@
         <div class="media mt-3">
             <div class=" p-2">
                 <div class="justify-content-center d-flex">
-                    <img class="justify-content-center rounded-circle " src="{{element.CmtLevel2.AvatarCha}}" alt="..."
-                        width="64px" height="64px">
+                    <img class="justify-content-center rounded-circle " {{#if element.CmtLevel2.AvatarCha}}
+                        src="{{element.CmtLevel2.AvatarCha}}" alt="..." {{else}} src="/images/no-image.png" alt="..."
+                        {{/if}} width="64px" height="64px">
                 </div>
                 <div class="justify-content-center d-flex mt-1 mb-0">
                     {{#ifEquals element.CmtLevel2.TypeCha '0'}}
@@ -251,7 +287,8 @@
                 <div class="media mt-3">
                     <div class="p-2 ">
                         <div class="justify-content-center d-flex">
-                            <img class="justify-content-center rounded-circle " src="{{level1.Avatar}}" alt="..."
+                            <img class="justify-content-center rounded-circle " {{#if level1.Avatar}}
+                                src="{{level1.Avatar}}" alt="..." {{else}} src="/images/no-image.png" alt="..." {{/if}}
                                 width="64px" height="64px">
                         </div>
                         <div class="justify-content-center d-flex mt-1 mb-0">
@@ -281,13 +318,11 @@
                 </div>
                 {{/each}}
                 <!-- Binh luan  -->
-                    {{#if ../isAuthenticated}}
-                     <button class="btn btn-outline-info" data-toggle="modal" 
-                      data-parent="{{element.CmtLevel2.CmtCha}}"
-                       data-target="#exampleModalCenter2" id="binhluan"
-                    >Bình luận</button>
-                  {{/if}}
-               
+                {{#if ../isAuthenticated}}
+                <button class="btn btn-outline-info" data-toggle="modal" data-parent="{{element.CmtLevel2.CmtCha}}"
+                    data-target="#exampleModalCenter2" id="binhluan">Bình luận</button>
+                {{/if}}
+
 
             </div>
 
@@ -296,7 +331,12 @@
         <div class="media mt-3">
             <div class=" p-2">
                 <div class="justify-content-center d-flex">
-                    <img class="justify-content-center rounded-circle " src="{{element.CmtLevel1.Avatar}}" alt="..."
+                    <img class="justify-content-center rounded-circle " 
+                      {{#if element.CmtLevel1.Avatar}}
+                        src="{{element.CmtLevel1.Avatar}}" alt="..."
+                    {{else}}
+                        src="/images/no-image.png" alt="..."
+                    {{/if}}
                         width="64px" height="64px">
                 </div>
                 <div class="justify-content-center d-flex mt-0   mb-0">
@@ -323,10 +363,10 @@
                 </p>
                 <!-- Binh luan  -->
                 {{#if ../isAuthenticated}}
-                 <button class="btn btn-outline-info" data-toggle="modal" data-parent="{{element.CmtLevel1.ComID}}" data-target="#exampleModalCenter2" id="binhluan"
-                    >Trả lời</button>
+                <button class="btn btn-outline-info" data-toggle="modal" data-parent="{{element.CmtLevel1.ComID}}"
+                    data-target="#exampleModalCenter2" id="binhluan">Trả lời</button>
                 {{/if}}
-               
+
 
             </div>
         </div>

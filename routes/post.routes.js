@@ -134,7 +134,10 @@ router.get('/post', (req, res, next) => {
             if (element.ComParent == null) {
 
                var cmtCon = [];
+              
                cmtCon.push(element);
+               
+               
                var CmtLevel = { CmtLevel1: cmtCon[0], CmtLevel2: null, Level2: false };
                Cmt.push(CmtLevel);
             } else {
@@ -146,6 +149,8 @@ router.get('/post', (req, res, next) => {
 
                   rows_cmt.forEach((element1, number1) => {
                      if (element1.ComParent === element.ComParent) {
+                      
+                        
                         cmtCon.push(element1);
                      }
                   });
