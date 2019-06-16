@@ -73,11 +73,18 @@ router.get("/", (req, res, next) => {
           listTemp = [];
         }
       }
-      
-      matrixNewest[0].active ="active";
-      newestPost[0].active="active";
-      matrixTop10View[0].active = "active";
-      impressPost[0].active = "active";
+      if(matrixNewest.length > 0){
+        matrixNewest[0].active ="active";
+      }
+      if(newestPost.length > 0){
+        newestPost[0].active="active";
+      }
+      if(matrixTop10View.length > 0){
+        matrixTop10View[0].active = "active";
+      }
+      if(impressPost.length > 0){
+        impressPost[0].active = "active";
+      }
 
       
       res.render("index", {
