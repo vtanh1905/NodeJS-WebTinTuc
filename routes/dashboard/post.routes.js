@@ -142,11 +142,7 @@ router.post("/post/:id/approve", (req, res, next) => {
     next();
     return;
   }
-
-  console.log('====================================');
-  console.log(req.body);
-  console.log('====================================');
-
+  
   //Xư lý thêm Tag
   var ListTagName = [];
   if (Array.isArray(req.body.ListTagName)) {
@@ -189,6 +185,7 @@ router.post("/post/:id/approve", (req, res, next) => {
         delete req.body.DatePost;
         delete req.body.Reason;
       }else{
+        delete req.body.Reason;
         if(req.body.typeOfDangBai == 'now'){
           req.body.DatePost = moment().format("YYYY-MM-DD HH:mm");
         }else{
@@ -204,7 +201,7 @@ router.post("/post/:id/approve", (req, res, next) => {
       delete req.body.ListTagName;
       req.body.Status = 1;
       req.body.View = 0;
-      req.body.AccID = res.locals.authUser.AccID;
+      //req.body.AccID = res.locals.authUser.AccID;
       
 
       if (listTagMustAdd.length > 0) {
