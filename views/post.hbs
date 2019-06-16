@@ -45,6 +45,16 @@
             pdf.save("HTML-Document.pdf");
         });
     };
+    $('#exampleModalCenter2').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this);
+        var tagid = button.data('parent');
+        $('#parent_id').val(tagid);
+        console.log(tagid);
+    });
 </script>
 {{/section}}
 
@@ -183,19 +193,22 @@
             </div>
         </div>
     </div>
-
-
-    <!-- Box Đăng Bình Luận -->
-    <form action="">
+{{#if isAuthenticated}}
+<form method="POST" action="/post/add-comment/{{this.Content.PostID}}">
         <div class="form-group">
             <label for="exampleFormControlTextarea1" class="h3 p-1 pl-3 mt-3 d-block rounded"
                 style="border-left: 5px solid red; background: #E9ECEF;font-weight: bold;">Comment</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
         <div class="text-right">
-            <button type="button" class="btn btn-primary">Gửi Bình Luận</button>
+            <button type="submit" type="button" class="btn btn-primary">Gửi Bình Luận</button>
         </div>
     </form>
+{{else}}
+{{/if}}
+
+    <!-- Box Đăng Bình Luận -->
+    
 
     <!-- Media Object -->
     <div>
@@ -266,9 +279,13 @@
                 </div>
                 {{/each}}
                 <!-- Binh luan  -->
-
-                <h5 class="binhluan" data-toggle="modal" data-target="#exampleModalCenter2" id="binhluan"
-                    onclick="myFunction()">Bình luận</h5>
+                    {{#if ../isAuthenticated}}
+                     <button class="btn btn-outline-info" data-toggle="modal" 
+                      data-parent="{{element.CmtLevel2.CmtCha}}"
+                       data-target="#exampleModalCenter2" id="binhluan"
+                    >Bình luận</button>
+                  {{/if}}
+               
 
             </div>
 
@@ -280,7 +297,7 @@
                     <img class="justify-content-center rounded-circle " src="{{element.CmtLevel1.Avatar}}" alt="..."
                         width="64px" height="64px">
                 </div>
-                <div class="justify-content-center d-flex mt-1 mb-0">
+                <div class="justify-content-center d-flex mt-0   mb-0">
                     {{#ifEquals element.CmtLevel1.Type '0'}}
                     <p class="badge badge-secondary">Member</p>
                     {{/ifEquals}}
@@ -294,7 +311,7 @@
                     <p class="badge badge-warning">Admin</p>
                     {{/ifEquals}}
                 </div>
-                <h5 class="font-weight-bold ">{{element.CmtLevel1.FullName}}</h5>
+                <h5 class="font-weight-bold">{{element.CmtLevel1.FullName}}</h5>
             </div>
 
             <div class="media-body text-justify mr-5">
@@ -303,8 +320,11 @@
                     {{element.CmtLevel1.Content}}
                 </p>
                 <!-- Binh luan  -->
-                <h5 class="binhluan" data-toggle="modal" data-target="#exampleModalCenter2" id="binhluan"
-                    onclick="myFunction()">Bình luận</h5>
+                {{#if ../isAuthenticated}}
+                 <button class="btn btn-outline-info" data-toggle="modal" data-parent="{{element.CmtLevel1.ComID}}" data-target="#exampleModalCenter2" id="binhluan"
+                    >Trả lời</button>
+                {{/if}}
+               
 
             </div>
         </div>
@@ -354,7 +374,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form_chinhsua" action="/dashboard/tag/edit">
+                <form method="POST" id="form_chinhsua" action="/post/tl-comment/{{this.Content.PostID}}">
+                    <input name="parent" id="parent_id" hidden>
                     <textarea name="cmt" cols="50%" class="form-control"></textarea>
                     <div>
                         <button id="btn" type="submit" class="btn btn-primary btn-block">Gửi</button>

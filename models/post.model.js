@@ -405,6 +405,11 @@ module.exports = {
         FROM post 
         WHERE post.Status = 1
           AND post.PostID = ${PostID}`);
+  },singleID: (PostID) =>{
+    return db.load(`SELECT * 
+        FROM post 
+        WHERE post.Status = 1
+          AND post.PostID = ${PostID}`);
   },
   getFiveNewHot: ()=>{
     return db.load(`SELECT * 
