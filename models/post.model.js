@@ -248,13 +248,13 @@ module.exports = {
 
       if (search != "") {
         sql = `select p.*,a.Username,a.NickName,c.* from post as p,account as a ,category as c
-                where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and p.Approve ='0' and 
+                where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and p.Approve ='1' and 
                 c.CatID = p.CatID and p.CatID in (${array})
                 and p.Status ='1' and c.Status ='1' and a.Status ='1'  ORDER BY p.PostID DESC  LIMIT ${Offset},${Limit}
                 `;
       } else {
         sql = `select p.*,a.Username,a.NickName,c.* from post as p,account as a ,category as c
-                where p.AccID = a.AccID and p.Approve ='0' and c.CatID = p.CatID and p.CatID in (${array})
+                where p.AccID = a.AccID and p.Approve ='1' and c.CatID = p.CatID and p.CatID in (${array})
                 and  p.Status ='1'  and  a.Status ='1'   and  c.Status ='1'  ORDER BY p.PostID DESC
                 LIMIT ${Offset},${Limit} `;
     }
@@ -265,13 +265,13 @@ module.exports = {
 
       if (search != "") {
         sql = `select count(*) as total from post as p,account as a ,category as c
-                where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and p.Approve ='0' and 
+                where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and p.Approve ='1' and 
                 c.CatID = p.CatID and p.CatID in (${array})
                 and p.Status ='1' and c.Status ='1' and a.Status ='1'
                 `;
       } else {
         sql = ` select  count(*) as total from post as p,account as a ,category as c
-        where p.AccID = a.AccID and p.Approve ='0' and c.CatID = p.CatID and p.CatID in (${array})
+        where p.AccID = a.AccID and p.Approve ='1' and c.CatID = p.CatID and p.CatID in (${array})
         and  p.Status ='1'  and  a.Status ='1'  and  c.Status ='1' `;
     }
     return db.load(sql);
@@ -409,7 +409,7 @@ module.exports = {
   getFiveNewHot: ()=>{
     return db.load(`SELECT * 
     FROM webtintucdb.post 
-    where status = 1 and post.Approve = 2 and post.DatePost < cast(cast(now() as date) as datetime)
+    where status = 1 and post.Approve = 2 and post.DatePost < CURRENT_TIMESTAMP()
     order by  post.View desc, post.isPremium desc
     limit 0,5`);
   },
@@ -428,7 +428,7 @@ module.exports = {
     FROM post
     Left JOIN category ON post.CatID = category.CatID and category.Status = 1
     Left JOIN account ON post.AccID = account.AccID and account.Status = 1 
-    where post.status = 1 and post.Approve = 2 and post.DatePost < cast(cast(now() as date) as datetime)
+    where post.status = 1 and post.Approve = 2 and post.DatePost < CURRENT_TIMESTAMP()
     order by  post.View desc, post.isPremium desc
     limit 0,11`);
   },
@@ -437,7 +437,7 @@ module.exports = {
     FROM post
     Left JOIN category ON post.CatID = category.CatID and category.Status = 1 
     Left JOIN account ON post.AccID = account.AccID and account.Status = 1
-    where post.status = 1 and post.Approve = 2 and post.DatePost < cast(cast(now() as date) as datetime)
+    where post.status = 1 and post.Approve = 2 and post.DatePost < CURRENT_TIMESTAMP()
     group by post.CatID
     having max(DatePost) 
     order by post.View desc, post.isPremium desc
