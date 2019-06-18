@@ -20,7 +20,7 @@ module.exports = {
         return db.load(sql);
     },
     SingleByName: (name)=>{
-        var sql = `select * from tag where MATCH (tag.Name) AGAINST ('${name}') and tag.Status = 1`;
+        var sql = `select * from tag where tag.Name like '%${name}%' and tag.Status = 1`;
         return db.load(sql);
     },
     SingleById: (id)=>{

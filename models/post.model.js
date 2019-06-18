@@ -387,7 +387,7 @@ module.exports = {
     WHERE post.Status = 1
     AND post.Approve = 2
     AND post.DatePost < CURRENT_TIMESTAMP()
-    AND MATCH (post.Title, post.Abstract) AGAINST ('${StringSearch}')
+    AND MATCH (post.Title, post.Abstract, post.Content) AGAINST ('${StringSearch}')
     ORDER BY post.DatePost DESC, post.isPremium DESC
     LIMIT ${limit} OFFSET ${offset}`);
   },
@@ -399,7 +399,7 @@ module.exports = {
     WHERE post.Status = 1
     AND post.Approve = 2
     AND post.DatePost < CURRENT_TIMESTAMP()
-    AND MATCH (post.Title, post.Abstract) AGAINST ('${StringSearch}')`);
+    AND MATCH (post.Title, post.Abstract, post.Content) AGAINST ('${StringSearch}')`);
   },
   singleWithPostID : (PostID) =>{
     return db.load(`SELECT * 
