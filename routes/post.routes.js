@@ -176,7 +176,7 @@ router.get('/post', (req, res, next) => {
          });
          
          
-        // console.log(Cmt);
+         // console.log(rows_tag);
          
          res.render('post', {
             Content: row[0], Tag: rows_tag, Cmt: Cmt, CatRows: rows_cat, Cate: Cat[0],CheckPre

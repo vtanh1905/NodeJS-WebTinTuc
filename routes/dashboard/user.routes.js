@@ -173,10 +173,28 @@ router.get("/user/:id/edit", (req, res, next) => {
         result[0].DatePremium,
         "YYYY-MM-DD HH:mm"
       ).format("DD/MM/YYYYTHH:mm");
+      var dataManageCat = [];
+      var dataCat = res.locals.lcCategories;
+      if(result[0].ManageCatID){
+        dataManageCat = result[0].ManageCatID.split(',');
+      }
+
+      dataCat.forEach(parent => {
+        var found = dataManageCat.indexOf('' + parent.element.CatID);
+        if(found >= 0){
+          parent.element.check = true;
+        }
+        parent.children.forEach(child => {
+          var found2 = dataManageCat.indexOf('' + child.CatID);
+          if(found2 >= 0){
+            child.check = true;
+          }
+        });
+      });
 
       res.render("dashboard/manage/user/edit", {
         dataUser: result[0],
-        dataCat: catData
+        dataCat : dataCat
       });
     })
     .catch(next);

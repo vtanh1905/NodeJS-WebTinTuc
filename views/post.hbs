@@ -1,7 +1,7 @@
 {{#section 'css'}}
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="images/logo-web.png">
-<title>Tìm Kiếm - GameX</title>
+<title>GameX - {{Content.Title}}</title>
 <style>
     .binhluan {
         color: blue;
@@ -47,6 +47,7 @@
     };
 
     $("img").attr("crossOrigin", "anonymous");
+    $("figure > img").addClass('w-100');
     $('#exampleModalCenter2').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         // Extract info from data-* attributes
@@ -111,7 +112,7 @@
                     <hr>
                     Từ Khóa :
                     {{#each this.Tag }}
-                    <a href="#" class="badge badge-danger text-white">{{this.Name}}</a>
+                    <a href="/tag/{{this.TagID}}" class="badge badge-danger text-white">{{this.Name}}</a>
                     {{/each}}
                     <hr>
                 </div>

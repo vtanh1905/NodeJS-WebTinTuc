@@ -3,7 +3,7 @@ var mysql      = require('mysql');
 createConnection = () => mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "123456",
+  password: "",
   database: "webtintucdb"
 });
 

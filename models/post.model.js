@@ -36,14 +36,14 @@ module.exports = {
   add: entity => {
     return db.add("post", entity);
   },
-
+  
   all: (Status, search, Offset, Limit) => {
     var sql;
 
     if (Status == "4") {
       if (search != "") {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a,category as c
-                where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1' and a.Status ='1' and c.Status ='1'
+                where p.AccID = a.AccID and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1' and a.Status ='1' and c.Status ='1'
                 ORDER BY p.PostID DESC LIMIT ${Offset},${Limit} `;
       } else {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a ,category as c
@@ -55,7 +55,7 @@ module.exports = {
     } else if (Status == "3") {
       if (search != "") {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a,category as c
-                where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1'
+                where p.AccID = a.AccID and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1'
                  and a.Status ='1' and c.Status ='1' AND p.DatePost > CURRENT_TIMESTAMP() and p.Approve ='2'  ORDER BY p.PostID DESC
                  LIMIT ${Offset},${Limit} `;
       } else {
@@ -69,7 +69,7 @@ module.exports = {
     } else if (Status == "2") {
       if (search != "") {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a,category as c
-                where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1'
+                where p.AccID = a.AccID and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1'
                  and a.Status ='1' and c.Status ='1' AND p.DatePost < CURRENT_TIMESTAMP() and p.Approve ='2'  ORDER BY p.PostID DESC
                  LIMIT ${Offset},${Limit} `;
       } else {
@@ -83,7 +83,7 @@ module.exports = {
     } else {
       if (search != "") {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a ,category as c
-                where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and p.Approve ='${Status}' and c.CatID = p.CatID
+                where p.AccID = a.AccID and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Approve ='${Status}' and c.CatID = p.CatID
                 and p.Status ='1' and c.Status ='1' and a.Status ='1'  LIMIT ${Offset},${Limit}
                 `;
       } else {
@@ -101,7 +101,7 @@ module.exports = {
     if (Status == "4") {
       if (search != "") {
         sql = `select count(*) as total  from post as p,account as a where p.AccID = a.AccID and 
-                MATCH (p.Title) AGAINST ('${search}') and p.Status ='1'  and  a.Status ='1' `;
+                MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Status ='1'  and  a.Status ='1' `;
       } else {
         sql = `select count(*) as total  from post as p,account as a where p.AccID = a.AccID and p.Status ='1'
                 and  a.Status ='1'  `;
@@ -109,7 +109,7 @@ module.exports = {
     } else if (Status == "3") {
       if (search != "") {
         sql = `select count(*) as total from post as p,account as a where p.AccID = a.AccID and 
-                MATCH (p.Title) AGAINST ('${search}') and p.Approve ='2' and p.Status ='1'  and  a.Status ='1' AND p.DatePost > CURRENT_TIMESTAMP() `;
+                MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Approve ='2' and p.Status ='1'  and  a.Status ='1' AND p.DatePost > CURRENT_TIMESTAMP() `;
       } else {
         sql = `select count(*) as total  from post as p,account as a where p.AccID = a.AccID and p.Approve ='2'
                  and p.Status ='1' and  a.Status ='1' AND p.DatePost > CURRENT_TIMESTAMP()   `;
@@ -117,7 +117,7 @@ module.exports = {
     } else if (Status == "2") {
       if (search != "") {
         sql = `select count(*) as total from post as p,account as a where p.AccID = a.AccID and 
-                MATCH (p.Title) AGAINST ('${search}') and p.Approve ='2' and p.Status ='1'  and  a.Status ='1' AND p.DatePost < CURRENT_TIMESTAMP() `;
+                MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Approve ='2' and p.Status ='1'  and  a.Status ='1' AND p.DatePost < CURRENT_TIMESTAMP() `;
       } else {
         sql = `select count(*) as total  from post as p,account as a where p.AccID = a.AccID and p.Approve ='2'
                  and p.Status ='1' and  a.Status ='1' AND p.DatePost < CURRENT_TIMESTAMP()   `;
@@ -125,7 +125,7 @@ module.exports = {
     } else {
       if (search != "") {
         sql = `select count(*) as total from post as p,account as a where p.AccID = a.AccID and 
-                p.Approve ='${Status}' and MATCH (p.Title) AGAINST ('${search}') and p.Status ='1'and  a.Status ='1' `;
+                p.Approve ='${Status}' and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Status ='1'and  a.Status ='1' `;
       } else {
         sql = `select count(*) as total from post as p,account as a where p.AccID = a.AccID and 
                 p.Approve ='${Status}' and p.Status ='1' and  a.Status ='1' `;
@@ -153,7 +153,7 @@ module.exports = {
     if (Status == "4") {
       if (search != "") {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a,category as c
-                where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1' and a.Status ='1' and c.Status ='1'
+                where p.AccID = a.AccID and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1' and a.Status ='1' and c.Status ='1'
                 and p.AccID = '${id}' ORDER BY p.PostID DESC  LIMIT ${Offset},${Limit}`;
       } else {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a ,category as c
@@ -165,7 +165,7 @@ module.exports = {
     } else if (Status == "3") {
       if (search != "") {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a,category as c
-                where p.AccID = a.AccID and p.AccID = '${id}' and MATCH (p.Title) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1'
+                where p.AccID = a.AccID and p.AccID = '${id}' and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1'
                  and a.Status ='1' and c.Status ='1' AND p.DatePost > CURRENT_TIMESTAMP() and p.Approve ='2' ORDER BY p.PostID DESC  
                  LIMIT ${Offset},${Limit} `;
       } else {
@@ -179,7 +179,7 @@ module.exports = {
     } else if (Status == "2") {
       if (search != "") {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a,category as c
-                where p.AccID = a.AccID and p.AccID = '${id}' and MATCH (p.Title) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1'
+                where p.AccID = a.AccID and p.AccID = '${id}' and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and c.CatID = p.CatID and p.Status ='1'
                  and a.Status ='1' and c.Status ='1' AND p.DatePost < CURRENT_TIMESTAMP() and p.Approve ='2' ORDER BY p.PostID DESC  
                  LIMIT ${Offset},${Limit} `;
       } else {
@@ -193,7 +193,7 @@ module.exports = {
     } else {
       if (search != "") {
         sql = `select p.*,a.Username,c.Name as CateName from post as p,account as a ,category as c
-                where p.AccID = a.AccID and p.AccID = '${id}' and MATCH (p.Title) AGAINST ('${search}') and p.Approve ='${Status}' and c.CatID = p.CatID
+                where p.AccID = a.AccID and p.AccID = '${id}' and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Approve ='${Status}' and c.CatID = p.CatID
                 and p.Status ='1' and c.Status ='1' and a.Status ='1'  LIMIT ${Offset},${Limit}
                 `;
       } else {
@@ -211,7 +211,7 @@ module.exports = {
     if (Status == "4") {
       if (search != "") {
         sql = `select count(*) as total  from post as p,account as a where p.AccID = a.AccID and p.AccID = '${id}' and 
-                MATCH (p.Title) AGAINST ('${search}') and p.Status ='1'  and  a.Status ='1' `;
+                MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Status ='1'  and  a.Status ='1' `;
       } else {
         sql = `select count(*) as total  from post as p,account as a where p.AccID = a.AccID and p.AccID = '${id}' and p.Status ='1'
                 and  a.Status ='1'  `;
@@ -219,7 +219,7 @@ module.exports = {
     } else if (Status == "3") {
       if (search != "") {
         sql = `select count(*) as total from post as p,account as a where p.AccID = a.AccID and p.AccID = '${id}' and 
-                MATCH (p.Title) AGAINST ('${search}') and p.Approve ='2' and p.Status ='1'  and  a.Status ='1' and  p.DatePost > CURRENT_TIMESTAMP() `;
+                MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Approve ='2' and p.Status ='1'  and  a.Status ='1' and  p.DatePost > CURRENT_TIMESTAMP() `;
       } else {
         sql = `select count(*) as total  from post as p,account as a where p.AccID = a.AccID and p.AccID = '${id}' and p.Approve ='2'
                  and p.Status ='1' and  a.Status ='1' and  p.DatePost > CURRENT_TIMESTAMP()   `;
@@ -227,7 +227,7 @@ module.exports = {
     } else if (Status == "2") {
       if (search != "") {
         sql = `select count(*) as total from post as p,account as a where p.AccID = a.AccID and p.AccID = '${id}' and 
-                MATCH (p.Title) AGAINST ('${search}') and p.Approve ='2' and p.Status ='1'  and  a.Status ='1' and  p.DatePost < CURRENT_TIMESTAMP()  `;
+                MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Approve ='2' and p.Status ='1'  and  a.Status ='1' and  p.DatePost < CURRENT_TIMESTAMP()  `;
       } else {
         sql = `select count(*) as total  from post as p,account as a where p.AccID = a.AccID and p.AccID = '${id}' and p.Approve ='2'
                  and p.Status ='1' and  a.Status ='1' and  p.DatePost < CURRENT_TIMESTAMP()  `;
@@ -235,7 +235,7 @@ module.exports = {
     } else {
       if (search != "") {
         sql = `select count(*) as total from post as p,account as a where p.AccID = a.AccID and p.AccID = '${id}' and 
-                p.Approve ='${Status}' and MATCH (p.Title) AGAINST ('${search}') and p.Status ='1'and  a.Status ='1' `;
+                p.Approve ='${Status}' and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Status ='1'and  a.Status ='1' `;
       } else {
         sql = `select count(*) as total from post as p,account as a where p.AccID = a.AccID and p.AccID = '${id}' and 
                 p.Approve ='${Status}' and p.Status ='1' and  a.Status ='1' `;
@@ -248,7 +248,7 @@ module.exports = {
 
       if (search != "") {
         sql = `select p.*,a.Username,a.NickName,c.* from post as p,account as a ,category as c
-                where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and p.Approve ='1' and 
+                where p.AccID = a.AccID and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Approve ='1' and 
                 c.CatID = p.CatID and p.CatID in (${array})
                 and p.Status ='1' and c.Status ='1' and a.Status ='1'  ORDER BY p.PostID DESC  LIMIT ${Offset},${Limit}
                 `;
@@ -265,7 +265,7 @@ module.exports = {
 
       if (search != "") {
         sql = `select count(*) as total from post as p,account as a ,category as c
-                where p.AccID = a.AccID and MATCH (p.Title) AGAINST ('${search}') and p.Approve ='1' and 
+                where p.AccID = a.AccID and MATCH (p.Title, p.Abstract, p.Content) AGAINST ('${search}') and p.Approve ='1' and 
                 c.CatID = p.CatID and p.CatID in (${array})
                 and p.Status ='1' and c.Status ='1' and a.Status ='1'
                 `;

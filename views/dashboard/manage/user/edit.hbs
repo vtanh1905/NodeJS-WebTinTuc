@@ -1,5 +1,5 @@
 {{#section 'css'}}
-<title>Trang chủ</title>
+<title>Sửa User - GameX</title>
 <link rel="stylesheet" href="/css/nav-left.css">
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
@@ -12,100 +12,102 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script>
     eventSelectVaiTro();
-    $("input[type=text]").attr("autocomplete","off");
-    {{#ifEquals dataUser.Type '2' }}
-        $("#boxChuyenMuc").show();
-    {{/ifEquals}}
-    
+    $("input[type=text]").attr("autocomplete", "off");
+    { { #ifEquals dataUser.Type '2' } }
+    $("#boxChuyenMuc").show();
+    {
+        {
+            /ifEquals}}
 
-    $('#DOB').datetimepicker({
-        timepicker: false,
-        format: 'd/m/Y',
-        value: "{{dataUser.DOBFormat}}"
-    });
 
-    $('#txtNgayHetHang').datetimepicker({
-        format: 'd/m/Y H:i',
-        minDate: 0,
-        value: "{{dataUser.DatePremiumFormat}}"
-    });
+            $('#DOB').datetimepicker({
+                timepicker: false,
+                format: 'd/m/Y',
+                value: "{{dataUser.DOBFormat}}"
+            });
 
-    //Sự Kiện Upload Hình Ảnh Tiêu Đề
-    function performClick(elemId) {
-        var elem = document.getElementById(elemId);
-        if (elem && document.createEvent) {
-            var evt = document.createEvent("MouseEvents");
-            evt.initEvent("click", true, false);
-            elem.dispatchEvent(evt);
-        }
-    }
-    function previewFile() {
-        var preview = document.querySelector('img[name=avatar]'); //selects the query named img
-        var file = document.querySelector('input[name=sampleFile]').files[0]; //sames as here
-        var checkFileImage = (/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(file.name);
-        if (checkFileImage === false) {
-            alert("Hình ảnh không hợp lệ!");
-            $("#theFile").replaceWith($("#theFile").val('').clone(true));
-            return;
-        }
+            $('#txtNgayHetHang').datetimepicker({
+                format: 'd/m/Y H:i',
+                minDate: 0,
+                value: "{{dataUser.DatePremiumFormat}}"
+            });
 
-        var reader = new FileReader();
-        reader.onloadend = function () {
-            preview.src = reader.result;
-        }
-
-        if (file) {
-            reader.readAsDataURL(file); //reads the data as a URL
-        } else {
-            preview.src = "";
-        }
-    }
-
-    //Check Form With Validator
-    $("#uploadForm").validate({
-        rules: {
-            FullName: {
-                required: true
-            },
-            Password: {
-                required: true,
-                minlength: 6,
-                maxlength: 20
-            },
-            Email: {
-                required: true,
-                email: true
-            },
-            DOB: {
-                required: true
+            //Sự Kiện Upload Hình Ảnh Tiêu Đề
+            function performClick(elemId) {
+                var elem = document.getElementById(elemId);
+                if (elem && document.createEvent) {
+                    var evt = document.createEvent("MouseEvents");
+                    evt.initEvent("click", true, false);
+                    elem.dispatchEvent(evt);
+                }
             }
-        },
-        messages: {
-            FullName: {
-                required: "Không được bỏ trống"
-            },
-            Password: {
-                required: "Không được bỏ trống",
-                minlength: "Phải có từ 6 tới 20 ký tự",
-                maxlength: "Phải có từ 6 tới 20 ký tự"
-            },
-            Email: {
-                required: "Không được bỏ trống",
-                email: "Định dạng Email không hợp lệ"
-            },
-            DOB: {
-                required: "Không được bỏ trống"
+            function previewFile() {
+                var preview = document.querySelector('img[name=avatar]'); //selects the query named img
+                var file = document.querySelector('input[name=sampleFile]').files[0]; //sames as here
+                var checkFileImage = (/\.(gif|jpg|jpeg|tiff|png|bmp)$/i).test(file.name);
+                if (checkFileImage === false) {
+                    alert("Hình ảnh không hợp lệ!");
+                    $("#theFile").replaceWith($("#theFile").val('').clone(true));
+                    return;
+                }
+
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    preview.src = reader.result;
+                }
+
+                if (file) {
+                    reader.readAsDataURL(file); //reads the data as a URL
+                } else {
+                    preview.src = "";
+                }
             }
-        },
-        errorElement: 'small',
-        errorClass: 'help-block text-danger',
-        highlight: (e) => {
-            $(e).removeClass('is-valid').addClass('is-invalid');
-        },
-        unhighlight: (e) => {
-            $(e).addClass('is-valid').removeClass('is-invalid');
-        }
-    });
+
+            //Check Form With Validator
+            $("#uploadForm").validate({
+                rules: {
+                    FullName: {
+                        required: true
+                    },
+                    Password: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 20
+                    },
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    DOB: {
+                        required: true
+                    }
+                },
+                messages: {
+                    FullName: {
+                        required: "Không được bỏ trống"
+                    },
+                    Password: {
+                        required: "Không được bỏ trống",
+                        minlength: "Phải có từ 6 tới 20 ký tự",
+                        maxlength: "Phải có từ 6 tới 20 ký tự"
+                    },
+                    Email: {
+                        required: "Không được bỏ trống",
+                        email: "Định dạng Email không hợp lệ"
+                    },
+                    DOB: {
+                        required: "Không được bỏ trống"
+                    }
+                },
+                errorElement: 'small',
+                errorClass: 'help-block text-danger',
+                highlight: (e) => {
+                    $(e).removeClass('is-valid').addClass('is-invalid');
+                },
+                unhighlight: (e) => {
+                    $(e).addClass('is-valid').removeClass('is-invalid');
+                }
+            });
 </script>
 
 {{/section}}
@@ -153,7 +155,7 @@
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Ngày Sinh</label>
                 <div class="col-sm-3">
-                    <input type="text" id="DOB" name="DOB" class="form-control">
+                    <input type="text" id="DOB" name="DOB" class="form-control" value="{{dataUser.DOBFormat}}">
                 </div>
             </div>
             <div class="form-group row">
@@ -161,7 +163,9 @@
                     Hiện</label>
                 <div class="col-sm-10">
                     <span onclick="performClick('theFile');" style="cursor: pointer;">
-                        <img id="avatar" {{#if dataUser.Avatar}} src="{{dataUser.Avatar}}" {{else}} src="/images/no-image.png"{{/if}} class="rounded d-inline-block" alt="..." width="100px" height="100px" name="avatar">
+                        <img id="avatar" {{#if dataUser.Avatar}} src="{{dataUser.Avatar}}" {{else}}
+                            src="/images/no-image.png" {{/if}} class="rounded d-inline-block" alt="..." width="100px"
+                            height="100px" name="avatar">
                     </span>
                 </div>
             </div>
@@ -185,13 +189,22 @@
                     <input type="text" class="form-control" id="txtNgayHetHang" name="DatePremium">
                 </div>
             </div>
+
             <div id="boxChuyenMuc" class="form-group row"
                 style="{{#ifDifferent dataUser.Type '2' }}display: none{{/ifDifferent}}">
                 <label for="" class="col-sm-2 col-form-label">Chuyên Mục</label>
                 <div class="col-sm-3">
                     <select multiple class="form-control" id="exampleFormControlSelect1" name="ManageCatID">
                         {{#each dataCat}}
-                            <option value="{{CatID}}">{{Name}}</option>
+                        <li class="nav-item dropdown active">
+                            {{#if this.children.length}}
+                            {{#each this.children as |childValue childKey|}}
+                            <option value="{{childValue.CatID}}" {{#if childValue.check}}selected{{/if}}>{{childValue.Name}}</option>
+                            {{/each}}
+                            {{else}}
+                            <option value="{{this.element.CatID}}" {{#if this.element.check}}selected{{/if}}>{{this.element.Name}}</option>
+                            {{/if}}
+                        </li>
                         {{/each}}
                     </select>
                 </div>
